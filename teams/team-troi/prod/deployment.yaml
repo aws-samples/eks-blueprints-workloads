@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: djl-app
+  labels:
+    app: djl-app
+spec:
+  minReadySeconds: 5
+  revisionHistoryLimit: 5
+  progressDeadlineSeconds: 60
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 0
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: djl-app
+  template:
+    metadata:
+      annotations:
+        prometheus.io/scrape: "true"
+      labels:
+        app: djl-app
+    spec:
+      serviceAccountName: inf-backend
+      containers:
+        - name: djl-app
+          image: 929819487611.dkr.ecr.us-east-1.amazonaws.com/djl-spring-boot-app:0.0.1-SNAPSHOT-linux-x86_64-4a50518
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+              name: http
+              protocol: TCP
+          env:
+          resources:
+            limits:
+              cpu: 2000m
+              memory: 2536Mi
+            requests:
+              cpu: 400m
+              memory: 512Mi

@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: djl-api-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  - host: ace177b085e724d799be58ebfe9cf742-1857202715.us-east-2.elb.amazonaws.com
+    http:
+      paths:
+      - backend:
+          serviceName: djl-app
+          servicePort: 80
+        path: /inference
+
+
