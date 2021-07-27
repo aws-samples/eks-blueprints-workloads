@@ -15,7 +15,4 @@ spec:
     path: teams/team-burnham/dev
     targetRevision: {{ .Values.spec.source.targetRevision }}
   syncPolicy:
-    automated:
-      prune: true
-    syncOptions:
-    - CreateNamespace=true
+    automated: {}
