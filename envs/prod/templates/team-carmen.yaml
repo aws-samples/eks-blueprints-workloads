@@ -15,5 +15,7 @@ spec:
     path: templates
     targetRevision: {{ .Values.spec.source.targetRevision }}
   syncPolicy:
+    automated:
+      prune: true
     syncOptions:
-      - CreateNamespace=true
+    - CreateNamespace=true

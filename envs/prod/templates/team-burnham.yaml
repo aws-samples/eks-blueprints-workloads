@@ -11,8 +11,11 @@ spec:
     server: {{ .Values.spec.destination.server }}
   project: default
   source:
-    repoURL: https://github.com/shapirov103/argo-apps
+    repoURL: https://github.com/aws-samples/ssp-eks-workloads
     path: teams/team-burnham/prod
     targetRevision: {{ .Values.spec.source.targetRevision }}
   syncPolicy:
-    automated: {}
+    automated:
+      prune: true
+    syncOptions:
+    - CreateNamespace=true
