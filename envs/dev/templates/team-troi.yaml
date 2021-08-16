@@ -13,7 +13,7 @@ spec:
   source:
     repoURL: https://github.com/aws-samples/ssp-eks-workloads
     path: teams/team-troi/dev
-    targetRevision: {{ .Values.source.targetRevision }}
+    targetRevision: {{ .Values.spec.source.targetRevision }}
   syncPolicy:
     automated:
       prune: true
