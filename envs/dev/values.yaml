@@ -1,3 +1,5 @@
 spec:
   destination:
     server: https://kubernetes.default.svc
+  source:
+    targetRevision: bugfix/update-repo-target
