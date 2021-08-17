@@ -14,7 +14,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: guestbook-ui
+            name: kustomize-guestbook-ui
             port: 
               number: 80
         
