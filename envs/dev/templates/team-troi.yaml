@@ -11,7 +11,7 @@ spec:
     namespace: team-troi
     server: {{ .Values.spec.destination.server }}
   source:
-    repoURL: https://github.com/aws-samples/ssp-eks-workloads
+    repoURL: {{ .Values.spec.source.repoUrl }}
     path: teams/team-troi/dev
     targetRevision: {{ .Values.spec.source.targetRevision }}
   syncPolicy:

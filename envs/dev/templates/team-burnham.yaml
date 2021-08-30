@@ -11,7 +11,7 @@ spec:
     namespace: team-burnham
     server: {{ .Values.spec.destination.server }}
   source:
-    repoURL: https://github.com/aws-samples/ssp-eks-workloads
+    repoURL: {{ .Values.spec.source.repoURL }}
     path: teams/team-burnham/dev
     targetRevision: {{ .Values.spec.source.targetRevision }}
   syncPolicy:

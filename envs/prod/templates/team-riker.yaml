@@ -6,10 +6,10 @@ metadata:
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
+  project: default
   destination:
     namespace: team-riker
     server: {{ .Values.spec.destination.server }}
-  project: default
   source:
     repoURL: https://github.com/aws-samples/ssp-eks-workloads
     path: teams/team-riker/prod

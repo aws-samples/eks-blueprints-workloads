@@ -2,4 +2,5 @@ spec:
   destination:
     server: https://kubernetes.default.svc
   source:
-    targetRevision: bugfix/update-repo-target
+    repoURL: https://github.com/aws-samples/ssp-eks-workloads
+    targetRevision: main
