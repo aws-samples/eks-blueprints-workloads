@@ -3,4 +3,6 @@ spec:
     server: https://kubernetes.default.svc
   source:
     repoURL: https://github.com/aws-samples/ssp-eks-workloads
-    targetRevision: HEAD
+    targetRevision: main
+  ingress:
+    host:
