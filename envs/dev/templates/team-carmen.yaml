@@ -6,14 +6,14 @@ metadata:
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
+  project: default
   destination:
     namespace: team-carmen
     server: {{ .Values.spec.destination.server }}
-  project: default
   source:
-    repoURL: git@github.com:CarmenAPuccio/GeoLocationAPI.git
+    repoURL: https://github.com/CarmenAPuccio/GeoLocationAPI
     path: templates
-    targetRevision: {{ .Values.spec.source.targetRevision }}
+    targetRevision: master
   syncPolicy:
     automated:
       prune: true

@@ -6,14 +6,18 @@ metadata:
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
+  project: default
   destination:
     namespace: team-riker
     server: {{ .Values.spec.destination.server }}
-  project: default
   source:
-    repoURL: https://github.com/shapirov103/argo-apps
-    path: teams/team-riker/dev
+    repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: {{ .Values.spec.source.targetRevision }}
+    path: teams/team-riker/dev
+    helm:
+      parameters:
+      - name: spec.ingress.host
+        value: {{ .Values.spec.ingress.host }}
   syncPolicy:
     automated:
       prune: true
