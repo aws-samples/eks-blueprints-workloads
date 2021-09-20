@@ -1,8 +1,8 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: riker-ingress
-  namespace: team-riker
+  name: burnham-ingress
+  namespace: team-burnham
   annotations:
     kubernetes.io/ingress.class: "nginx"
 spec:
