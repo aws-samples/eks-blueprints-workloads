@@ -25,4 +25,4 @@ appVersion: "1.0"
 dependencies:
 - name: appmesh-controller
   version: 1.4.2
-  repository: https://charts.helm.sh/stable
+  repository: https://aws.github.io/eks-charts
