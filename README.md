@@ -47,9 +47,7 @@ envs
 │   ├── Chart.yaml
 │   ├── templates
 │   │   ├── team-burnham.yaml
-│   │   ├── team-carmen.yaml
 │   │   ├── team-riker.yaml
-│   │   └── team-troi.yaml
 │   └── values.yaml
 ├── prod
 └── test
@@ -61,20 +59,21 @@ The configuration in the `teams` subdirectories represent the individual teams t
 
 Each `team` subdirectory in turn has environment subdirectories. The configuration in those directories are Kubernetes manifests that represent the individual workload that is running for each team and in each environment. 
 
+**NOTE** Some team environment directories may contain additional `yaml` files such as an `ingress.yaml`
 ```
 teams
 ├── team-burnham
 │   ├── dev
-│   │   ├── guestbook-ui-deployment.yaml
-│   │   └── guestbook-ui-svc.yaml
+│   │   ├── deployment.yaml
+│   │   └── service.yaml
 │   ├── prod
-│   │   ├── guestbook-ui-deployment.yaml
-│   │   └── guestbook-ui-svc.yaml
+│   │   ├── deployment.yaml
+│   │   └── service.yaml
 │   └── test
-│       ├── guestbook-ui-deployment.yaml
-│       └── guestbook-ui-svc.yaml
+│       ├── deployment.yaml
+│       └── service.yaml
 ├── team-riker
-└── team-troi
+
 ```
 ## Security
 
