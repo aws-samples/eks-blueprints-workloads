@@ -47,6 +47,7 @@ envs
 │   ├── Chart.yaml
 │   ├── templates
 │   │   ├── team-burnham.yaml
+│   │   ├── team-carmen.yaml
 │   │   ├── team-riker.yaml
 │   └── values.yaml
 ├── prod
