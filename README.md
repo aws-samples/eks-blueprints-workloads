@@ -6,7 +6,7 @@ This repository serves as a sample GitOps configuration repository that is meant
 
 ## Documentation  
 
-Please refer to the Amazon EKS SSP Quick Start [Getting Started](https://aws-quickstart.github.io/quickstart-ssp-amazon-eks/getting-started/) guide for details on how to bootstrap an EKS cluster with the workload configuration contained in this repository.
+Please refer to the Amazon EKS SSP Quick Start [Getting Started](https://aws-quickstart.github.io/ssp-amazon-eks/getting-started/) guide for details on how to bootstrap an EKS cluster with the workload configuration contained in this repository.
 
 ## Usage 
 
