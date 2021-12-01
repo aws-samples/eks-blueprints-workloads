@@ -5,4 +5,4 @@ spec:
     repoURL: https://github.com/sharepointoscar/ssp-eks-workloads
     targetRevision: main
   ingress:
-    host: dev.example.com
+    host: dev.k8s.devopsoscar.dev
