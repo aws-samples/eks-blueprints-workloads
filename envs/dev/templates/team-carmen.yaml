@@ -13,7 +13,7 @@ spec:
   source:
     repoURL: https://github.com/CarmenAPuccio/GeoLocationAPI
     path: templates
-    targetRevision: master
+    targetRevision: HEAD
   syncPolicy:
     automated:
       prune: true
