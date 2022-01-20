@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: team-riker
+  name: team-riker-app
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
