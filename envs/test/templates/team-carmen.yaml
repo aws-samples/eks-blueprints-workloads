@@ -12,7 +12,7 @@ spec:
     server: {{ .Values.spec.destination.server }}
   source:
     repoURL: https://github.com/CarmenAPuccio/GeoLocationAPI
-    branch: master
+    branch: main
     path: templates
     targetRevision: {{ .Values.spec.source.targetRevision }}
   syncPolicy:
