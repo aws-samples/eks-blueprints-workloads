@@ -1,5 +1,0 @@
-apiVersion: v1
-appVersion: "1.0"
-name: team-riker-dev
-description: Team Riker applications for the Dev environment.
-version: 0.1.0
