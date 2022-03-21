@@ -11,8 +11,8 @@ spec:
     namespace: team-carmen
     server: {{ .Values.spec.destination.server }}
   source:
-    repoURL: https://github.com/CarmenAPuccio/GeoLocationAPI
-    branch: main
+    repoURL: https://github.com/youngjeong46/GeoLocationAPI
+    branch: demo
     path: templates
     targetRevision: {{ .Values.spec.source.targetRevision }}
   syncPolicy:

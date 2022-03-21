@@ -11,11 +11,11 @@ spec:
     namespace: team-carmen
     server: {{ .Values.spec.destination.server }}
   source:
-    repoURL: https://github.com/CarmenAPuccio/GeoLocationAPI
+    repoURL: https://github.com/youngjeong46/GeoLocationAPI
     path: templates
-    targetRevision: main
+    targetRevision: demo
   syncPolicy:
     automated:
       prune: true
     syncOptions:
-    - CreateNamespace=true
+    - CreateNamespace=false
