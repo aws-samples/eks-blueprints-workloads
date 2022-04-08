@@ -2,11 +2,11 @@
 
 Welcome to the EKS Blueprints Workloads repository.
 
-This repository serves as a sample GitOps configuration repository that is meant to be used with the [Amazon EKS Blueprints Quick Start](https://github.com/aws-quickstart/cdk-eks-blueprints).
+This repository serves as a sample GitOps configuration repository that is meant to be used with the [Amazon EKS Blueprints CDK Quick Start](https://github.com/aws-quickstart/cdk-eks-blueprints) and [Amazon EKS Blueprints for Terraform](https://github.com/aws-ia/terraform-aws-eks-blueprints).
 
 ## Documentation  
 
-Please refer to the Amazon EKS Blueprints Quick Start [Getting Started](https://aws-quickstart.github.io/ssp-amazon-eks/getting-started/) guide for details on how to bootstrap an EKS cluster with the workload configuration contained in this repository.
+Please refer to the Amazon EKS Blueprints Quick Start [Getting Started](https://aws-quickstart.github.io/cdk-eks-blueprints/getting-started/) guide for details on how to bootstrap an EKS cluster with the workload configuration contained in this repository.
 
 ## Usage 
 
