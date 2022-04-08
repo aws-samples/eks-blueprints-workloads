@@ -1,12 +1,12 @@
-# SSP EKS Workloads
+# EKS Blueprints Workloads
 
-Welcome to the SSP EKS Workloads repository.
+Welcome to the EKS Blueprints Workloads repository.
 
-This repository serves as a sample GitOps configuration repository that is meant to be used with the [Amazon EKS SSP Quick Start](https://github.com/aws-quickstart/quickstart-ssp-amazon-eks).
+This repository serves as a sample GitOps configuration repository that is meant to be used with the [Amazon EKS Blueprints Quick Start](https://github.com/aws-quickstart/cdk-eks-blueprints).
 
 ## Documentation  
 
-Please refer to the Amazon EKS SSP Quick Start [Getting Started](https://aws-quickstart.github.io/ssp-amazon-eks/getting-started/) guide for details on how to bootstrap an EKS cluster with the workload configuration contained in this repository.
+Please refer to the Amazon EKS Blueprints Quick Start [Getting Started](https://aws-quickstart.github.io/ssp-amazon-eks/getting-started/) guide for details on how to bootstrap an EKS cluster with the workload configuration contained in this repository.
 
 ## Usage 
 
@@ -16,7 +16,7 @@ To bootstrap an EKS cluster with the configuration that is contained in this rep
 argocd app create dev-apps \
     --dest-namespace argocd  \
     --dest-server https://kubernetes.default.svc  \
-    --repo https://github.com/aws-samples/ssp-eks-workloads.git \
+    --repo https://github.com/aws-samples/eks-blueprints-workloads.git \
     --path "envs/dev"
 ```
 
@@ -37,7 +37,7 @@ The configuration in this repository is organized into two directories: `envs` a
 
 ### Environments
 
-The configuration in the `envs` subdirectories represent configuration for a specific EKS environment. In the context of the Amazon EKS SSP Quick Start, an environment maps directly to a single EKS Cluster. 
+The configuration in the `envs` subdirectories represent configuration for a specific EKS environment. In the context of the Amazon EKS Blueprints Quick Start, an environment maps directly to a single EKS Cluster. 
 
 This repository has support for three different environments: `dev`, `test`, and `prod`. Each environment directory is a Helm chart which references the teams that run workloads in each cluster.
 
