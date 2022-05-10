@@ -1,0 +1,16 @@
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+  apps:
+    ecsdemoFrontend:
+      repoURL: git@github.com:aws-containers/ecsdemo-frontend.git
+      targetRevision: main
+      path: kubernetes/helm
+    ecsdemoNodejs:
+      repoURL: git@github.com:aws-containers/ecsdemo-nodejs.git
+      targetRevision: main
+      path: kubernetes/helm
+    ecsdemoCrystal:
+      repoURL: git@github.com:aws-containers/ecsdemo-crystal.git
+      targetRevision: main
+      path: kubernetes/helm
