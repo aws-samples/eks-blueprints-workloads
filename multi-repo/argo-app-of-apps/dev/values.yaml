@@ -5,12 +5,12 @@ spec:
     ecsdemoFrontend:
       repoURL: git@github.com:aws-containers/ecsdemo-frontend.git
       targetRevision: main
-      path: kubernetes/helm
+      path: kubernetes/helm/ecsdemo-frontend
     ecsdemoNodejs:
       repoURL: git@github.com:aws-containers/ecsdemo-nodejs.git
       targetRevision: main
-      path: kubernetes/helm
+      path: kubernetes/helm/ecsdemo-nodejs
     ecsdemoCrystal:
       repoURL: git@github.com:aws-containers/ecsdemo-crystal.git
       targetRevision: main
-      path: kubernetes/helm
+      path: kubernetes/helm/ecsdemo-crystal
