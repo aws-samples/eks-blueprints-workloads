@@ -3,14 +3,14 @@ spec:
     server: https://kubernetes.default.svc
   apps:
     ecsdemoFrontend:
-      repoURL: git@github.com:tsahiduek/eks-blueprints-workloads.git
-      targetRevision: multi-repos
-      path: applications-charts/ecsdemo-frontend
+      repoURL: git@github.com:aws-containers/ecsdemo-frontend.git
+      targetRevision: main
+      path: kubernetes/helm/ecsdemo-frontend
     ecsdemoNodejs:
-      repoURL: git@github.com:tsahiduek/eks-blueprints-workloads.git
-      targetRevision: multi-repos
-      path: applications-charts/ecsdemo-nodejs
+      repoURL: git@github.com:aws-containers/ecsdemo-nodejs.git
+      targetRevision: main
+      path: kubernetes/helm/ecsdemo-nodejs
     ecsdemoCrystal:
-      repoURL: git@github.com:tsahiduek/eks-blueprints-workloads.git
-      targetRevision: multi-repos
-      path: applications-charts/ecsdemo-crystal
+      repoURL: git@github.com:aws-containers/ecsdemo-crystal.git
+      targetRevision: main
+      path: kubernetes/helm/ecsdemo-crystal
