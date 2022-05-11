@@ -1,0 +1,11 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: ecsdemo-nodejs
+  namespace: argocd
+spec:
+  destinations:
+  - namespace: ecsdemo-nodejs
+    server: https://kubernetes.default.svc
+  sourceRepos:
+  - git@github.com:aws-containers/ecsdemo-nodejs.git
