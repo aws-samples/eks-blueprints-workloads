@@ -12,8 +12,12 @@ spec:
     server: {{ .Values.spec.destination.server }}
   source:
     repoURL: {{ .Values.spec.source.repoURL }}
-    path: teams/team-riker/test
     targetRevision: {{ .Values.spec.source.targetRevision }}
+    path: teams/team-riker/test
+    helm:
+      parameters:
+      - name: spec.ingress.host
+        value: {{ .Values.spec.ingress.host }}
   syncPolicy:
     automated:
       prune: true
