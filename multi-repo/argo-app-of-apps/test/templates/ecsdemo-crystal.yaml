@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ecsdemo-crystal
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: ecsdemo-crystal
+  destination:
+    namespace: ecsdemo-crystal
+    server: {{ .Values.spec.destination.server }}
+  source:
+    repoURL: {{ .Values.spec.apps.ecsdemoCrystal.repoURL }}
+    targetRevision: {{ .Values.spec.apps.ecsdemoCrystal.targetRevision }}
+    path: {{ .Values.spec.apps.ecsdemoCrystal.path }}
+    
+  syncPolicy:
+    automated:
+      prune: true
+    syncOptions:
+      - CreateNamespace=true

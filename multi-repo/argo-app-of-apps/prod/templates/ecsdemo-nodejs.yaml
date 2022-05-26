@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ecsdemo-nodejs
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: ecsdemo-nodejs
+  destination:
+    namespace: ecsdemo-nodejs
+    server: {{ .Values.spec.destination.server }}
+  source:
+    repoURL: {{ .Values.spec.apps.ecsdemoNodejs.repoURL }}
+    targetRevision: {{ .Values.spec.apps.ecsdemoNodejs.targetRevision }}
+    path: {{ .Values.spec.apps.ecsdemoNodejs.path }}
+  syncPolicy:
+    automated:
+      prune: true
+    syncOptions:
+      - CreateNamespace=true
