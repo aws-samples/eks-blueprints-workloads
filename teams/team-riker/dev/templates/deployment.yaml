@@ -18,3 +18,14 @@ spec:
         name: guestbook-ui
         ports:
         - containerPort: 80
+        resources:
+          requests:
+            memory: '50Mi'
+            cpu: '50m'
+          limits:
+            memory: '50Mi'
+            cpu: '50m'
+        securityContext:
+          privileged: false
+          #readOnlyRootFilesystem: false # guestbook neet to write to /var/run/apache2/apache2.pid
+          allowPrivilegeEscalation: false
