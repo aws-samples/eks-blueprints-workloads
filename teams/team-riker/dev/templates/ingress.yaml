@@ -4,9 +4,7 @@ metadata:
   name: riker-ingress
   namespace: team-riker
   annotations:
-{{ if eq .Values.spec.ingress.type "nginx" }}  
-    kubernetes.io/ingress.class: "nginx"
-{{ else }}
+{{ if eq .Values.spec.ingress.type "alb" }}  
     #rewrite does not exist yet in ALB
     #https://github.com/kubernetes-sigs/aws-load-balancer-controller/issues/1571
     #so commenting grouping feature
@@ -18,7 +16,7 @@ metadata:
 {{ end }}
 spec:
 {{ if eq .Values.spec.ingress.type "nginx" }}  
-    kubernetes.io/ingress.class: "nginx"
+  ingressClassName: nginx    
 {{ else }}
   ingressClassName: alb
 {{ end }}  
