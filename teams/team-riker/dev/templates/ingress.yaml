@@ -4,10 +4,28 @@ metadata:
   name: riker-ingress
   namespace: team-riker
   annotations:
-    kubernetes.io/ingress.class: "nginx"
+{{ if eq .Values.spec.ingress.type "alb" }}  
+    #rewrite does not exist yet in ALB
+    #https://github.com/kubernetes-sigs/aws-load-balancer-controller/issues/1571
+    #so commenting grouping feature
+    #alb.ingress.kubernetes.io/group.name: riker
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+    alb.ingress.kubernetes.io/tags: Environment=dev,Team=Riker
+{{ end }}
 spec:
+{{ if eq .Values.spec.ingress.type "nginx" }}  
+  ingressClassName: nginx    
+{{ else }}
+  ingressClassName: alb
+{{ end }}  
   rules:
+{{ if not (eq .Values.spec.ingress.host "dev.example.com") }}
   - host: guestbook-ui.{{ .Values.spec.ingress.host }}
+{{ else }}
+  - host:  
+{{ end }}  
     http:
       paths:
       - path: /
