@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: flask-svc
-  namespace: testing
+  namespace: team-data
 spec:
   selector:
     app: flask

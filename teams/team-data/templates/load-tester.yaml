@@ -4,7 +4,7 @@ metadata:
   name: flagger-loadtester
   labels:
     app: flagger-loadtester
-  namespace: testing
+  namespace: team-data
 spec:
   selector:
     matchLabels:

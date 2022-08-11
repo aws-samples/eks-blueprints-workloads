@@ -4,7 +4,7 @@ metadata:
   labels:
     run: flask
   name: flask
-  namespace: testing
+  namespace: team-data
 spec:
   selector: 
     matchLabels:

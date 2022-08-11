@@ -2,7 +2,7 @@ apiVersion: flagger.app/v1beta1
 kind: Canary
 metadata:
   name: flask
-  namespace: testing
+  namespace: team-data
 spec:
   # service mesh provider can be: kubernetes, istio, appmesh, nginx, gloo
   provider: nginx
