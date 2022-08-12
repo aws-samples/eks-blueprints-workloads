@@ -41,13 +41,13 @@ spec:
     webhooks:
       - name: smoke-test
         type: pre-rollout
-        url: http://flagger-loadtester.testing/
+        url: http://flagger-loadtester.team-data/
         timeout: 15s
         metadata:
           type: bash
-          cmd: "curl -v http://flask-canary.testing:5000/"
+          cmd: "curl -v http://flask-canary.team-data:5000/"
       - name: load-test
-        url: http://flagger-loadtester.testing/
+        url: http://flagger-loadtester.team-data/
         timeout: 5s
         metadata:
           type: cmd
