@@ -1,0 +1,8 @@
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+  apps:
+    yelb:
+      repoURL: git@github.com:mreferre/yelb.git
+      targetRevision: main
+      path: kubernetes/helm/yelb
