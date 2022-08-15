@@ -5,4 +5,4 @@ spec:
     yelb:
       repoURL: git@github.com:mreferre/yelb.git
       targetRevision: main
-      path: kubernetes/helm/yelb
+      path: deployments/platformdeployment/Kubernetes/chart/yelb
