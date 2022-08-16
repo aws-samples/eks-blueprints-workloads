@@ -19,13 +19,13 @@ spec:
       - name: replicaCount
         value: 1
       - name: service.type
-        value: LoadBalancer
+        value: {{ .Values.team-geordi.service.type }}
       - name: service.port
         value: 80
       - name: ingress.enabled
-        value: false
+        value: {{ .Values.team-geordi.ingress.enabled }}
       - name: ingress.hosts
-        value: dev.yelb.com
+        value: {{ .Values.team-geordi.ingress.host }}
       - name: ingress.path
         value: /
       - name: ingress.tls
