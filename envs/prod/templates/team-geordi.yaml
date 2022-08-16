@@ -1,0 +1,39 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: team-geordi
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  destination:
+    namespace: yelb
+    server: {{ .Values.spec.destination.server }}
+  source:
+    repoURL: {{ .Values.spec.source.repoURL }}
+    path: teams/team-geordi/prod
+    targetRevision: {{ .Values.spec.source.targetRevision }}
+    helm:
+      parameters:
+      - name: replicaCount
+        value: {{ .Values.replicaCount }}
+      - name: service.type
+        value: {{ .Values.service.type }}
+      - name: service.port
+        value: {{ .Values.service.port }}
+      - name: ingress.enabled
+        value: {{ .Values.ingress.enabled }}
+      - name: ingress.hosts
+        value: {{ .Values.ingress.hosts }}
+      - name: ingress.path
+        value: {{ .Values.ingress.path }}
+      - name: ingress.tls
+        value: {{ .Values.ingress.tls }}
+      - name: ingress.annotations
+        value: {{ .Values.ingress.annotations }}
+  syncPolicy:
+    automated:
+      prune: true
+    syncOptions:
+    - CreateNamespace=true
