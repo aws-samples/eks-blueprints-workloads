@@ -11,27 +11,27 @@ spec:
     namespace: yelb
     server: {{ .Values.spec.destination.server }}
   source:
-    repoURL: {{ .Values.spec.source.repoURL }}
-    path: teams/team-geordi/dev
-    targetRevision: {{ .Values.spec.source.targetRevision }}
+    repoURL: https://github.com/mreferre/yelb.git
+    path: deployments/platformdeployment/Kubernetes/chart/yelb
+    targetRevision: main
     helm:
       parameters:
       - name: replicaCount
-        value: {{ .Values.replicaCount }}
+        value: 1
       - name: service.type
-        value: {{ .Values.service.type }}
+        value: LoadBalancer
       - name: service.port
-        value: {{ .Values.service.port }}
+        value: 80
       - name: ingress.enabled
-        value: {{ .Values.ingress.enabled }}
+        value: false
       - name: ingress.hosts
-        value: {{ .Values.ingress.hosts }}
+        value: dev.yelb.com
       - name: ingress.path
-        value: {{ .Values.ingress.path }}
+        value: /
       - name: ingress.tls
-        value: {{ .Values.ingress.tls }}
+        value: []
       - name: ingress.annotations
-        value: {{ .Values.ingress.annotations }}
+        value: {}
   syncPolicy:
     automated:
       prune: true
