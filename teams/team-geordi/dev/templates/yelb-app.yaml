@@ -8,7 +8,7 @@ metadata:
 spec:
   project: default
   destination:
-    namespace: yelb
+    namespace: geordie
     server: {{ .Values.spec.destination.server }}
   source:
     repoURL: https://github.com/mreferre/yelb.git

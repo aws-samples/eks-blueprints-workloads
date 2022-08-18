@@ -8,7 +8,7 @@ metadata:
 spec:
   project: default
   destination:
-    namespace: argocd
+    namespace: geordie
     server: {{ .Values.spec.destination.server }}
   source:
     repoURL: https://github.com/aws-samples/eks-blueprints-workloads
