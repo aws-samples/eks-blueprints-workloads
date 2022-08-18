@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: ho11y
-        image: {{HOLLY_IMAGE}}
+        image: public.ecr.aws/z0a4o2j5/ho11y:latest
         ports:
         - containerPort: 8765
         env:
