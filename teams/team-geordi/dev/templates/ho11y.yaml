@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: team-geordi
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  destination:
+    namespace: ho11y
+    server: {{ .Values.spec.destination.server }}
+  source:
+    repoURL: https://github.com/aws-samples/eks-blueprints-workloads
+    path: teams/team-geordi/dev/templates/ho11y
+    targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+    syncOptions:
+    - CreateNamespace=true

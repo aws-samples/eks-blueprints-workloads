@@ -11,8 +11,8 @@ spec:
     namespace: ho11y
     server: {{ .Values.spec.destination.server }}
   source:
-    repoURL: https://github.com/aws-samples/eks-blueprints-workloads
-    path: teams/team-geordi/dev
+    repoURL: https://github.com/mreferre/yelb.git
+    path: deployments/platformdeployment/Kubernetes/chart/yelb
     targetRevision: main
     helm:
       parameters:
