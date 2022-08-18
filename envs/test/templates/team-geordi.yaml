@@ -16,22 +16,8 @@ spec:
     targetRevision: main
     helm:
       parameters:
-      - name: replicaCount
-        value: 1
-      - name: service.type
-        value: {{ .Values.team-geordi.service.type }}
-      - name: service.port
-        value: 80
-      - name: ingress.enabled
-        value: {{ .Values.team-geordi.ingress.enabled }}
       - name: ingress.hosts
-        value: {{ .Values.team-geordi.ingress.host }}
-      - name: ingress.path
-        value: /
-      - name: ingress.tls
-        value: []
-      - name: ingress.annotations
-        value: {}
+        value: {{ .Values.ingress.host }}
   syncPolicy:
     automated:
       prune: true

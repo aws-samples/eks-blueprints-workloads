@@ -12,7 +12,7 @@ spec:
     server: {{ .Values.spec.destination.server }}
   source:
     repoURL: https://github.com/aws-samples/eks-blueprints-workloads
-    path: teams/team-geordi/test
+    path: teams/team-geordi/test/ho11y
     targetRevision: main
   syncPolicy:
     automated:

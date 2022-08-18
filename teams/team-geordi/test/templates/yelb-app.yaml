@@ -19,13 +19,13 @@ spec:
       - name: replicaCount
         value: 1
       - name: service.type
-        value: {{ .Values.team-geordi.service.type }}
+        value: ClusterIP
       - name: service.port
         value: 80
       - name: ingress.enabled
-        value: {{ .Values.team-geordi.ingress.enabled }}
+        value: true
       - name: ingress.hosts
-        value: {{ .Values.team-geordi.ingress.host }}
+        value: yelb.{{ .Values.ingress.host }}
       - name: ingress.path
         value: /
       - name: ingress.tls
