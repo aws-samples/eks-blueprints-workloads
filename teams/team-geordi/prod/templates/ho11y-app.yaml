@@ -8,7 +8,7 @@ metadata:
 spec:
   project: default
   destination:
-    namespace: geordie
+    namespace: ho11y
     server: {{ .Values.spec.destination.server }}
   source:
     repoURL: https://github.com/elamaran11/eks-blueprints-workloads
@@ -18,4 +18,4 @@ spec:
     automated:
       prune: true
     syncOptions:
-    - CreateNamespace=false
+    - CreateNamespace=true
