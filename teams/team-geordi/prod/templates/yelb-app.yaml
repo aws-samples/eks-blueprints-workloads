@@ -26,12 +26,6 @@ spec:
         value: true
       - name: ingress.hosts
         value: yelb.{{ .Values.ingress.host }}
-      - name: ingress.path
-        value: /
-      - name: ingress.tls
-        value: []
-      - name: ingress.annotations
-        value: {}
   syncPolicy:
     automated:
       prune: true
