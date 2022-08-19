@@ -16,14 +16,10 @@ spec:
     targetRevision: main
     helm:
       parameters:
-      - name: replicaCount
-        value: 1
       - name: service.type
         value: ClusterIP
-      - name: service.port
-        value: 80
       - name: ingress.enabled
-        value: true
+        value: "true"
       - name: ingress.hosts
         value: yelb.{{ .Values.ingress.host }}
   syncPolicy:
