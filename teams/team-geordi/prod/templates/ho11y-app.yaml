@@ -8,7 +8,7 @@ metadata:
 spec:
   project: default
   destination:
-    namespace: ho11y
+    namespace: geordi
     server: {{ .Values.spec.destination.server }}
   source:
     repoURL: https://github.com/elamaran11/eks-blueprints-workloads
