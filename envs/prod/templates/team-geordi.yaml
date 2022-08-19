@@ -13,7 +13,7 @@ spec:
   source:
     repoURL: https://github.com/elamaran11/eks-blueprints-workloads
     path: teams/team-geordi/prod
-    targetRevision: main
+    targetRevision: feature/Yelb-app
     helm:
       parameters:
       - name: ingress.hosts
