@@ -11,9 +11,9 @@ spec:
     namespace: geordie
     server: {{ .Values.spec.destination.server }}
   source:
-    repoURL: https://github.com/aws-samples/eks-blueprints-workloads
+    repoURL: https://github.com/elamaran11/eks-blueprints-workloads
     path: teams/team-geordi/prod/ho11y
-    targetRevision: main
+    targetRevision: feature/Yelb-app
   syncPolicy:
     automated:
       prune: true
