@@ -21,7 +21,7 @@ spec:
       - name: ingress.enabled
         value: "true"
       - name: ingress.hosts
-        value: yelb.{{ .Values.ingress.host }}
+        value: {{ .Values.ingress.host }}
   syncPolicy:
     automated:
       prune: true
