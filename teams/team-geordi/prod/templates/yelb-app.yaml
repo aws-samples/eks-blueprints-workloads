@@ -20,8 +20,6 @@ spec:
         value: LoadBalancer
       - name: ingress.enabled
         value: "false"
-      # - name: ingress.hosts
-      #   value: {{ .Values.ingress.host }}
   syncPolicy:
     automated:
       prune: true
