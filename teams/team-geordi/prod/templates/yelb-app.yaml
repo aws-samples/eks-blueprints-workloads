@@ -17,11 +17,11 @@ spec:
     helm:
       parameters:
       - name: service.type
-        value: ClusterIP
+        value: LoadBalancer
       - name: ingress.enabled
-        value: "true"
-      - name: ingress.hosts
-        value: {{ .Values.ingress.host }}
+        value: "false"
+      # - name: ingress.hosts
+      #   value: {{ .Values.ingress.host }}
   syncPolicy:
     automated:
       prune: true
