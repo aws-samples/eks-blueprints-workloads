@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "yelb.fullname" . }}-ui
@@ -21,7 +21,7 @@ spec:
         - name: "APP_SERVER_HOSTNAME"
           value: {{ template "yelb.fullname" . }}-appserver
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "yelb.fullname" . }}-cache
@@ -41,7 +41,7 @@ spec:
         ports:
         - containerPort: 6379
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "yelb.fullname" . }}-db
@@ -61,7 +61,7 @@ spec:
         ports:
         - containerPort: 5432
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "yelb.fullname" . }}-appserver
