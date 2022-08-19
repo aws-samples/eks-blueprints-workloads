@@ -13,7 +13,7 @@ spec:
   source:
     repoURL: https://github.com/mreferre/yelb.git
     path: deployments/platformdeployment/Kubernetes/chart/yelb
-    targetRevision: main
+    targetRevision: master
     helm:
       parameters:
       - name: service.type
