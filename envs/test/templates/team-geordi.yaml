@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: team-geordi
+  name: team-geordie
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
@@ -11,13 +11,9 @@ spec:
     namespace: geordie
     server: {{ .Values.spec.destination.server }}
   source:
-    repoURL: https://github.com/aws-samples/eks-blueprints-workloads
-    path: teams/team-geordi/test
-    targetRevision: main
-    helm:
-      parameters:
-      - name: ingress.hosts
-        value: {{ .Values.ingress.host }}
+    repoURL: https://github.com/elamaran11/eks-blueprints-workloads
+    path: teams/team-geordie/test
+    targetRevision: feature/Yelb-app
   syncPolicy:
     automated:
       prune: true

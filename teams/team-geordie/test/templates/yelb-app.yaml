@@ -1,37 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: team-geordi
+  name: yelb
   namespace: argocd
   finalizers:
-  - resources-finalizer.argocd.argoproj.io
+    - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   destination:
     namespace: geordie
     server: {{ .Values.spec.destination.server }}
   source:
-    repoURL: https://github.com/mreferre/yelb.git
-    path: deployments/platformdeployment/Kubernetes/chart/yelb
-    targetRevision: main
-    helm:
-      parameters:
-      - name: replicaCount
-        value: 1
-      - name: service.type
-        value: ClusterIP
-      - name: service.port
-        value: 80
-      - name: ingress.enabled
-        value: true
-      - name: ingress.hosts
-        value: yelb.{{ .Values.ingress.host }}
-      - name: ingress.path
-        value: /
-      - name: ingress.tls
-        value: []
-      - name: ingress.annotations
-        value: {}
+    repoURL: https://github.com/elamaran11/eks-blueprints-workloads
+    path: teams/team-geordie/test/yelb
+    targetRevision: feature/Yelb-app
   syncPolicy:
     automated:
       prune: true

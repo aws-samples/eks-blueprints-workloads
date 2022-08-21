@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: ho11y
+  name: yelb
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -12,7 +12,7 @@ spec:
     server: {{ .Values.spec.destination.server }}
   source:
     repoURL: https://github.com/elamaran11/eks-blueprints-workloads
-    path: teams/team-geordie/test/ho11y
+    path: teams/team-geordie/dev/yelb
     targetRevision: feature/Yelb-app
   syncPolicy:
     automated:

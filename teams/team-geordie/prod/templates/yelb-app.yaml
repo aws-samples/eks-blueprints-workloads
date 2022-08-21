@@ -14,12 +14,6 @@ spec:
     repoURL: https://github.com/elamaran11/eks-blueprints-workloads
     path: teams/team-geordie/prod/yelb
     targetRevision: feature/Yelb-app
-    helm:
-      parameters:
-      - name: service.type
-        value: LoadBalancer
-      - name: ingress.enabled
-        value: "false"
   syncPolicy:
     automated:
       prune: true
