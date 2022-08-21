@@ -11,9 +11,9 @@ spec:
     namespace: geordie
     server: {{ .Values.spec.destination.server }}
   source:
-    repoURL: https://github.com/elamaran11/eks-blueprints-workloads
+    repoURL: {{ .Values.spec.source.repoURL }}
+    targetRevision: {{ .Values.spec.source.targetRevision }}
     path: teams/team-geordie/prod
-    targetRevision: feature/Yelb-app
   syncPolicy:
     automated:
       prune: true
