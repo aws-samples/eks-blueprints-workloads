@@ -4,16 +4,16 @@ metadata:
   name: team-geordi
   namespace: argocd
   finalizers:
-  - resources-finalizer.argocd.argoproj.io
+    - resources-finalizer.argocd.argoproj.io
 spec:
-  project: default
+  project: ho11y
   destination:
-    namespace: geordie
+    namespace: geordi
     server: {{ .Values.spec.destination.server }}
   source:
-    repoURL: https://github.com/aws-samples/eks-blueprints-workloads
-    path: teams/team-geordi/dev/ho11y
-    targetRevision: main
+    repoURL: https://github.com/elamaran11/eks-blueprints-workloads
+    path: teams/team-geordi/prod/ho11y
+    targetRevision: feature/Yelb-app
   syncPolicy:
     automated:
       prune: true
