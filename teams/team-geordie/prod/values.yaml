@@ -4,11 +4,11 @@ spec:
   apps:
     ho11y:
       repoURL: https://github.com/elamaran11/eks-blueprints-workloads
-      path: teams/team-geordi/prod/ho11y
+      path: teams/team-geordie/prod/ho11y
       targetRevision: feature/Yelb-app
     yelb:
       repoURL: https://github.com/elamaran11/eks-blueprints-workloads
-      path: teams/team-geordi/prod/yelb
+      path: teams/team-geordie/prod/yelb
       targetRevision: feature/Yelb-app
   ingress:
     host: prod.example.com

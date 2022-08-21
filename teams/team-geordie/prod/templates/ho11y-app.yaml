@@ -1,18 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: team-geordi
+  name: team-geordie
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   destination:
-    namespace: geordi
+    namespace: geordie
     server: {{ .Values.spec.destination.server }}
   source:
     repoURL: https://github.com/elamaran11/eks-blueprints-workloads
-    path: teams/team-geordi/prod/ho11y
+    path: teams/team-geordie/prod/ho11y
     targetRevision: feature/Yelb-app
   syncPolicy:
     automated:
