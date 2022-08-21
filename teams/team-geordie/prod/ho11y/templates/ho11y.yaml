@@ -118,6 +118,7 @@ metadata:
   annotations:
     scrape: "true"
 spec:
+  type: LoadBalancer
   ports:
   - port: 80
     targetPort: 8765
