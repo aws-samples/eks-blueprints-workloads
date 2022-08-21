@@ -6,20 +6,14 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  project: yelb
+  project: default
   destination:
     namespace: geordi
     server: {{ .Values.spec.destination.server }}
   source:
     repoURL: https://github.com/elamaran11/eks-blueprints-workloads
-    path: teams/team-geordi/prod/yelb
+    path: teams/team-geordi/prod/ho11y
     targetRevision: feature/Yelb-app
-    helm:
-      parameters:
-      - name: service.type
-        value: LoadBalancer
-      - name: ingress.enabled
-        value: "false"
   syncPolicy:
     automated:
       prune: true

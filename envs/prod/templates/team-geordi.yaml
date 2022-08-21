@@ -10,15 +10,10 @@ spec:
   destination:
     namespace: geordie
     server: {{ .Values.spec.destination.server }}
-  apps:
-    ho11y:
-      repoURL: https://github.com/elamaran11/eks-blueprints-workloads
-      path: teams/team-geordi/prod/ho11y
-      targetRevision: feature/Yelb-app
-    yelb:
-      repoURL: https://github.com/elamaran11/eks-blueprints-workloads
-      path: teams/team-geordi/prod/yelb
-      targetRevision: feature/Yelb-app
+  source:
+    repoURL: https://github.com/elamaran11/eks-blueprints-workloads
+    path: teams/team-geordi/prod
+    targetRevision: feature/Yelb-app
   syncPolicy:
     automated:
       prune: true
