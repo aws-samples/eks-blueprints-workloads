@@ -12,7 +12,7 @@ spec:
     server: {{ .Values.spec.destination.server }}
   source:
     repoURL: https://github.com/elamaran11/eks-blueprints-workloads
-    path: teams/team-geordi/prod
+    path: teams/team-geordie/prod
     targetRevision: feature/Yelb-app
   syncPolicy:
     automated:
