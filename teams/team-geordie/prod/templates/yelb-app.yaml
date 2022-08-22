@@ -14,6 +14,8 @@ spec:
     repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: {{ .Values.spec.source.targetRevision }}
     path: teams/team-geordie/prod/yelb
+  ingress:
+    host: yelb.:{{ .Values.spec.ingress.host }}
   syncPolicy:
     automated:
       prune: true

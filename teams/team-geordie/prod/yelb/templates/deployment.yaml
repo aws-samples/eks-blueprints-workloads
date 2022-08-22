@@ -155,3 +155,23 @@ spec:
           image: mreferre/yelb-appserver:0.5
           ports:
             - containerPort: 4567
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  namespace: geordie
+  name: yelb-ingress
+  annotations:
+    kubernetes.io/ingress.class: alb # check this, your ingress.class may be different 
+    alb.ingress.kubernetes.io/scheme: internet-facing 
+  labels:
+    app: yelb-ui
+spec:
+  rules:
+    - host: {{ .Values.spec.ingress.host }}
+      http:
+        paths:
+          - path: /*
+            backend:
+              serviceName: yelb-ui
+              servicePort: 80

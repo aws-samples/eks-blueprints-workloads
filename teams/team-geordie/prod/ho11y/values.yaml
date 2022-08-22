@@ -4,3 +4,5 @@ spec:
   source:
     repoURL: https://github.com/aws-samples/eks-blueprints-workloads
     targetRevision: main
+  ingress:
+    host: ho11y.teamblueprints.com
