@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: geordie
+  name: yelb-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+  labels:
+    app: yelb-ui
+spec:
+  rules:
+  - host: yelb.{{ .Values.spec.ingress.host }}
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: yelb-ui
+            port: 
+              number: 80
