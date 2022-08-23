@@ -155,3 +155,4 @@ spec:
           image: mreferre/yelb-appserver:0.5
           ports:
             - containerPort: 4567
+---
