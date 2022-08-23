@@ -17,7 +17,7 @@ spec:
     helm:
       parameters:
       - name: spec.ingress.host
-        value: "yelb.":{{ .Values.spec.ingress.host }}
+        value: yelb.:{{ .Values.spec.ingress.host }}
   syncPolicy:
     automated:
       prune: true
