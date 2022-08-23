@@ -168,7 +168,7 @@ metadata:
     app: yelb-ui
 spec:
   rules:
-    - host: {{ .Values.spec.ingress.host }}
+    - host: {{ .spec.ingress.host }}
       http:
         paths:
           - path: /*
