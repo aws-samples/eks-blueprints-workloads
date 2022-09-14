@@ -31,7 +31,7 @@ spec:
         - name: OTEL_RESOURCE_ATTRIB
           value: "frontend"
         - name: OTEL_EXPORTER_OTLP_ENDPOINT
-          value: "adot:4317"
+          value: "otel-collector-xray-collector.default.svc.cluster.local:4317"
         - name: HO11Y_INJECT_FAILURE
           value: "enabled"
         - name: DOWNSTREAM0
