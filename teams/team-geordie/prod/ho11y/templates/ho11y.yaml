@@ -101,7 +101,7 @@ spec:
         - name: OTEL_RESOURCE_ATTRIB
           value: "downstream1"
         - name: OTEL_EXPORTER_OTLP_ENDPOINT
-          value: "adot:4317"
+          value: "otel-collector-xray-collector.default.svc.cluster.local:4317"
         - name: DOWNSTREAM0
           value: "https://o11y.news/2021-03-01/"
         - name: DOWNSTREAM1
