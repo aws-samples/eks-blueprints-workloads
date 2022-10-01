@@ -11,7 +11,7 @@ spec:
     namespace: team-carmen
     server: {{ .Values.spec.destination.server }}
   source:
-    repoURL: https://github.com/CarmenAPuccio/GeoLocationAPI
+    repoURL: https://github.com/barisi/GeoLocationAPI
     path: templates
     targetRevision: HEAD
   syncPolicy:
