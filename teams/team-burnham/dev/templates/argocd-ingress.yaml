@@ -10,18 +10,16 @@ metadata:
 {{ if eq .Values.spec.ingress.type "nginx" }}
     #nginx annotations
 {{ else }}
-  {{ if .Values.spec.ingress.host }}  # we can't use grouping without custom domain
-    alb.ingress.kubernetes.io/group.name: burnham
-  {{ end }}
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: 'ip'
-  {{ if .Values.spec.ingress.host }}
+  {{ if .Values.spec.ingress.host }}  # we can't use grouping without custom domain
+    alb.ingress.kubernetes.io/group.name: burnham
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80,"HTTPS": 443}]'
     alb.ingress.kubernetes.io/ssl-redirect: '443'
   {{ else }}
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
   {{ end }}
-  {{ if eq .Values.spec.ingress.host "cdk" }}
+  {{ if eq .Values.spec.blueprint "cdk" }}
     alb.ingress.kubernetes.io/backend-protocol: 'HTTP'
   {{ else }}
     alb.ingress.kubernetes.io/backend-protocol: 'HTTPS'
@@ -33,7 +31,7 @@ metadata:
     external-dns.alpha.kubernetes.io/set-identifier: {{ .Values.spec.clusterName }}
     external-dns.alpha.kubernetes.io/aws-weight: '{{ .Values.spec.ingress.route53_weight }}'
     external-dns.alpha.kubernetes.io/ttl: "10"
-{{ end }}     
+  {{ end }}     
 spec:
 {{ if eq .Values.spec.ingress.type "nginx" }}
   kubernetes.io/ingress.class: "nginx"
