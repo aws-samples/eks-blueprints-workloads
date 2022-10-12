@@ -29,7 +29,11 @@ metadata:
     alb.ingress.kubernetes.io/tags: Environment=dev,Team=Burnham
 {{ end }}
     link.argocd.argoproj.io/external-link: 'https://eu-west-3.console.aws.amazon.com/cloudwatch/home?region=eu-west-3#container-insights:performance'
-
+  {{ if .Values.spec.ingress.host }}    
+    external-dns.alpha.kubernetes.io/set-identifier: {{ .Values.spec.clusterName }}
+    external-dns.alpha.kubernetes.io/aws-weight: '{{ .Values.spec.ingress.route53_weight }}'
+    external-dns.alpha.kubernetes.io/ttl: "10"
+{{ else }}     
 spec:
 {{ if eq .Values.spec.ingress.type "nginx" }}
   kubernetes.io/ingress.class: "nginx"

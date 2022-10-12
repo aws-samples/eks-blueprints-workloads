@@ -23,8 +23,10 @@ metadata:
   {{ end }}
     alb.ingress.kubernetes.io/tags: Environment=dev,Team=Riker
 {{ end }}
+  {{ if .Values.spec.ingress.host }}
     external-dns.alpha.kubernetes.io/set-identifier: {{ .Values.spec.clusterName }}
     external-dns.alpha.kubernetes.io/aws-weight: '{{ .Values.spec.ingress.route53_weight }}'
+  {{ end }}    
 spec:
 {{ if eq .Values.spec.ingress.type "nginx" }}  
   ingressClassName: nginx
