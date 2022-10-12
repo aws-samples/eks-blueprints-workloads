@@ -18,6 +18,8 @@ spec:
       parameters:
       - name: spec.ingress.host
         value: {{ .Values.spec.ingress.host }}
+      - name: spec.ingress.type
+        value: {{ .Values.spec.ingress.type }}
   syncPolicy:
     automated:
       prune: true

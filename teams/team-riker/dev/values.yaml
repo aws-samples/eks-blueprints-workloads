@@ -1,4 +1,5 @@
 spec:
+  env:
   ingress:
     host: 
     type: alb

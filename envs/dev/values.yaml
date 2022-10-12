@@ -4,5 +4,10 @@ spec:
   source:
     repoURL: https://github.com/aws-samples/eks-blueprints-workloads
     targetRevision: main
+  env: dev
+  clusterName: <name of the cluster>
+  blueprint: 'cdk/terraform' # cdk | terraform
+  karpenterInstanceProfile:
   ingress:
-    host: dev.example.com
+    type: 'alb' # nginx | alb
+    host: # empty or your domain like dev.example.com

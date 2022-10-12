@@ -3,6 +3,8 @@ kind: Application
 metadata:
   name: team-burnham
   namespace: argocd
+  labels:
+    env: {{ .Values.spec.env }}
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
@@ -15,9 +17,8 @@ spec:
     targetRevision: {{ .Values.spec.source.targetRevision }}
     path: teams/team-burnham/dev
     helm:
-      parameters:
-      - name: spec.ingress.host
-        value: {{ .Values.spec.ingress.host }}
+      values: |
+        {{- toYaml .Values | nindent 8 }}
   syncPolicy:
     automated:
       prune: true

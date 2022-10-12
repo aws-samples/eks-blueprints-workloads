@@ -3,25 +3,36 @@ kind: Ingress
 metadata:
   name: riker-ingress
   namespace: team-riker
+  labels:
+    app: burnham-ingress-{{ .Values.spec.env }}
   annotations:
-{{ if eq .Values.spec.ingress.type "alb" }}  
+{{ if eq .Values.spec.ingress.type "nginx" }}
+    kubernetes.io/ingress.class: "nginx"
+{{ else }}
     #rewrite does not exist yet in ALB
     #https://github.com/kubernetes-sigs/aws-load-balancer-controller/issues/1571
     #so commenting grouping feature
     #alb.ingress.kubernetes.io/group.name: riker
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
+  {{ if .Values.spec.ingress.host }}
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80,"HTTPS": 443}]'
+    alb.ingress.kubernetes.io/ssl-redirect: '443'
+  {{ else }}
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+  {{ end }}
     alb.ingress.kubernetes.io/tags: Environment=dev,Team=Riker
 {{ end }}
+    external-dns.alpha.kubernetes.io/set-identifier: {{ .Values.spec.clusterName }}
+    external-dns.alpha.kubernetes.io/aws-weight: '{{ .Values.spec.ingress.route53_weight }}'
 spec:
 {{ if eq .Values.spec.ingress.type "nginx" }}  
-  ingressClassName: nginx    
+  ingressClassName: nginx
 {{ else }}
   ingressClassName: alb
-{{ end }}  
+{{ end }}
   rules:
-{{ if not (eq .Values.spec.ingress.host "dev.example.com") }}
+{{ if .Values.spec.ingress.host }}
   - host: guestbook-ui.{{ .Values.spec.ingress.host }}
 {{ else }}
   - host:  
@@ -35,5 +46,3 @@ spec:
             name: guestbook-ui
             port: 
               number: 80
-        
-        

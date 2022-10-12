@@ -3,6 +3,8 @@ kind: Application
 metadata:
   name: team-riker
   namespace: argocd
+  labels:
+    env: {{ .Values.spec.env }}
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
@@ -18,6 +20,8 @@ spec:
       parameters:
       - name: spec.ingress.host
         value: {{ .Values.spec.ingress.host }}
+      - name: spec.env
+        value: {{ .Values.spec.env }}
   syncPolicy:
     automated:
       prune: true
