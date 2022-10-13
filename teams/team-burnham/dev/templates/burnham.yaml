@@ -95,10 +95,12 @@ spec:
             requests:
               cpu: 250m
               memory: 50Mi
-      # nodeSelector:
-      #   team: burnham
-      #   type: karpenter
-      # tolerations:
-      #   - key: 'burnham'
-      #     operator: 'Exists'
-      #     effect: 'NoSchedule'
+          {{ if .Values.spec.karpenterInstanceProfile }}
+          nodeSelector:
+            team: burnham
+            type: karpenter
+          tolerations:
+            - key: 'burnham'
+              operator: 'Exists'
+              effect: 'NoSchedule'
+          {{ end }}

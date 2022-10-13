@@ -1,3 +1,4 @@
+{{ if .Values.spec.karpenterInstanceProfile }}
 apiVersion: karpenter.k8s.aws/v1alpha1
 kind: AWSNodeTemplate
 metadata:
@@ -147,3 +148,4 @@ spec:
       memory: 5Gi
       ephemeral-storage: 2Gi
     #maxPods: 20
+{{ end }}
