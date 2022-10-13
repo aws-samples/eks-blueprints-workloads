@@ -17,7 +17,7 @@ metadata:
   {{ else }}
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
   {{ end }}
-    alb.ingress.kubernetes.io/tags: Environment=dev,Team=Geordie
+    alb.ingress.kubernetes.io/tags: Environment={{ .Values.spec.env }},Team=Geordie
 {{ else }}
     kubernetes.io/ingress.class: "nginx"
 {{ end }}

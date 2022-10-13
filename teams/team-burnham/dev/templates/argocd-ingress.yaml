@@ -24,7 +24,7 @@ metadata:
   {{ else }}
     alb.ingress.kubernetes.io/backend-protocol: 'HTTPS'
   {{ end }}
-    alb.ingress.kubernetes.io/tags: Environment=dev,Team=Burnham
+    alb.ingress.kubernetes.io/tags: Environment={{ .Values.spec.env }},Team=Burnham
 {{ end }}
     link.argocd.argoproj.io/external-link: 'https://eu-west-3.console.aws.amazon.com/cloudwatch/home?region=eu-west-3#container-insights:performance'
   {{ if .Values.spec.ingress.host }}    

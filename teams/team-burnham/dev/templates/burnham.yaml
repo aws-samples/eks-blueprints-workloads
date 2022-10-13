@@ -19,7 +19,7 @@ metadata:
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
   {{ end }}
     alb.ingress.kubernetes.io/backend-protocol: 'HTTP'
-    alb.ingress.kubernetes.io/tags: Environment=dev,Team=Burnham
+    alb.ingress.kubernetes.io/tags: Environment={{ .Values.spec.env }},Team=Burnham
 {{ end }}
   {{ if .Values.spec.ingress.host }}
     external-dns.alpha.kubernetes.io/set-identifier: {{ .Values.spec.clusterName }}
