@@ -1,8 +1,10 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: team-burnham-workload
+  name: team-burnham
   namespace: argocd
+  labels:
+    env: {{ .Values.spec.env }}
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
@@ -12,8 +14,11 @@ spec:
     server: {{ .Values.spec.destination.server }}
   source:
     repoURL: {{ .Values.spec.source.repoURL }}
-    path: teams/team-burnham/test
     targetRevision: {{ .Values.spec.source.targetRevision }}
+    path: teams/team-burnham/test
+    helm:
+      values: |
+        {{- toYaml .Values | nindent 8 }}
   syncPolicy:
     automated:
       prune: true

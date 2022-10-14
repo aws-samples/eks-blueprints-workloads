@@ -14,8 +14,8 @@ spec:
     server: {{ .Values.spec.destination.server }}
   source:
     repoURL: {{ .Values.spec.source.repoURL }}
+    path: teams/team-burnham/prod    
     targetRevision: {{ .Values.spec.source.targetRevision }}
-    path: teams/team-burnham/prod
     helm:
       values: |
         {{- toYaml .Values | nindent 8 }}

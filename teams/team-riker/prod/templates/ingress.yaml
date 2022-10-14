@@ -3,6 +3,8 @@ kind: Ingress
 metadata:
   name: riker-ingress
   namespace: team-riker
+  labels:
+    app: burnham-ingress-{{ .Values.spec.env }}
   annotations:
     kubernetes.io/ingress.class: "nginx"
 spec:
