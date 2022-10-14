@@ -34,11 +34,11 @@ spec:
   ingressClassName: alb
 {{ end }}
   rules:
-{{ if .Values.spec.ingress.host }}
-  - host: guestbook-ui.{{ .Values.spec.ingress.host }}
-{{ else }}
+  {{ if .Values.spec.ingress.host }}
+   - host: guestbook-ui.{{ .Values.spec.ingress.host }}
+  {{ else }}
   - host:  
-{{ end }}  
+  {{ end }}  
     http:
       paths:
       - path: /
