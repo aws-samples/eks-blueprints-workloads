@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: burnham-ingress
   namespace: team-burnham
-  labels:
+  labels: |
     app: burnham-ingress-{{ .Values.spec.env }}
     {{- toYaml .Values.labels | nindent 4 }}
   annotations:
