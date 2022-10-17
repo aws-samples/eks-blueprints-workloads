@@ -5,6 +5,7 @@ metadata:
   namespace: team-burnham
   labels:
     app: burnham-ingress-{{ .Values.spec.env }}
+    {{- toYaml .Values.labels | nindent 4 }}
   annotations:
 {{ if eq .Values.spec.ingress.type "nginx" }}
     #nginx annotations
