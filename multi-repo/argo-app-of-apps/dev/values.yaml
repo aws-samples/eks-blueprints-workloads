@@ -6,7 +6,8 @@ spec:
 # All helm parameters can be sent by IaC code (Terraform or CDK)    
   apps:
     ecsdemoFrontend:
-      repoURL: git@github.com:aws-containers/ecsdemo-frontend.git
+      #repoURL: git@github.com:aws-containers/ecsdemo-frontend.git
+      repoURL: https://github.com/aws-containers/ecsdemo-frontend.git       
       targetRevision: main
       path: kubernetes/helm/ecsdemo-frontend
       ingress:
@@ -22,10 +23,12 @@ spec:
               - path: /
                 pathType: Prefix      
     ecsdemoNodejs:
-      repoURL: git@github.com:aws-containers/ecsdemo-nodejs.git
+      repoURL: https://github.com/aws-containers/ecsdemo-nodejs.git      
+      #repoURL: git@github.com:aws-containers/ecsdemo-nodejs.git
       targetRevision: main
       path: kubernetes/helm/ecsdemo-nodejs
     ecsdemoCrystal:
-      repoURL: git@github.com:aws-containers/ecsdemo-crystal.git
+      repoURL: https://github.com/aws-containers/ecsdemo-crystal.git      
+      #repoURL: git@github.com:aws-containers/ecsdemo-crystal.git
       targetRevision: main
       path: kubernetes/helm/ecsdemo-crystal
