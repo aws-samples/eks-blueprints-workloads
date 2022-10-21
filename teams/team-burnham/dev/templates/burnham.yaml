@@ -5,6 +5,7 @@ metadata:
   namespace: team-burnham
   labels:
     app: burnham-ingress-{{ .Values.spec.env }} 
+    test : titi
   # labels: |
   #   app: burnham-ingress-{{ .Values.spec.env }}
   #   {{- toYaml .Values.labels | nindent 4 }}
