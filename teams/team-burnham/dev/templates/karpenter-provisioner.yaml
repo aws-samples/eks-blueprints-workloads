@@ -3,6 +3,8 @@ apiVersion: karpenter.k8s.aws/v1alpha1
 kind: AWSNodeTemplate
 metadata:
   name: karpenter-bottlerocket
+  labels:
+    {{- toYaml .Values.labels | nindent 4 }}  
 spec:
   amiFamily: Bottlerocket
   instanceProfile: '{{ .Values.spec.karpenterInstanceProfile }}'
@@ -35,6 +37,8 @@ apiVersion: karpenter.k8s.aws/v1alpha1
 kind: AWSNodeTemplate
 metadata:
   name: karpenter-default
+  labels:
+    {{- toYaml .Values.labels | nindent 4 }}  
 spec:
   #amiFamily: Bottlerocket
   #instanceProfile: '{{ .Values.spec.karpenterInstanceProfile }}'
@@ -67,6 +71,8 @@ apiVersion: karpenter.sh/v1alpha5
 kind: Provisioner
 metadata:
   name: burnham
+  labels:
+    {{- toYaml .Values.labels | nindent 4 }}     
 spec:
   requirements:
     # - key: 'node.kubernetes.io/instance-type'
@@ -103,6 +109,8 @@ apiVersion: karpenter.sh/v1alpha5
 kind: Provisioner
 metadata:
   name: default
+  labels:
+    {{- toYaml .Values.labels | nindent 4 }}  
 spec:
   consolidation:
     enabled: true

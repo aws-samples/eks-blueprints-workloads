@@ -3,7 +3,8 @@ kind: Service
 metadata:
   name: guestbook-ui
   labels:
-    app: burnham-ingress-{{ .Values.spec.env }}
+    app: guestbook-ui
+    {{- toYaml .Values.labels | nindent 4 }}
 spec:
   ports:
   - port: 80

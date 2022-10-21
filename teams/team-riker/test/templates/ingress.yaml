@@ -4,7 +4,8 @@ metadata:
   name: riker-ingress
   namespace: team-riker
   labels:
-    app: burnham-ingress-{{ .Values.spec.env }}
+    app: guestbook-ui
+    {{- toYaml .Values.labels | nindent 4 }}  
   annotations:
     kubernetes.io/ingress.class: "nginx"
 spec:

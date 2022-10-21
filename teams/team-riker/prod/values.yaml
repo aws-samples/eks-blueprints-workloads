@@ -1,3 +1,6 @@
+labels:
+  env: prod
+  team: riker
 spec:
   env:
   ingress:

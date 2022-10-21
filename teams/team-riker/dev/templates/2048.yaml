@@ -3,6 +3,9 @@ kind: Deployment
 metadata:
   namespace: team-riker
   name: deployment-2048
+  labels:
+    app: 2048
+    {{- toYaml .Values.labels | nindent 4 }}  
 spec:
   selector:
     matchLabels:
@@ -61,6 +64,9 @@ kind: Service
 metadata:
   namespace: team-riker
   name: service-2048
+  labels:
+    app: 2048
+    {{- toYaml .Values.labels | nindent 4 }}  
 spec:
   ports:
     - port: 80
@@ -75,6 +81,9 @@ kind: Ingress
 metadata:
   namespace: team-riker
   name: ingress-2048
+  labels:
+    app: 2048
+    {{- toYaml .Values.labels | nindent 4 }}   
   annotations:
 {{ if eq .Values.spec.ingress.type "nginx" }}
     kubernetes.io/ingress.class: "nginx"
@@ -87,7 +96,7 @@ metadata:
   {{ else }}
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
   {{ end }}
-    alb.ingress.kubernetes.io/tags: Environment={{ .Values.spec.env }},Team=Riker
+    alb.ingress.kubernetes.io/tags: Environment={{ .Values.labels.env }},Team=Riker
 {{ end }}
   {{ if .Values.spec.ingress.host }}
     external-dns.alpha.kubernetes.io/set-identifier: {{ .Values.spec.clusterName }}

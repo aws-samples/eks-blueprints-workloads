@@ -1,3 +1,6 @@
+labels:
+  env: dev
+  team: burnham
 spec:
   destination:
     server: https://kubernetes.default.svc
