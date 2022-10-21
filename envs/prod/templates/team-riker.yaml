@@ -3,8 +3,6 @@ kind: Application
 metadata:
   name: team-riker
   namespace: argocd
-  labels: |
-        {{- toYaml .Values.labels | nindent 6 }}
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:

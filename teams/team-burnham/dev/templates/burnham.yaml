@@ -3,9 +3,11 @@ kind: Ingress
 metadata:
   name: burnham-ingress
   namespace: team-burnham
-  labels: |
-    app: burnham-ingress-{{ .Values.spec.env }}
-    {{- toYaml .Values.labels | nindent 4 }}
+  labels:
+    app: burnham-ingress-{{ .Values.spec.env }} 
+  # labels: |
+  #   app: burnham-ingress-{{ .Values.spec.env }}
+  #   {{- toYaml .Values.labels | nindent 4 }}
   annotations:
 {{ if eq .Values.spec.ingress.type "nginx" }}
     #nginx annotations

@@ -2,9 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: team-riker
-  namespace: argocd
-  labels: |
-        {{- toYaml .Values.labels | nindent 6 }}    
+  namespace: argocd 
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
