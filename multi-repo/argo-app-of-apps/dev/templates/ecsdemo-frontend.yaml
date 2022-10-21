@@ -1,10 +1,26 @@
 apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: ecsdemo-frontend
+  namespace: argocd
+  # Finalizer that ensures that project is not deleted until it is not referenced by any application
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destinations:
+    - namespace: ecsdemo-frontend
+      server: https://kubernetes.default.svc
+  sourceRepos:
+    - https://github.com/aws-containers/ecsdemo-frontend.git
+    - git@github.com:aws-containers/ecsdemo-frontend.git
+---
+apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: ecsdemo-frontend
   namespace: argocd
   labels:
-    {{- toYaml .Values.labels | nindent 4 }}  
+    {{- toYaml .Values.labels | nindent 4 }}
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
@@ -16,9 +32,11 @@ spec:
     repoURL: {{ .Values.spec.apps.ecsdemoFrontend.repoURL }}
     targetRevision: {{ .Values.spec.apps.ecsdemoFrontend.targetRevision }}
     path: {{ .Values.spec.apps.ecsdemoFrontend.path }}
-    
+    helm:
+      values: |-
+      {{ toYaml .Values.spec.apps.ecsdemoFrontend | nindent 8 }}
   syncPolicy:
     automated:
       prune: true
     syncOptions:
-      - CreateNamespace=true
+      - CreateNamespace=false # https://github.com/argoproj/argo-cd/issues/7799

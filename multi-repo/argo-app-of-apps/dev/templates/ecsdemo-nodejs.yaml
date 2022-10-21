@@ -1,4 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: ecsdemo-nodejs
+  namespace: argocd
+  # Finalizer that ensures that project is not deleted until it is not referenced by any application
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destinations:
+    - namespace: ecsdemo-nodejs
+      server: https://kubernetes.default.svc
+  sourceRepos:
+    - https://github.com/aws-containers/ecsdemo-nodejs.git
+    - git@github.com:aws-containers/ecsdemo-nodejs.git
+---
+apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: ecsdemo-nodejs
@@ -16,8 +32,12 @@ spec:
     repoURL: {{ .Values.spec.apps.ecsdemoNodejs.repoURL }}
     targetRevision: {{ .Values.spec.apps.ecsdemoNodejs.targetRevision }}
     path: {{ .Values.spec.apps.ecsdemoNodejs.path }}
+    helm:
+      parameters:
+        - name: replicaCount
+          value: '3'    
   syncPolicy:
     automated:
       prune: true
     syncOptions:
-      - CreateNamespace=true
+      - CreateNamespace=false # https://github.com/argoproj/argo-cd/issues/7799

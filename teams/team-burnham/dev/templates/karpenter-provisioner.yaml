@@ -4,7 +4,7 @@ kind: AWSNodeTemplate
 metadata:
   name: karpenter-bottlerocket
   labels:
-    {{- toYaml .Values.labels | nindent 4 }}  
+    {{- toYaml .Values.labels | nindent 4 }}
 spec:
   amiFamily: Bottlerocket
   instanceProfile: '{{ .Values.spec.karpenterInstanceProfile }}'
@@ -110,7 +110,7 @@ kind: Provisioner
 metadata:
   name: default
   labels:
-    {{- toYaml .Values.labels | nindent 4 }}  
+    {{- toYaml .Values.labels | nindent 4 }}
 spec:
   consolidation:
     enabled: true

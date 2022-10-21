@@ -1,10 +1,26 @@
+    apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: ecsdemo-crystal
+  namespace: argocd
+  # Finalizer that ensures that project is not deleted until it is not referenced by any application
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destinations:
+    - namespace: ecsdemo-crystal
+      server: https://kubernetes.default.svc
+  sourceRepos:
+    - https://github.com/aws-containers/ecsdemo-crystal.git
+    - git@github.com:aws-containers/ecsdemo-crystal.git    
+---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: ecsdemo-crystal
   namespace: argocd
   labels:
-    {{- toYaml .Values.labels | nindent 4 }}  
+    {{- toYaml .Values.labels | nindent 4 }}
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
@@ -16,9 +32,12 @@ spec:
     repoURL: {{ .Values.spec.apps.ecsdemoCrystal.repoURL }}
     targetRevision: {{ .Values.spec.apps.ecsdemoCrystal.targetRevision }}
     path: {{ .Values.spec.apps.ecsdemoCrystal.path }}
-    
+    helm:
+      parameters:
+        - name: replicaCount
+          value: '3'    
   syncPolicy:
     automated:
       prune: true
     syncOptions:
-      - CreateNamespace=true
+      - CreateNamespace=false # https://github.com/argoproj/argo-cd/issues/7799

@@ -3,11 +3,24 @@ labels:
 spec:
   destination:
     server: https://kubernetes.default.svc
+# All helm parameters can be sent by IaC code (Terraform or CDK)    
   apps:
     ecsdemoFrontend:
       repoURL: git@github.com:aws-containers/ecsdemo-frontend.git
       targetRevision: main
       path: kubernetes/helm/ecsdemo-frontend
+      ingress:
+        enabled: true
+        annotations:
+          alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+          alb.ingress.kubernetes.io/scheme: internet-facing
+          alb.ingress.kubernetes.io/tags: Environment=dev,Team=ecsdemo-frontend
+          alb.ingress.kubernetes.io/target-type: ip
+        className: alb
+        hosts:
+          - paths:
+              - path: /
+                pathType: Prefix      
     ecsdemoNodejs:
       repoURL: git@github.com:aws-containers/ecsdemo-nodejs.git
       targetRevision: main

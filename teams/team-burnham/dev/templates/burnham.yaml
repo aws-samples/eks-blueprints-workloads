@@ -54,8 +54,7 @@ kind: Service
 metadata:
   name: burnham
   labels:
-    app: burnham
-    {{- toYaml .Values.labels | nindent 4 }}    
+    app: burnham-ingress-{{ .Values.spec.env }}  
 spec:
   ports:
   - port: 80
@@ -69,7 +68,7 @@ metadata:
   name: burnham
   labels:
     app: burnham
-    {{- toYaml .Values.labels | nindent 4 }}    
+    {{- toYaml .Values.labels | nindent 4 }}
 spec:
   replicas: 3
   revisionHistoryLimit: 3

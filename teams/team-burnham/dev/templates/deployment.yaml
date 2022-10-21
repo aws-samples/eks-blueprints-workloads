@@ -4,7 +4,7 @@ metadata:
   name: nginx
   labels:
     app: burnham  
-    {{- toYaml .Values.labels | nindent 4 }}   
+    {{- toYaml .Values.labels | nindent 4 }}
 spec:
   replicas: 1
   revisionHistoryLimit: 3
