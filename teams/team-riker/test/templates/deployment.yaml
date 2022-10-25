@@ -4,7 +4,7 @@ metadata:
   name: guestbook-ui
   labels:
     app: guestbook-ui
-    {{- toYaml .Values.labels | nindent 4 }}    
+    {{- toYaml .Values.labels | nindent 4 }}
 spec:
   replicas: 1
   revisionHistoryLimit: 3

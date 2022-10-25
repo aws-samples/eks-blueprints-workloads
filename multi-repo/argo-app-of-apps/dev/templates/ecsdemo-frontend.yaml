@@ -11,7 +11,6 @@ spec:
     - namespace: ecsdemo-frontend
       server: https://kubernetes.default.svc
   sourceRepos:
-    - https://github.com/aws-containers/ecsdemo-frontend.git
     - git@github.com:aws-containers/ecsdemo-frontend.git
 ---
 apiVersion: argoproj.io/v1alpha1

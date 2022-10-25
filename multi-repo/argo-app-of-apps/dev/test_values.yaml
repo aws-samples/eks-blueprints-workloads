@@ -1,0 +1,30 @@
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+  # All helm parameters are sent by IaC code (Terraform or CDK)
+  apps:
+    ecsdemoFrontend:
+      repoURL: https://github.com/aws-containers/ecsdemo-frontend.git
+      targetRevision: main
+      path: kubernetes/helm/ecsdemo-frontend
+      ingress:
+        enabled: 'true'
+        className: 'alb'
+        annotations:
+          'alb.ingress.kubernetes.io/group.name': 'ecsdemo'
+          'alb.ingress.kubernetes.io/scheme': 'internet-facing'
+          'alb.ingress.kubernetes.io/target-type': 'ip'
+          'external-dns.alpha.kubernetes.io/set-identifier': 'eks-blueprint-blue'
+        hosts:
+          host: test.example.com
+          paths:
+            path: '/'
+            pathType: 'Prefix'
+    ecsdemoNodejs:
+      repoURL: https://github.com/aws-containers/ecsdemo-nodejs.git
+      targetRevision: main
+      path: kubernetes/helm/ecsdemo-nodejs
+    ecsdemoCrystal:
+      repoURL: https://github.com/aws-containers/ecsdemo-crystal.git
+      targetRevision: main
+      path: kubernetes/helm/ecsdemo-crystal

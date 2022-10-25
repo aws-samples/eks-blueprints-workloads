@@ -4,7 +4,7 @@ metadata:
   name: ecsdemo-nodejs
   namespace: argocd
   labels:
-    {{- toYaml .Values.labels | nindent 4 }}  
+    {{- toYaml .Values.labels | nindent 4 }}
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
