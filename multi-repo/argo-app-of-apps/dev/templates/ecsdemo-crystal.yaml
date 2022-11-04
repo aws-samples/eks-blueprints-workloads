@@ -11,7 +11,7 @@ spec:
     - namespace: ecsdemo-crystal
       server: https://kubernetes.default.svc
   sourceRepos:
-    - git@github.com:aws-containers/ecsdemo-crystal.git    
+    - {{ .Values.spec.apps.ecsdemoCrystal.repoURL }}
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -39,4 +39,4 @@ spec:
     automated:
       prune: true
     syncOptions:
-      - CreateNamespace=false # https://github.com/argoproj/argo-cd/issues/7799
+      - CreateNamespace=false # Created with IaC - # https://github.com/argoproj/argo-cd/issues/7799
