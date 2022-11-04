@@ -29,7 +29,7 @@ metadata:
     link.argocd.argoproj.io/external-link: 'https://console.aws.amazon.com/cloudwatch/home?#container-insights:performance'
   {{ if .Values.spec.ingress.host }}    
     external-dns.alpha.kubernetes.io/set-identifier: {{ .Values.spec.clusterName }}
-    external-dns.alpha.kubernetes.io/aws-weight: '{{ .Values.spec.ingress.route53_weight }}'
+    external-dns.alpha.kubernetes.io/aws-weight: '{{ .Values.spec.ingress.argocd_route53_weight }}'
     external-dns.alpha.kubernetes.io/ttl: "10"
   {{ end }}     
 spec:
