@@ -1,39 +1,26 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: riker-ingress
+  name: skiapp-ingress
   namespace: team-riker
   annotations:
-{{ if eq .Values.spec.ingress.type "alb" }}  
-    #rewrite does not exist yet in ALB
-    #https://github.com/kubernetes-sigs/aws-load-balancer-controller/issues/1571
-    #so commenting grouping feature
-    #alb.ingress.kubernetes.io/group.name: riker
+    alb.ingress.kubernetes.io/group.name: riker
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+    #alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
+    #alb.ingress.kubernetes.io/actions.ssl-redirect: '{"Type": "redirect", "RedirectConfig": { "Protocol": "HTTPS", "Port": "443", "StatusCode": "HTTP_301"}}'
     alb.ingress.kubernetes.io/tags: Environment=dev,Team=Riker
-{{ end }}
 spec:
-{{ if eq .Values.spec.ingress.type "nginx" }}  
-  ingressClassName: nginx    
-{{ else }}
   ingressClassName: alb
-{{ end }}  
   rules:
-{{ if not (eq .Values.spec.ingress.host "dev.example.com") }}
-  - host: guestbook-ui.{{ .Values.spec.ingress.host }}
-{{ else }}
-  - host:  
-{{ end }}  
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: guestbook-ui
-            port: 
-              number: 80
-        
-        
+    - host: #skiapp.{{ .Values.spec.ingress.host }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: skiapp-service
+                port:
+                  number: 80
