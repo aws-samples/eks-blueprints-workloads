@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: guestbook-ui
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: guestbook-ui
+  template:
+    metadata:
+      labels:
+        app: guestbook-ui
+    spec:
+      containers:
+      - image: gcr.io/heptio-images/ks-guestbook-demo:0.2
+        name: guestbook-ui
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: '50Mi'
+            cpu: '50m'
+          limits:
+            memory: '50Mi'
+            cpu: '50m'
+        securityContext:
+          privileged: false
+          #readOnlyRootFilesystem: false # guestbook neet to write to /var/run/apache2/apache2.pid
+          allowPrivilegeEscalation: false
