@@ -1,4 +1,3 @@
-cat << EOF > teams/team-riker/dev/templates/alb-skiapp/rollout.yaml
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
@@ -19,7 +18,7 @@ spec:
     spec:
       containers:
       - name: skiapp
-        image: sharepointoscar/skiapp:v1
+        image: sharepointoscar/skiapp:v2
         imagePullPolicy: Always
         ports:
         - name: http
