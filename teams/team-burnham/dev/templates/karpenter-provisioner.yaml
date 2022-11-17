@@ -45,22 +45,12 @@ spec:
   instanceProfile: {{ .Values.spec.clusterName }}-managed-ondemand
   subnetSelector:
     kubernetes.io/cluster/{{ .Values.spec.clusterName }}: '*'
-    #aws:cloudformation:stack-name: '{{ .Values.spec.clusterName }}'
     kubernetes.io/role/internal-elb: '1' # to select only private subnets
   securityGroupSelector:
     aws:eks:cluster-name: '{{ .Values.spec.clusterName }}' # Choose only security groups of nodes
-    #kubernetes.io/cluster/{{ .Values.spec.clusterName }}: '*'
-    #aws:eks:cluster-name: '{{ .Values.spec.clusterName }}'
-  # userData: |
-  #   [settings.kubernetes]
-  #   kube-api-qps = 30
-  #   [settings.kubernetes.eviction-hard]
-  #   "memory.available" = "20%"
-  # amiSelector:
-  #   karpenter.sh/discovery: my-cluster
   tags:
     karpenter.sh/cluster_name: {{.Values.spec.clusterName}}
-    karpenter.sh/provisioner: burnham
+    karpenter.sh/provisioner: default
   metadataOptions:
     httpEndpoint: enabled
     httpProtocolIPv6: disabled
@@ -116,17 +106,26 @@ spec:
     enabled: true
   #ttlSecondsAfterEmpty: 60 # mutual exclusive with consolitation
   requirements:
-    # - key: 'node.kubernetes.io/instance-type'
-    #   operator: In
-    #   values: ['m5.xlarge', 'm5a.xlarge', 'm5ad.xlarge', 'm5d.xlarge', 't2.xlarge', 't3.xlarge', 't3a.xlarge']
+    - key: karpenter.k8s.aws/instance-family
+      operator: NotIn
+      values:
+        - a1
+        - c1
+        - c3
+        - inf1
+        - t3
+        - t2
+    - key: karpenter.k8s.aws/instance-cpu
+      operator: Lt
+      values:
+        - '33'    
     - key: 'kubernetes.io/arch'
       operator: In
       values: ['amd64']
     - key: karpenter.sh/capacity-type
       operator: In
-      values: ['on-demand', 'spot']
+      values: ['on-demand']
   providerRef:
-    #name: karpenter-bottlerocket
     name: karpenter-default
 
   ttlSecondsUntilExpired: 2592000 # 30 Days = 60 * 60 * 24 * 30 Seconds;
@@ -136,7 +135,7 @@ spec:
   weight: 1
   limits:
     resources:
-      cpu: '200'
+      cpu: '2k'
   labels:
     billing-team: default
     team: default
