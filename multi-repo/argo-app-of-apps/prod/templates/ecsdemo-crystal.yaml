@@ -3,6 +3,8 @@ kind: Application
 metadata:
   name: ecsdemo-crystal
   namespace: argocd
+  labels:
+    {{- toYaml .Values.labels | nindent 4 }}  
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:

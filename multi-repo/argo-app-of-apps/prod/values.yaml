@@ -1,3 +1,5 @@
+labels:
+  env: prod
 spec:
   destination:
     server: https://kubernetes.default.svc

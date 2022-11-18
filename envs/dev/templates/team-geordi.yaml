@@ -3,6 +3,8 @@ kind: Application
 metadata:
   name: team-geordie
   namespace: argocd
+  labels:
+    {{- toYaml .Values.labels | nindent 4 }}
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
@@ -14,6 +16,9 @@ spec:
     repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: {{ .Values.spec.source.targetRevision }}
     path: teams/team-geordie/dev
+    helm:
+      values: |
+        {{- toYaml .Values | nindent 8 }}
   syncPolicy:
     automated:
       prune: true

@@ -4,12 +4,42 @@ metadata:
   namespace: geordie
   name: yelb-ingress
   annotations:
+{{ if eq .Values.spec.ingress.type "alb" }}
+    #rewrite does not exist yet in ALB
+    #https://github.com/kubernetes-sigs/aws-load-balancer-controller/issues/1571
+    #so commenting grouping feature
+    #alb.ingress.kubernetes.io/group.name: geordie
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+  {{ if .Values.spec.ingress.host }}
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80,"HTTPS": 443}]'
+    alb.ingress.kubernetes.io/ssl-redirect: '443'
+  {{ else }}
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+  {{ end }}
+    alb.ingress.kubernetes.io/tags: Environment={{ .Values.labels.env }},Team=Geordie
+{{ else }}
     kubernetes.io/ingress.class: "nginx"
+{{ end }}
+  {{ if .Values.spec.ingress.host }}
+    external-dns.alpha.kubernetes.io/set-identifier: {{ .Values.spec.clusterName }}
+    external-dns.alpha.kubernetes.io/aws-weight: '{{ .Values.spec.ingress.route53_weight }}'
+    external-dns.alpha.kubernetes.io/ttl: "10"
+  {{ end }}    
   labels:
-    app: yelb-ui
+    app: yelb-ui    
 spec:
+{{ if eq .Values.spec.ingress.type "nginx" }}
+  ingressClassName: nginx
+{{ else }}
+  ingressClassName: alb
+{{ end }}
   rules:
+{{ if .Values.spec.ingress.host }}
   - host: yelb.{{ .Values.spec.ingress.host }}
+{{ else }}
+  - host:
+{{ end }}
     http:
       paths:
       - path: /

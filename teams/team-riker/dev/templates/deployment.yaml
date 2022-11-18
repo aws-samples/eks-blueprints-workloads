@@ -2,6 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: guestbook-ui
+  labels:
+    app: guestbook-ui
+    {{- toYaml .Values.labels | nindent 4 }}
 spec:
   replicas: 1
   revisionHistoryLimit: 3
@@ -17,7 +20,7 @@ spec:
       - image: gcr.io/heptio-images/ks-guestbook-demo:0.2
         name: guestbook-ui
         ports:
-        - containerPort: 80
+          - containerPort: 80
         resources:
           requests:
             memory: '50Mi'

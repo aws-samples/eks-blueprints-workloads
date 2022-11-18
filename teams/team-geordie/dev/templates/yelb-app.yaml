@@ -15,9 +15,8 @@ spec:
     targetRevision: {{ .Values.spec.source.targetRevision }}
     path: teams/team-geordie/dev/yelb
     helm:
-      parameters:
-      - name: spec.ingress.host
-        value: {{ .Values.spec.ingress.host }}
+      values: |
+        {{- toYaml .Values | nindent 8 }}
   syncPolicy:
     automated:
       prune: true

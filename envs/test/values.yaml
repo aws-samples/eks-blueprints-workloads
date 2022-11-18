@@ -1,8 +1,17 @@
+labels:
+  env: test
 spec:
   destination:
     server: https://kubernetes.default.svc
   source:
     repoURL: https://github.com/aws-samples/eks-blueprints-workloads
     targetRevision: main
+
+  # Thoses default values can be surcharged by Infrastructure as Code
+  env: test
+  clusterName: eks-blueprint-cluster # the name of EKS cluster
+  blueprint: 'terraform' # cdk | terraform
+  karpenterInstanceProfile:
   ingress:
-    host: test.example.com
+    type: 'alb' # nginx | alb
+    host: # empty or your domain like dev.example.com

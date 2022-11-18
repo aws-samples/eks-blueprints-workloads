@@ -1,3 +1,8 @@
+labels:
+  env: test
+  team: riker
 spec:
+  env:
   ingress:
-    host: 
+    host:
+    type: alb

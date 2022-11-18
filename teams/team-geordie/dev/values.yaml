@@ -1,6 +1,12 @@
+labels:
+  env: dev
+  team: burnham
 spec:
   destination:
     server: https://kubernetes.default.svc
   source:
     repoURL: https://github.com/aws-samples/eks-blueprints-workloads
     targetRevision: main
+  ingress:
+    host:
+    type:

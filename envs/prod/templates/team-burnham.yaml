@@ -3,6 +3,8 @@ kind: Application
 metadata:
   name: team-burnham
   namespace: argocd
+  labels:
+    {{- toYaml .Values.labels | nindent 4 }}
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
@@ -12,8 +14,11 @@ spec:
     server: {{ .Values.spec.destination.server }}
   source:
     repoURL: {{ .Values.spec.source.repoURL }}
-    path: teams/team-burnham/prod
+    path: teams/team-burnham/prod    
     targetRevision: {{ .Values.spec.source.targetRevision }}
+    helm:
+      values: |
+        {{- toYaml .Values | nindent 8 }}
   syncPolicy:
     automated:
       prune: true
