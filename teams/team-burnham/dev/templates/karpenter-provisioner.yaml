@@ -27,7 +27,7 @@ spec:
   metadataOptions:
     httpEndpoint: enabled
     httpProtocolIPv6: disabled
-    httpPutResponseHopLimit: 1 # For harden securituy on ImDSv2
+    httpPutResponseHopLimit: 2 # 1 For harden securituy on ImDSv2; if 1 it breaks cloudWatch Metrics who cannot get instance ID
     httpTokens: required
 ---
 apiVersion: karpenter.k8s.aws/v1alpha1
@@ -49,7 +49,7 @@ spec:
   metadataOptions:
     httpEndpoint: enabled
     httpProtocolIPv6: disabled
-    httpPutResponseHopLimit: 1 # For harden securituy on ImDSv2
+    httpPutResponseHopLimit: 2 # 1 For harden securituy on ImDSv2; if 1 it breaks cloudWatch Metrics who cannot get instance ID
     httpTokens: required
 ---
 apiVersion: karpenter.sh/v1alpha5
