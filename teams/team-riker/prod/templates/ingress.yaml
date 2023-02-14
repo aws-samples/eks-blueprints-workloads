@@ -2,7 +2,6 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: riker-ingress
-  namespace: team-riker
   labels:
     app: guestbook-ui
     {{- toYaml .Values.labels | nindent 4 }}

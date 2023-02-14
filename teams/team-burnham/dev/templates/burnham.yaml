@@ -2,7 +2,6 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: burnham-ingress
-  namespace: team-burnham
   labels:
     app: burnham
     {{- toYaml .Values.labels | nindent 4 }}
