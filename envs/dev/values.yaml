@@ -1,3 +1,4 @@
+destinationServer: ''
 labels:
   env: dev
 spec:

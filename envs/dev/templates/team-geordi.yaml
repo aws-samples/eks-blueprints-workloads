@@ -10,8 +10,8 @@ metadata:
 spec:
   project: default
   destination:
-    namespace: geordie
-    server: {{ .Values.spec.destination.server }}
+    namespace: argocd
+    server: {{ .Values.destinationServer | default .Values.spec.destination.server }}
   source:
     repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: {{ .Values.spec.source.targetRevision }}
