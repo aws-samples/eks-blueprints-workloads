@@ -1,3 +1,4 @@
+argoProject: ''
 labels:
   env: dev
   team: burnham
