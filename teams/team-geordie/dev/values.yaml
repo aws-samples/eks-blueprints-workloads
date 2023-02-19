@@ -1,7 +1,8 @@
 argoProject: ''
+
 labels:
   env: dev
-  team: burnham
+  team: geordie
 spec:
   destination:
     server: https://kubernetes.default.svc

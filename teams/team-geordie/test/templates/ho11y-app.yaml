@@ -2,11 +2,10 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: ho11y
-  namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  project: default
+  project: {{ .Values.argoProject | default "default" }}
   destination:
     namespace: geordie
     server: {{ .Values.spec.destination.server }}

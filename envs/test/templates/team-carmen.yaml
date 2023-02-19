@@ -2,19 +2,18 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: team-carmen
-  namespace: argocd
+  namespace: {{ .Values.argoNamespace | default "argocd" }}
   labels:
-    {{- toYaml .Values.labels | nindent 4 }}  
+    {{- toYaml .Values.labels | nindent 4 }}
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
-  project: default
+  project: {{ .Values.argoProject | default "default" }}
   destination:
     namespace: team-carmen
     server: {{ .Values.spec.destination.server }}
   source:
     repoURL: https://github.com/CarmenAPuccio/GeoLocationAPI
-    branch: master
     path: templates
     targetRevision: HEAD
   syncPolicy:
