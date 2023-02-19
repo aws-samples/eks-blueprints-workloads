@@ -1,0 +1,9 @@
+labels:
+  env: dev
+  team: burnham
+spec:
+  env:
+  ingress:
+    host:
+    type: alb
+    argocd: true
