@@ -2,6 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: yelb
+  # namespace is specified as namespace destination in env/{dev,test,prod}/team-geordie.yaml
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:

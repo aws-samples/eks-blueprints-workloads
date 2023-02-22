@@ -27,7 +27,7 @@ metadata:
     external-dns.alpha.kubernetes.io/ttl: "10"
   {{ end }}    
   labels:
-    app: yelb-ui    
+    app: yelb-ui
 spec:
 {{ if eq .Values.spec.ingress.type "nginx" }}
   ingressClassName: nginx

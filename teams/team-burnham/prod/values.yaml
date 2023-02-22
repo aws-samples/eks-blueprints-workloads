@@ -6,4 +6,3 @@ spec:
   ingress:
     host:
     type: alb
-    argocd: true
