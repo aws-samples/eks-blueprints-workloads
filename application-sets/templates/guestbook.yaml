@@ -10,21 +10,21 @@ spec:
   - clusters:
       selector:
         matchLabels:
-          type: 'dev'
+          environment: 'dev'
       values:
         replicas: "1"
         project: {{"'{{metadata.annotations.project}}'"}}
   - clusters:
       selector:
         matchLabels:
-          type: 'test'
+          environment: 'test'
       values:
         replicas: "2"
         project: {{"'{{metadata.annotations.project}}'"}}
   - clusters:
       selector:
         matchLabels:
-          type: 'prod'
+          environment: 'prod'
       values:
         replicas: "3"
         project: {{"'{{metadata.annotations.project}}'"}}
