@@ -12,21 +12,21 @@ spec:
         matchLabels:
           type: 'dev'
       values:
-        replicas: 1
+        replicas: "1"
         project: {{"'{{metadata.annotations.project}}'"}}
   - clusters:
       selector:
         matchLabels:
           type: 'test'
       values:
-        replicas: 2
+        replicas: "2"
         project: {{"'{{metadata.annotations.project}}'"}}
   - clusters:
       selector:
         matchLabels:
           type: 'prod'
       values:
-        replicas: 3
+        replicas: "3"
         project: {{"'{{metadata.annotations.project}}'"}}
   template:
     metadata:
