@@ -1,0 +1,38 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kirk-ingress
+  namespace: kubecost
+  labels:
+    app: kubecost
+    {{- toYaml .Values.labels | nindent 4 }}
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/tags: Environment=Prod,Project=cognito
+    external-dns.alpha.kubernetes.io/hostname: {{ .Values.spec.ingress.host }} 
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
+    alb.ingress.kubernetes.io/actions.ssl-redirect: '{"Type": "redirect", "RedirectConfig": { "Protocol": "HTTPS", "Port": "443", "StatusCode": "HTTP_301"}}'
+    alb.ingress.kubernetes.io/auth-type: cognito
+    alb.ingress.kubernetes.io/auth-scope: openid
+    alb.ingress.kubernetes.io/auth-session-timeout: '3600'
+    alb.ingress.kubernetes.io/auth-session-cookie: AWSELBAuthSessionCookie
+    alb.ingress.kubernetes.io/auth-on-unauthenticated-request: authenticate
+    alb.ingress.kubernetes.io/auth-idp-cognito: '{"UserPoolArn": {{ .Values.spec.ingress.cognitoUserPoolArn | quote }},"UserPoolClientId":{{ .Values.spec.ingress.cognitoUserPoolAppId | quote }},"UserPoolDomain":"{{ .Values.spec.ingress.cognitoDomainName }}.auth.{{ .Values.spec.ingress.region }}.amazoncognito.com"}'
+    alb.ingress.kubernetes.io/target-type: 'ip'
+spec:
+  rules:
+    {{ if .Values.spec.ingress.host }}
+    - host: {{ .Values.spec.ingress.host }}
+    {{ else }}
+    - host:  
+    {{ end }} 
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: kubecost-cost-analyzer-cost-analyzer
+                port: 
+                  number: 9090
