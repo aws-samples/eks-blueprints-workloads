@@ -32,8 +32,8 @@ spec:
     metadata:
       name: {{"'{{name}}-guestbook'"}}
       namespace: {{"'{{values.project}}'"}}
-    finalizers:
-    - resources-finalizer.argocd.argoproj.io
+      finalizers:
+      - resources-finalizer.argocd.argoproj.io
     spec:
       project: {{"'{{values.project}}'"}}
       source:
