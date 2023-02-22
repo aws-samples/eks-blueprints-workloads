@@ -1,0 +1,54 @@
+apiVersion: flagger.app/v1beta1
+kind: Canary
+metadata:
+  name: flask
+  namespace: team-data
+spec:
+  # service mesh provider can be: kubernetes, istio, appmesh, nginx, gloo
+  provider: nginx
+  # deployment reference
+  targetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: flask
+  # ingress reference
+  ingressRef:
+    apiVersion: networking.k8s.io/v1
+    kind: Ingress
+    name: flask
+  # the maximum time in seconds for the canary deployment
+  # to make progress before rollback (default 600s)
+  progressDeadlineSeconds: 60
+  service:
+    port: 5000
+    portDiscovery: true
+  analysis:
+    # schedule interval (default 60s)
+    interval: 30s
+    # max number of failed checks before rollback
+    threshold: 2
+    # number of checks to run before rollback
+    iterations: 10
+    # Prometheus checks based on 
+    # http_request_duration_seconds histogram
+    metrics:
+      - name: nginx_http_requests_total
+        thresholdRange:
+          min: 50
+          max: 500
+        interval: 1m
+    # acceptance/load testing hooks
+    webhooks:
+      - name: smoke-test
+        type: pre-rollout
+        url: http://flagger-loadtester.team-data/
+        timeout: 15s
+        metadata:
+          type: bash
+          cmd: "curl -v http://flask-canary.team-data:5000/"
+      - name: load-test
+        url: http://flagger-loadtester.team-data/
+        timeout: 5s
+        metadata:
+          type: cmd
+          cmd: "hey -c 10 -q 3 -z 1m -m GET http://af01d39d9c6fc48e3af813137371a563-990038456.us-east-2.elb.amazonaws.com"
