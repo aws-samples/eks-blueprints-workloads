@@ -2,19 +2,20 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: team-platform
-  namespace: argocd
-  labels: { { - toYaml .Values.labels | nindent 4 } }
+  namespace: platform
+  labels:
+    {{- toYaml .Values.labels | nindent 4 }}
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: argocd
-    server: { { .Values.spec.destination.server } }
+    namespace: platform
+    server: {{ .Values.spec.destination.server }}
   project: default
   source:
     path: teams/team-platform/dev
-    repoURL: { { .Values.spec.source.repoURL } }
-    targetRevision: { { .Values.spec.source.targetRevision } }
+    repoURL: {{ .Values.spec.source.repoURL }}
+    targetRevision: {{ .Values.spec.source.targetRevision }}
   syncPolicy:
     automated:
       prune: true
