@@ -2,4 +2,4 @@ labels:
   env: dev
   team: platform
 spec:
-  kmsKeyArn: kmsKey.keyArn
+  kmsKeyArn: { { kmsKey.keyArn } }
