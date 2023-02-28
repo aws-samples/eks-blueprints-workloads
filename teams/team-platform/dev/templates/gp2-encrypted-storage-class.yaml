@@ -9,6 +9,6 @@ parameters:
   type: gp2
   fsType: ext4
   encrypted: "true"
-  if {{ .Values.spec.kmsKeyArn }}
-    kmsKeyId: { { .Values.spec.kmsKeyArn } }
+  if {{ .Values.spec.kmsKey }}
+    kmsKeyId: { { .Values.spec.kmsKey.keyArn } }
   {{ end }}
