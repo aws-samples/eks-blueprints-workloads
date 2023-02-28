@@ -1,0 +1,14 @@
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: gp2-encrypted
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+provisioner: kubernetes.io/aws-ebs
+parameters:
+  type: gp2
+  fsType: ext4
+  encrypted: "true"
+  if {{ .Values.spec.kmsKeyArn }}
+    kmsKeyId: { { .Values.spec.kmsKeyArn } }
+  {{ end }}
