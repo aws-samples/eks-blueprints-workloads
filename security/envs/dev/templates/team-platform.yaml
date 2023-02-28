@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: team-platform
-  namespace: platform
+  namespace: argocd
   labels:
     {{- toYaml .Values.labels | nindent 4 }}
   finalizers:
