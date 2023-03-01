@@ -10,5 +10,5 @@ parameters:
   fsType: ext4
   encrypted: "true"
 {{ if .Values.spec.kmsKey }}
-  kmsKeyId: {{ .Values.spec.kmsKey }}
+  kmsKeyId: {{ .Values.spec.kmsKey }} # The KMS key ID to use for encryption, otherwise the default key (AWS-managed) is used
 {{ end }}
