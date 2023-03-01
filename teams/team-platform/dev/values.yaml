@@ -1,9 +1,9 @@
 labels:
   env: dev
   team: platform
+kmsKey: 
 spec:
   env:
-  kmsKey: 
   ingress:
     host:
     region:
