@@ -18,7 +18,8 @@ spec:
     targetRevision: {{ .Values.spec.source.targetRevision }}
     helm:
       values: |
-        {{- toYaml .Values | nindent 8 }}
+        spec:
+          kmsKey: {{ index .Values.spec "kmsKey" }}
   syncPolicy:
     automated:
       prune: true
