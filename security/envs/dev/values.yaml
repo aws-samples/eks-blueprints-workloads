@@ -1,7 +1,6 @@
 labels:
   env: dev
 spec:
-  kmsKey:
   destination:
     server: https://kubernetes.default.svc
   source:
