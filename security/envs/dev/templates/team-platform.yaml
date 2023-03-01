@@ -21,3 +21,6 @@ spec:
       prune: true
     syncOptions:
       - CreateNamespace=true
+    parameters:
+      - name: kmsKey
+        value: ""
