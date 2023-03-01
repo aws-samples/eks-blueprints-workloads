@@ -21,6 +21,7 @@ spec:
       prune: true
     syncOptions:
       - CreateNamespace=true
-  # parameters:
-  #   - name: kmsKey
-  #     value: ""
+  helm:
+    values:
+      - name: kmsKey
+        value: {{ (index .Applications "bootstrap-apps").Spec.Helm.Parameters.ValueOf "spec.kmsKey" }}
