@@ -1,4 +1,10 @@
 labels:
   env: dev
   team: data
+kmsKey: 
 spec:
+  env:
+  ingress:
+    host:
+    region:
+    type: alb
