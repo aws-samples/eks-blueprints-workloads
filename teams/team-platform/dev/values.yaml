@@ -3,12 +3,8 @@ labels:
   team: platform
 spec:
   env:
+  kmsKey: 
   ingress:
     host:
-    cognitoUserPoolArn:
-    cognitoUserPoolAppId:
-    cognitoDomainName:
     region:
     type: alb
-    kmsKey: ""
-    
