@@ -6,8 +6,6 @@ spec:
   # The ID of the EFS file system that must be created in AWS 
   # separately as the driver uses the EFS for storage, but it does not create it
   fileSystemId: fs-0a3c59a2411bcc5f2
-  # The ID of the EFS file system access point that must be created in AWS separately
-  accessPointID: fsap-01553073196ee5983
   ingress:
     host:
     region:
