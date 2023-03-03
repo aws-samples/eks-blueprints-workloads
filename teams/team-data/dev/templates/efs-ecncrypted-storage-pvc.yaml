@@ -9,3 +9,20 @@ spec:
     requests:
       storage: 10Gi
   storageClassName: efs-encrypted
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  containers:
+  - name: my-container
+    image: busybox
+    command: [ "/bin/sh", "-c", "echo 'Hello, world!' > /mnt/data/data.txt" ]
+    volumeMounts:
+    - name: data
+      mountPath: /mnt/data
+  volumes:
+  - name: data
+    persistentVolumeClaim:
+      claimName: efs-encrypted-pvc
