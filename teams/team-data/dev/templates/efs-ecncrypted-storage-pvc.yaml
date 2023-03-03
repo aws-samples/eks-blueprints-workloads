@@ -13,16 +13,17 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: my-pod
+  name: efs-example
 spec:
   containers:
-  - name: my-container
-    image: busybox
-    command: [ "/bin/sh", "-c", "echo 'Hello, world!' > /mnt/data/data.txt" ]
-    volumeMounts:
-    - name: data
-      mountPath: /mnt/data
+    - name: app
+      image: centos
+      command: ["/bin/sh"]
+      args: ["-c", "while true; do echo $(date -u) >> /example/out.txt; sleep 5; done"]
+      volumeMounts:
+        - name: persistent-storage
+          mountPath: /example
   volumes:
-  - name: data
-    persistentVolumeClaim:
-      claimName: efs-encrypted-pvc
+    - name: persistent-storage
+      persistentVolumeClaim:
+        claimName: efs-encrypted-pvc
