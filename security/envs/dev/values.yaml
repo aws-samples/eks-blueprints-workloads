@@ -7,7 +7,7 @@ spec:
     # repoURL: https://github.com/aws-samples/eks-blueprints-workloads
     # targetRevision: main
     repoURL: https://github.com/aliaksei-ivanou/eks-blueprints-workloads
-    targetRevision: ebs-encryption-at-rest
+    targetRevision: efs-encryption-at-rest
 
   # Thoses default values can be surcharged by Infrastructure as Code
   env: dev

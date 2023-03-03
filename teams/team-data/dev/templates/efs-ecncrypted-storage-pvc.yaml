@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: gp2-encrypted-pvc
+  name: efs-encrypted-pvc
 spec:
   accessModes:
-  - ReadWriteOnce
+  - ReadWriteMany
   resources:
     requests:
       storage: 10Gi
-  storageClassName: gp2-encrypted
+  storageClassName: efs-encrypted
