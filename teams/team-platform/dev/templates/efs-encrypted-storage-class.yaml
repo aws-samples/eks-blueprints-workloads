@@ -8,6 +8,7 @@ provisioner: efs.csi.aws.com
 mountOptions:
   - tls
 parameters:
+  fileSystemId: {{ .Values.spec.fileSystemId }}
   provisioningMode: efs-ap
 {{ if .Values.spec.kmsKey }}
   kmsKeyId: {{ .Values.spec.kmsKey }} # The KMS key ID to use for encryption, otherwise the default key (AWS-managed) is used
