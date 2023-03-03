@@ -9,6 +9,7 @@ mountOptions:
   - tls
 parameters:
   fileSystemId: {{ .Values.spec.fileSystemId }}
+  provisioningMode: efs
 {{ if .Values.spec.kmsKey }}
   kmsKeyId: {{ .Values.spec.kmsKey }}
 {{ end }}
