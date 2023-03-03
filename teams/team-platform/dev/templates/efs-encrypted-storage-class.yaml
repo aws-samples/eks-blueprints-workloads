@@ -11,6 +11,6 @@ parameters:
   fileSystemId: {{ .Values.spec.fileSystemId }}
   provisioningMode: efs-ap
   directoryPerms: "700"
-{{ if .Values.spec.kmsKey }}
+{{ if .Values.spec.efsKmsKey }}
   kmsKeyId: {{ .Values.spec.efsKmsKey }} # The KMS key ID to use for encryption, otherwise the default key (AWS-managed) is used
 {{ end }}
