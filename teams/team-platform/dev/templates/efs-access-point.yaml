@@ -1,7 +1,7 @@
 apiVersion: efs.amazonaws.com/v1
 kind: EFSAccessPoint
 metadata:
-  name: fsap-01553073196ee5983
+  name: efs-ap
 spec:
   fileSystemId: {{ .Values.spec.fileSystemId }}
   rootDirectory:
