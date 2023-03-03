@@ -1,7 +1,7 @@
 apiVersion: efs.csi.aws.com/v1alpha1
 kind: EFSAccessPoint
 metadata:
-  name: fsap-080c9ab37df498963
+  name: efs-access-point
 spec:
   fileSystemId: {{ .Values.spec.fileSystemId }}
   posixUser:

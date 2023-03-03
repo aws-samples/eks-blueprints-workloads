@@ -9,7 +9,7 @@ mountOptions:
   - tls
 parameters:
   fileSystemId: {{ .Values.spec.fileSystemId }}
-  accessPointId: fsap-080c9ab37df498963
+  accessPointId: efs-access-point
   provisioningMode: efs-ap
 ---
 apiVersion: batch/v1
