@@ -19,7 +19,7 @@ spec:
     helm:
       values: |
         spec:
-          kmsKey: {{ index .Values.spec "kmsKey" }}
+          efsKmsKey: {{ index .Values.spec "efsKmsKey" }}
   syncPolicy:
     automated:
       prune: true
