@@ -1,5 +1,5 @@
-kind: StorageClass
 apiVersion: storage.k8s.io/v1
+kind: StorageClass
 metadata:
   name: efs-encrypted
   annotations:
@@ -9,8 +9,19 @@ mountOptions:
   - tls
 parameters:
   fileSystemId: {{ .Values.spec.fileSystemId }}
-  accessPointId: fsap-080c9ab37df498963
+  accessPointId: efs-ap
   provisioningMode: efs-ap
-{{ if .Values.spec.kmsKey }}
-  kmsKeyId: {{ .Values.spec.kmsKey }}
-{{ end }}
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: wait-for-storage-class
+spec:
+  template:
+    spec:
+      containers:
+      - name: wait-for-storage-class
+        image: busybox
+        command: ['sh', '-c', 'until kubectl get sc efs-encrypted > /dev/null 2>&1; do sleep 1; done']
+      restartPolicy: Never
+  backoffLimit: 0

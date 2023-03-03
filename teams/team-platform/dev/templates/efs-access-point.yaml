@@ -1,15 +1,29 @@
-apiVersion: efs.amazonaws.com/v1
+apiVersion: efs.csi.aws.com/v1alpha1
 kind: EFSAccessPoint
 metadata:
   name: efs-ap
 spec:
   fileSystemId: {{ .Values.spec.fileSystemId }}
+  posixUser:
+    uid: 1000
+    gid: 1000
   rootDirectory:
     path: /
     creationInfo:
       ownerGid: 1000
       ownerUid: 1000
-      permissions:
-      - "750"
-      - "640"
-      - "770"
+      permissions: "777"
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: wait-for-efs-ap
+spec:
+  template:
+    spec:
+      containers:
+      - name: wait-for-efs-ap
+        image: busybox
+        command: ['sh', '-c', 'until kubectl get efsap efs-ap > /dev/null 2>&1; do sleep 1; done']
+      restartPolicy: Never
+  backoffLimit: 0
