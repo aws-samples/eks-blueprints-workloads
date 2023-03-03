@@ -1,0 +1,15 @@
+apiVersion: efs.amazonaws.com/v1
+kind: EFSAccessPoint
+metadata:
+  name: fsap-01553073196ee5983
+spec:
+  fileSystemId: {{ .Values.spec.fileSystemId }}
+  rootDirectory:
+    path: /
+    creationInfo:
+      ownerGid: 1000
+      ownerUid: 1000
+      permissions:
+      - "750"
+      - "640"
+      - "770"
