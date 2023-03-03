@@ -9,5 +9,6 @@ mountOptions:
   - tls
 parameters:
   fileSystemId: {{ .Values.spec.fileSystemId }}
-  accessPointId: 	fsap-080c9ab37df498963
-  provisioningMode: efs-ap
+{{ if .Values.spec.kmsKey }}
+  kmsKeyId: {{ .Values.spec.kmsKey }}
+{{ end }}
