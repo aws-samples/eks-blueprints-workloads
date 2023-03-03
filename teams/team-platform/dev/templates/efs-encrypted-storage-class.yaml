@@ -1,0 +1,13 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: efs-encrypted
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+provisioner: efs.csi.aws.com
+mountOptions:
+  - tls
+parameters:
+  fileSystemId: {{ .Values.spec.fileSystemId }}
+  provisioningMode: efs-ap
+  directoryPerms: "700"
