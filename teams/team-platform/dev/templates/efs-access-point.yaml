@@ -1,7 +1,7 @@
 apiVersion: efs.csi.aws.com/v1alpha1
 kind: EFSAccessPoint
 metadata:
-  name: efs-ap
+  name: efs-encrypted
 spec:
   fileSystemId: {{ .Values.spec.fileSystemId }}
   posixUser:
