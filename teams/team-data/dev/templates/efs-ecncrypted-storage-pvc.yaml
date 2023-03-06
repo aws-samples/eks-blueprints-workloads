@@ -1,19 +1,19 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: efs-encrypted-pvc
+  name: efs-encrypted-claim
 spec:
   accessModes:
   - ReadWriteMany
+  storageClassName: efs-encrypted
   resources:
     requests:
       storage: 10Gi
-  storageClassName: efs-encrypted
 ---
 apiVersion: v1
 kind: Pod
 metadata:
-  name: efs-example
+  name: efs-encryption-app
 spec:
   containers:
     - name: app
@@ -26,4 +26,4 @@ spec:
   volumes:
     - name: persistent-storage
       persistentVolumeClaim:
-        claimName: efs-encrypted-pvc
+        claimName: efs-encrypted-claim
