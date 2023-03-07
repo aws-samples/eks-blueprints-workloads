@@ -9,6 +9,6 @@ parameters:
   type: gp2
   fsType: ext4
   encrypted: "true"
-{{ if .Values.spec.kmsKey }}
-  kmsKeyId: {{ .Values.spec.kmsKey }} # The KMS key ID to use for encryption, otherwise the default key (AWS-managed) is used
+{{ if .Values.spec.ebsKmsKey }}
+  kmsKeyId: {{ .Values.spec.ebsKmsKey }} # The KMS key ID to use for encryption, otherwise the default key (AWS-managed) is used
 {{ end }}
