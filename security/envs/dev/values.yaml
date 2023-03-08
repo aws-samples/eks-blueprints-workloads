@@ -4,10 +4,8 @@ spec:
   destination:
     server: https://kubernetes.default.svc
   source:
-    # repoURL: https://github.com/aws-samples/eks-blueprints-workloads
-    # targetRevision: main
-    repoURL: https://github.com/aliaksei-ivanou/eks-blueprints-workloads
-    targetRevision: efs-encryption-at-rest
+    repoURL: https://github.com/aws-samples/eks-blueprints-workloads
+    targetRevision: main
 
   # Thoses default values can be surcharged by Infrastructure as Code
   env: dev
