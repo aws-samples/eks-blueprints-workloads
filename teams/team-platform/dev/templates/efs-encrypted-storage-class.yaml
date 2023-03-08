@@ -10,9 +10,9 @@ mountOptions:
 parameters:
   fileSystemId: {{ .Values.spec.fileSystemId }}
   provisioningMode: efs-ap
-  directoryPerms: "777"
+  directoryPerms: "700"
   gidRangeStart: "1000" # optional
   gidRangeEnd: "2000" # optional
 {{ if .Values.spec.efsKmsKey }}
-  kmsKeyId: {{ .Values.spec.efsKmsKey }} # The KMS key ID to use for encryption, otherwise the default key (AWS-managed) is used
+  kmsKeyId: {{ .Values.spec.efsKmsKey }}
 {{ end }}
