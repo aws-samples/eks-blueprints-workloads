@@ -8,7 +8,7 @@ provisioner: efs.csi.aws.com
 mountOptions:
   - tls
 parameters:
-  fileSystemId: {{ .Values.spec.fileSystemId }}
+  fileSystemId: {{ .Values.spec.efsFileSystemId }}
   provisioningMode: efs-ap
   directoryPerms: "700"
   gidRangeStart: "1000" # optional

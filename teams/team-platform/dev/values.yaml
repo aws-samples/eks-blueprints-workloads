@@ -5,7 +5,6 @@ spec:
   env:
   # The ID of the EFS file system that must be created in AWS 
   # separately as the driver uses the EFS for storage, but it does not create it
-  fileSystemId: fs-0d61718448a6a336a
   ingress:
     host:
     region:
