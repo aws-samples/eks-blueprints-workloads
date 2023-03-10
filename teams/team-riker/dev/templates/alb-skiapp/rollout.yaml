@@ -1,0 +1,97 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: skiapp-rollout
+  namespace: team-riker
+  labels:
+    app: skiapp
+spec:
+  replicas: 3
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      app: skiapp
+  template:
+    metadata:
+      labels:
+        app: skiapp
+    spec:
+      containers:
+      - name: skiapp
+        image: sharepointoscar/skiapp:v1
+        imagePullPolicy: Always
+        ports:
+        - name: http
+          containerPort: 8080
+          protocol: TCP
+        resources:
+            requests:
+                memory: "64Mi"
+                cpu: "250m"
+            limits:
+                memory: "128Mi"
+                cpu: "500m"
+      {{ if .Values.spec.karpenterInstanceProfile }}
+      nodeSelector: # <- add nodeselector, toleration and spread constraitns
+        team: default
+        type: karpenter
+      tolerations:
+        - key: 'karpenter'
+          operator: 'Exists'
+          effect: 'NoSchedule'
+      {{ end }}
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: topology.kubernetes.io/zone
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              app: skiapp          
+      tolerations:
+        - key: 'karpenter'
+          operator: 'Exists'
+          effect: 'NoSchedule'                
+  strategy:
+    blueGreen:
+      autoPromotionEnabled: false
+      activeService: skiapp-service
+      previewService: skiapp-service-preview
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: skiapp-service-preview
+  namespace: team-riker
+spec:
+  ports:
+    - port: 80
+      targetPort: 8080
+      protocol: TCP
+  type: NodePort
+  selector:
+    app: skiapp
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: skiapp-ingress-preview
+  namespace: team-riker
+  annotations:
+    alb.ingress.kubernetes.io/group.name: riker-preview
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+    alb.ingress.kubernetes.io/tags: 'Environment=dev,Team=Riker'
+spec:
+  ingressClassName: alb
+  rules:
+  - host: 
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: skiapp-service-preview
+            port:
+              number: 80
