@@ -10,7 +10,7 @@ metadata:
 spec:
   destinations:
     - namespace: {{ .Values.spec.apps.ecsdemoNodejs.namespace | default "ecsdemo-nodejs" }}
-      server: server: {{ .Values.destinationServer | default .Values.spec.destination.server }}
+      server: {{ .Values.destinationServer | default .Values.spec.destination.server }}
   sourceRepos:
     - {{ .Values.spec.apps.ecsdemoNodejs.repoURL }}
 ---
@@ -28,7 +28,7 @@ spec:
   project: {{ .Values.spec.apps.ecsdemoNodejs.project | default "ecsdemo-nodejs" }}
   destination:
     namespace: {{ .Values.spec.apps.ecsdemoNodejs.namespace | default "ecsdemo-nodejs" }}
-    server: server: {{ .Values.destinationServer | default .Values.spec.destination.server }}
+    server: {{ .Values.destinationServer | default .Values.spec.destination.server }}
   source:
     repoURL: {{ .Values.spec.apps.ecsdemoNodejs.repoURL }}
     targetRevision: {{ .Values.spec.apps.ecsdemoNodejs.targetRevision }}
