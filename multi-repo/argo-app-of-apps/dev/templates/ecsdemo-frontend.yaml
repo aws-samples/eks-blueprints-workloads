@@ -10,7 +10,7 @@ metadata:
 spec:
   destinations:
     - namespace: {{ .Values.spec.apps.ecsdemoFrontend.namespace | default "ecsdemo-frontend" }}
-      server: {{ .Values.spec.destination.server }}
+      server: server: {{ .Values.destinationServer | default .Values.spec.destination.server }}
   sourceRepos:
     - {{ .Values.spec.apps.ecsdemoFrontend.repoURL }}
 {{- end }}
@@ -28,7 +28,7 @@ spec:
   project: {{ .Values.spec.apps.ecsdemoFrontend.project | default "ecsdemo-frontend" }}
   destination:
     namespace: {{ .Values.spec.apps.ecsdemoFrontend.namespace | default "ecsdemo-frontend" }}
-    server: {{ .Values.spec.destination.server }}
+    server: server: {{ .Values.destinationServer | default .Values.spec.destination.server }}
   source:
     repoURL: {{ .Values.spec.apps.ecsdemoFrontend.repoURL }}
     targetRevision: {{ .Values.spec.apps.ecsdemoFrontend.targetRevision }}

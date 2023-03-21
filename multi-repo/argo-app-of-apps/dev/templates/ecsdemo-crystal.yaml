@@ -10,7 +10,7 @@ metadata:
 spec:
   destinations:
     - namespace: {{ .Values.spec.apps.ecsdemoCrystal.namespace | default "ecsdemo-crystal" }}
-      server: {{ .Values.spec.destination.server }}
+      server: {{ .Values.destinationServer | default .Values.spec.destination.server }}
   sourceRepos:
     - {{ .Values.spec.apps.ecsdemoCrystal.repoURL }}
 ---
@@ -28,7 +28,7 @@ spec:
   project: {{ .Values.spec.apps.ecsdemoCrystal.project | default "ecsdemo-crystal" }}
   destination:
     namespace: {{ .Values.spec.apps.ecsdemoCrystal.namespace | default "ecsdemo-crystal" }}
-    server: {{ .Values.spec.destination.server }}
+    server: {{ .Values.destinationServer | default .Values.spec.destination.server }}
   source:
     repoURL: {{ .Values.spec.apps.ecsdemoCrystal.repoURL }}
     targetRevision: {{ .Values.spec.apps.ecsdemoCrystal.targetRevision }}

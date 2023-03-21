@@ -1,3 +1,4 @@
+destinationServer: ''
 argoNamespace: ''
 
 labels:
