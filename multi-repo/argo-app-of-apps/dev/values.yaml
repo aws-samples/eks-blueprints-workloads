@@ -1,5 +1,7 @@
 destinationServer: ''
+argoProjectNamespace: ''
 argoNamespace: ''
+
 
 labels:
   env: dev
