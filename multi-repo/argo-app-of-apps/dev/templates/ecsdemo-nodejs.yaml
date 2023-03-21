@@ -1,40 +1,40 @@
+{{- if .Values.spec.apps.ecsdemoNodejs.createProject -}}
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: ecsdemo-nodejs
-  namespace: argocd
+  name: {{ .Values.spec.apps.ecsdemoNodejs.project | default "ecsdemo-nodejs" }}
+  namespace: {{ .Values.argoNamespace | default "argocd" }}
   # Finalizer that ensures that project is not deleted until it is not referenced by any application
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   destinations:
-    - namespace: ecsdemo-nodejs
-      server: https://kubernetes.default.svc
+    - namespace: {{ .Values.spec.apps.ecsdemoNodejs.namespace | default "ecsdemo-nodejs" }}
+      server: {{ .Values.spec.destination.server }}
   sourceRepos:
     - {{ .Values.spec.apps.ecsdemoNodejs.repoURL }}
 ---
+{{- end }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: ecsdemo-nodejs
-  namespace: argocd
+  name: {{ .Values.spec.apps.ecsdemoNodejs.name | default "ecsdemo-nodejs" }}
+  namespace: {{ .Values.argoNamespace | default "argocd" }}
   labels:
     {{- toYaml .Values.labels | nindent 4 }}
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  project: ecsdemo-nodejs
+  project: {{ .Values.spec.apps.ecsdemoNodejs.project | default "ecsdemo-nodejs" }}
   destination:
-    namespace: ecsdemo-nodejs
+    namespace: {{ .Values.spec.apps.ecsdemoNodejs.namespace | default "ecsdemo-nodejs" }}
     server: {{ .Values.spec.destination.server }}
   source:
     repoURL: {{ .Values.spec.apps.ecsdemoNodejs.repoURL }}
     targetRevision: {{ .Values.spec.apps.ecsdemoNodejs.targetRevision }}
     path: {{ .Values.spec.apps.ecsdemoNodejs.path }}
     helm:
-      parameters:
-        - name: replicaCount
-          value: '3'    
+    {{- toYaml .Values.spec.apps.ecsdemoNodejs.helm | nindent 6 }}
   syncPolicy:
     automated:
       prune: true
