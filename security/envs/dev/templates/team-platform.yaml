@@ -21,6 +21,7 @@ spec:
         spec:
           efsKmsKey: {{ index .Values.spec "efsKmsKey" }}
           efsFileSystemId: {{ index .Values.spec "efsFileSystemId" }}
+          ebsKmsKey: {{ index .Values.spec "ebsKmsKey" }}
   syncPolicy:
     automated:
       prune: true
