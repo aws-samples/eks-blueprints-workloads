@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: efs-encrypted-claim
+spec:
+  accessModes:
+  - ReadWriteMany
+  storageClassName: efs-encrypted
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: efs-encryption-app
+spec:
+  containers:
+    - name: app
+      image: centos
+      command: ["/bin/sh"]
+      args: ["-c", "while true; do echo $(date -u) >> /example/out.txt; sleep 5; done"]
+      volumeMounts:
+        - name: persistent-storage
+          mountPath: /example
+  volumes:
+    - name: persistent-storage
+      persistentVolumeClaim:
+        claimName: efs-encrypted-claim
