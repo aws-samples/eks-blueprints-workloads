@@ -1,0 +1,9 @@
+labels:
+  env: dev
+  team: platform
+spec:
+  env:
+  ingress:
+    host:
+    region:
+    type: alb

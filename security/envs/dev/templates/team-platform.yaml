@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: team-platform
+  namespace: argocd
+  labels:
+    {{- toYaml .Values.labels | nindent 4 }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: platform
+    server: {{ .Values.spec.destination.server }}
+  project: default
+  source:
+    path: teams/team-platform/dev
+    repoURL: {{ .Values.spec.source.repoURL }}
+    targetRevision: {{ .Values.spec.source.targetRevision }}
+    helm:
+      values: |
+        spec:
+          ebsKmsKey: {{ index .Values.spec "ebsKmsKey" }}
+  syncPolicy:
+    automated:
+      prune: true
+    syncOptions:
+      - CreateNamespace=true
