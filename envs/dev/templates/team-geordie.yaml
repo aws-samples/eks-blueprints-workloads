@@ -1,19 +1,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: yelb
-  # namespace is specified as namespace destination in env/{dev,test,prod}/team-geordie.yaml
+  name: team-geordie
+  namespace: {{ .Values.argoNamespace | default "argocd" }}
+  labels:
+    {{- toYaml .Values.labels | nindent 4 }}
   finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: {{ .Values.argoProject | default "default" }}
   destination:
-    namespace: geordie
-    server: {{ .Values.spec.destination.server }}
+    namespace: {{ .Values.argoNamespace | default "argocd" }}
+    server: {{ .Values.destinationServer | default .Values.spec.destination.server }}
   source:
     repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: {{ .Values.spec.source.targetRevision }}
-    path: teams/team-geordie/test/yelb
+    path: teams/team-geordie/dev
     helm:
       values: |
         {{- toYaml .Values | nindent 8 }}

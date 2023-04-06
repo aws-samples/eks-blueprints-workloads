@@ -1,0 +1,55 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: guestbook
+  namespace: {{ .Values.argoNamespace | default "argocd" }}
+  labels:
+    {{- toYaml .Values.labels | nindent 4 }}
+spec:
+  generators:
+  - clusters:
+      selector:
+        matchLabels:
+          environment: 'dev'
+      values:
+        replicas: "1"
+        project: {{"'{{metadata.annotations.project}}'"}}
+  - clusters:
+      selector:
+        matchLabels:
+          environment: 'test'
+      values:
+        replicas: "2"
+        project: {{"'{{metadata.annotations.project}}'"}}
+  - clusters:
+      selector:
+        matchLabels:
+          environment: 'prod'
+      values:
+        replicas: "3"
+        project: {{"'{{metadata.annotations.project}}'"}}
+  template:
+    metadata:
+      name: {{"'{{name}}-guestbook'"}}
+      namespace: {{"'{{values.project}}'"}}
+      finalizers:
+      - resources-finalizer.argocd.argoproj.io
+    spec:
+      project: {{"'{{values.project}}'"}}
+      source:
+        repoURL: {{ .Values.spec.source.repoURL }}
+        # The cluster values field for each generator will be substituted here:
+        targetRevision: {{ .Values.spec.source.targetRevision }}
+        path: helm-guestbook
+        helm:
+          parameters:
+          - name: "replicaCount"
+            value: {{"'{{values.replicas}}'"}}
+      destination:
+        server: {{"'{{server}}'"}}
+        namespace: guestbook
+      syncPolicy:
+        automated:
+          prune: true
+        syncOptions:
+        - CreateNamespace=true
