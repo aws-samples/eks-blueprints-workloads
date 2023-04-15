@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: privileged-pod
+spec:
+  containers:
+    - name: app
+      image: centos
+      command: ["/bin/sh"]
+      args:
+        [
+          "-c",
+          "docker pull centos:8 && docker tag centos:8 <your-ecr-repo-url>/centos:latest && docker push <your-ecr-repo-url>/centos:latest",
+        ]
+      securityContext:
