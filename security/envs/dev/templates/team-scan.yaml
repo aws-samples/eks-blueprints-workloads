@@ -2,7 +2,6 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: team-scan
-  namespace: argocd
   labels:
     {{- toYaml .Values.labels | nindent 4 }}
   finalizers:
@@ -16,6 +15,11 @@ spec:
     path: teams/team-scan/dev
     repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: {{ .Values.spec.source.targetRevision }}
+  helm:
+      values: |
+        spec:
+          repositoryUri: {{ index .Values.spec "repositoryUri" }}
+          region: {{ index .Values.spec "region" }}
   syncPolicy:
     automated:
       prune: true
