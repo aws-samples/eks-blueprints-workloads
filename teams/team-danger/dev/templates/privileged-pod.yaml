@@ -1,0 +1,13 @@
+# This is a privileged pod that can be used to test Guard Duty findings generation
+apiVersion: v1
+kind: Pod
+metadata:
+  name: privileged-pod
+spec:
+  containers:
+    - name: app
+      image: centos
+      command: ["/bin/sh"]
+      args: ["-c", "sleep 999"]
+      securityContext:
+        privileged: true

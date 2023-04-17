@@ -1,7 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: team-riker
   name: deployment-2048
   labels:
     app: 2048

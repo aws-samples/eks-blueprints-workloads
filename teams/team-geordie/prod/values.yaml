@@ -1,3 +1,5 @@
+argoProject: ''
+
 labels:
   env: prod
   team: geordie

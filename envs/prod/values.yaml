@@ -1,3 +1,7 @@
+destinationServer: ''
+argoNamespace: ''
+argoProject: ''
+
 labels:
   env: prod
 spec:
