@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: skiapp
-        image: sharepointoscar/skiapp:v1
+        image: sharepointoscar/skiapp:v2
         imagePullPolicy: Always
         ports:
         - name: http
