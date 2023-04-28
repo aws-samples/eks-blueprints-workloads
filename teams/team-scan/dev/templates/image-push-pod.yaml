@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ecr-pod
+  namespace: scan
+spec:
+  serviceAccountName: team-scan-sa
+  containers:
+    - name: app
+      image: quay.io/skopeo/stable:latest
+      command: ["/bin/sh"]
+      args:
+        - "-c"
+        - 'yum update -y && yum install unzip less -y && curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && unzip awscliv2.zip && ./aws/install && aws ecr get-login-password --region {{ .Values.spec.region }} | skopeo login --username AWS --password-stdin {{ (split "/" .Values.spec.repositoryUri)._0 }} && skopeo copy docker://centos:8 docker://{{ .Values.spec.repositoryUri }}:latest && sleep 3600'
