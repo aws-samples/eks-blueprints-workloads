@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: skiapp-deployment
+  namespace: team-riker
+spec:
+  selector:
+    matchLabels:
+      app: skiapp
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: skiapp
+    spec:
+      containers:
+        - name: skiapp
+          image: sharepointoscar/skiapp:v1
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              memory: '64Mi'
+              cpu: '250m'
+            limits:
+              memory: '128Mi'
+              cpu: '500m'
