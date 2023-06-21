@@ -5,7 +5,7 @@ spec:
     server: https://kubernetes.default.svc
   source:
     repoURL: https://github.com/aws-samples/eks-blueprints-workloads
-    targetRevision: fix/secureIngressCognitoACM
+    targetRevision: main
 
   # Thoses default values can be surcharged by Infrastructure as Code
   env: dev
