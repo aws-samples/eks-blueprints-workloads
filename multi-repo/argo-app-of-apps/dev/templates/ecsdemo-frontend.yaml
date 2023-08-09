@@ -42,7 +42,8 @@ spec:
     targetRevision: {{ .Values.spec.apps.ecsdemoFrontend.targetRevision }}
     path: {{ .Values.spec.apps.ecsdemoFrontend.path }}
     helm:
-    {{- toYaml .Values.spec.apps.ecsdemoFrontend.helm | nindent 6 }}
+      values: |
+        {{- toYaml .Values.spec.apps.ecsdemoFrontend.helm | nindent 8 }}
   syncPolicy:
     automated:
       prune: true
