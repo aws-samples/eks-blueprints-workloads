@@ -7,7 +7,7 @@ spec:
   selector:
     matchLabels:
       app: skiapp
-  replicas: 3
+  replicas: 2
   template:
     metadata:
       labels:
