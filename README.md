@@ -53,6 +53,9 @@ To sync app configuration and deploy the workloads, run the following.
 ```
 argocd app sync dev-apps 
 ```
+### Usage for Securing Ingress using Cognito
+
+`secure-ingress-cognito-*` to be used only when you are using the blueprint pattern named `secure-ingress-blueprint` from the blueprint patterns repository. This workload has been isolated because without Cognito resources this application will fail deploying while using app of apps pattern. 
 
 ## Repo Structure
 

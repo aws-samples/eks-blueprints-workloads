@@ -1,0 +1,12 @@
+labels:
+  env: test
+  team: kirk
+spec:
+  env:
+  ingress:
+    host:
+    cognitoUserPoolArn:
+    cognitoUserPoolAppId:
+    cognitoDomainName:
+    region:
+    type: alb

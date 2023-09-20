@@ -1,0 +1,16 @@
+# This is a privileged pod that can be used to test runtime findings in Amazon GuardDuty
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ubuntunetcat
+  labels:
+    app: ubuntunetcat
+spec:
+  containers:
+  - image: redora/ubuntunetcat
+    command:
+      - "sleep"
+      - "60000"
+    imagePullPolicy: IfNotPresent
+    name: ubuntunetcat
+  restartPolicy: Always

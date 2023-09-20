@@ -1,24 +1,50 @@
+{{- if .Values.spec.apps.ecsdemoFrontend.createProject -}}
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: {{ .Values.spec.apps.ecsdemoFrontend.project | default "ecsdemo-frontend" }}
+  namespace: {{ .Values.argoProjectNamespace | default "argocd" }}
+  # Finalizer that ensures that project is not deleted until it is not referenced by any application
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  destinations:
+    - namespace: {{ .Values.spec.apps.ecsdemoFrontend.namespace | default "ecsdemo-frontend" }}
+      server: {{ .Values.destinationServer | default .Values.spec.destination.server }}
+  sourceRepos:
+    - {{ .Values.spec.apps.ecsdemoFrontend.repoURL }}
+  {{- with .Values.sourceNamespaces }}
+  sourceNamespaces:
+    {{- toYaml .| nindent 4 }}
+  {{- end }}
+---
+{{- end }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: ecsdemo-frontend
-  namespace: argocd
+  name: {{ .Values.spec.apps.ecsdemoFrontend.name | default "ecsdemo-frontend" }}
+  namespace: {{ .Values.argoNamespace | default "argocd" }}
   labels:
     {{- toYaml .Values.labels | nindent 4 }}
   finalizers:
     - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 spec:
-  project: ecsdemo-frontend
+  project: {{ .Values.spec.apps.ecsdemoFrontend.project | default "ecsdemo-frontend" }}
   destination:
-    namespace: ecsdemo-frontend
-    server: {{ .Values.spec.destination.server }}
+    namespace: {{ .Values.spec.apps.ecsdemoFrontend.namespace | default "ecsdemo-frontend" }}
+    server: {{ .Values.destinationServer | default .Values.spec.destination.server }}
   source:
     repoURL: {{ .Values.spec.apps.ecsdemoFrontend.repoURL }}
     targetRevision: {{ .Values.spec.apps.ecsdemoFrontend.targetRevision }}
     path: {{ .Values.spec.apps.ecsdemoFrontend.path }}
-    
+    helm:
+    {{- toYaml .Values.spec.apps.ecsdemoFrontend.helm | nindent 6 }}
   syncPolicy:
     automated:
       prune: true
     syncOptions:
-      - CreateNamespace=true
+      - CreateNamespace=false # Created with IaC - # https://github.com/argoproj/argo-cd/issues/7799
