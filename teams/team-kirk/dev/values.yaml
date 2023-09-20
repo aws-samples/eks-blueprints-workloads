@@ -8,5 +8,6 @@ spec:
     cognitoUserPoolArn:
     cognitoUserPoolAppId:
     cognitoDomainName:
+    certificateArn: 
     region:
     type: alb

@@ -1,10 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: team-riker
   name: deployment-2048
   labels:
-    app: 2048
+    app: "2048"
     {{- toYaml .Values.labels | nindent 4 }}
 spec:
   selector:
@@ -65,7 +64,7 @@ metadata:
   namespace: team-riker
   name: service-2048
   labels:
-    app: 2048
+    app: "2048"
     {{- toYaml .Values.labels | nindent 4 }}
 spec:
   ports:
@@ -82,7 +81,7 @@ metadata:
   namespace: team-riker
   name: ingress-2048
   labels:
-    app: 2048
+    app: "2048"
     {{- toYaml .Values.labels | nindent 4 }}
   annotations:
 {{ if eq .Values.spec.ingress.type "nginx" }}

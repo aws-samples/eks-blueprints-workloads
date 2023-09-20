@@ -1,40 +1,48 @@
-    apiVersion: argoproj.io/v1alpha1
+{{- if .Values.spec.apps.ecsdemoCrystal.createProject -}}
+apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: ecsdemo-crystal
-  namespace: argocd
+  name: {{ .Values.spec.apps.ecsdemoCrystal.project | default "ecsdemo-crystal" }}
+  namespace: {{ .Values.argoProjectNamespace | default "argocd" }}
   # Finalizer that ensures that project is not deleted until it is not referenced by any application
   finalizers:
     - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   destinations:
-    - namespace: ecsdemo-crystal
-      server: https://kubernetes.default.svc
+    - namespace: {{ .Values.spec.apps.ecsdemoCrystal.namespace | default "ecsdemo-crystal" }}
+      server: {{ .Values.destinationServer | default .Values.spec.destination.server }}
   sourceRepos:
     - {{ .Values.spec.apps.ecsdemoCrystal.repoURL }}
+  {{- with .Values.sourceNamespaces }}
+  sourceNamespaces:
+    {{- toYaml .| nindent 4 }}
+  {{- end }}
 ---
+{{- end }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: ecsdemo-crystal
-  namespace: argocd
+  name: {{ .Values.spec.apps.ecsdemoCrystal.name | default "ecsdemo-crystal" }}
+  namespace: {{ .Values.argoNamespace | default "argocd" }}
   labels:
     {{- toYaml .Values.labels | nindent 4 }}
   finalizers:
     - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 spec:
-  project: ecsdemo-crystal
+  project: {{ .Values.spec.apps.ecsdemoCrystal.project | default "ecsdemo-crystal" }}
   destination:
-    namespace: ecsdemo-crystal
-    server: {{ .Values.spec.destination.server }}
+    namespace: {{ .Values.spec.apps.ecsdemoCrystal.namespace | default "ecsdemo-crystal" }}
+    server: {{ .Values.destinationServer | default .Values.spec.destination.server }}
   source:
     repoURL: {{ .Values.spec.apps.ecsdemoCrystal.repoURL }}
     targetRevision: {{ .Values.spec.apps.ecsdemoCrystal.targetRevision }}
     path: {{ .Values.spec.apps.ecsdemoCrystal.path }}
     helm:
-      parameters:
-        - name: replicaCount
-          value: '3'    
+    {{- toYaml .Values.spec.apps.ecsdemoCrystal.helm | nindent 6 }}
   syncPolicy:
     automated:
       prune: true
