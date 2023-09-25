@@ -1,3 +1,4 @@
+{{ if .Values.spec.efsFileSystemId }}
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
@@ -13,6 +14,7 @@ parameters:
   directoryPerms: "700"
   gidRangeStart: "1000" # optional
   gidRangeEnd: "2000" # optional
-{{ if .Values.spec.efsKmsKey }}
+  {{ if .Values.spec.efsKmsKey }}
   kmsKeyId: {{ .Values.spec.efsKmsKey }}
+  {{ end }}
 {{ end }}
