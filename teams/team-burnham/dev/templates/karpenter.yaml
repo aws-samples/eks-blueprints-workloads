@@ -1,0 +1,43 @@
+apiVersion: karpenter.sh/v1alpha5
+kind: Provisioner
+metadata:
+  name: burnham
+  labels: {{- toYaml .Values.labels | nindent 4}}
+spec:
+  consolidation:
+    enabled: true
+  requirements:
+    # We can select which instance type we want with the In Operator
+    # - key: 'node.kubernetes.io/instance-type'
+    #   operator: In
+    #   values: ['m5.xlarge', 'm5a.xlarge', 'm5ad.xlarge', 'm5d.xlarge', 't2.xlarge', 't3.xlarge', 't3a.xlarge']
+    #
+    # We can filster instance sizes we don't want with the NotIn operator
+    - key: karpenter.k8s.aws/instance-size
+      operator: NotIn
+      values: [nano, micro, small, 24xlarge, 32xlarge, 48xlarge]
+    - key: 'kubernetes.io/arch'
+      operator: In
+      values: ['amd64']
+    - key: karpenter.sh/capacity-type
+      operator: In
+      #values: ['on-demand', 'spot']
+      values: ['on-demand']
+  providerRef:
+    name: karpenter-default
+  ttlSecondsUntilExpired: 2592000 # 30 Days = 60 * 60 * 24 * 30 Seconds;
+  # Priority given to the provisioner when the scheduler considers which provisioner
+  # to select. Higher weights indicate higher priority when comparing provisioners.
+  # Specifying no weight is equivalent to specifying a weight of 0.
+  weight: 10
+  limits:
+    resources:
+      cpu: '200'
+  labels:
+    billing-team: burnham
+    team: burnham
+    type: karpenter
+  taints:
+    - key: burnham
+      value: 'true'
+      effect: NoSchedule
