@@ -11,6 +11,8 @@ spec:
     repoURL: https://github.com/aws-samples/eks-blueprints-workloads
     targetRevision: main
 
+  #for non connected workloads or when deploying in close regions like china we can specify a ecr registry preffix (it must end with a '/' if specify, empty elsewhere)
+  ecr_registry_preffix: 
   # Thoses default values can be surcharged by Infrastructure as Code
   env: dev
   clusterName: eks-blueprint-cluster # the name of EKS cluster

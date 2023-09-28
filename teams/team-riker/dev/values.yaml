@@ -2,6 +2,8 @@ labels:
   env: dev
   team: riker
 spec:
+  #for non connected workloads or when deploying in close regions like china we can specify a ecr registry preffix (it must end with a '/' if specify, empty elsewhere)
+  ecr_registry_preffix: 
   env:
   ingress:
     host:
