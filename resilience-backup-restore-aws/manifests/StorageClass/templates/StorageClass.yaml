@@ -1,0 +1,15 @@
+---
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: aws-ebs-sc
+provisioner: ebs.csi.aws.com
+parameters:
+  tagSpecification_1: "EKSPVBackup=true"
+
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: efs-sc
+provisioner: efs.csi.aws.com
