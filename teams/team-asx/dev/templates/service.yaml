@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: asx-ski-app
+  labels:
+    app: asx-ski-app
+    {{- toYaml .Values.labels | nindent 4 }}
+spec:
+  ports:
+  - port: 8080
+    targetPort: 8080
+  selector:
+    app: asx-ski-app
