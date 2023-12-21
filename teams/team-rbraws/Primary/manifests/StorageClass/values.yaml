@@ -1,0 +1,21 @@
+destinationServer: ''
+argoNamespace: ''
+argoProject: ''
+
+labels:
+  env: bootstrap
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/prabaksa/eks-blueprints-workloads
+    targetRevision: main
+
+  # Thoses default values can be surcharged by Infrastructure as Code
+  env: bootstrap
+  clusterName: eks-blueprint-cluster # the name of EKS cluster
+  blueprint: 'cdk' # cdk | terraform
+  karpenterInstanceProfile:
+  ingress:
+    type: '' # nginx | alb
+    host: # empty or your domain like dev.example.com
