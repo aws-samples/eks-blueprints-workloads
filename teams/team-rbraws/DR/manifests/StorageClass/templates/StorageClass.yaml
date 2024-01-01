@@ -7,6 +7,7 @@ provisioner: ebs.csi.aws.com
 parameters:
   tagSpecification_1: "EKSPVBackup=true"
   encrypted: "true"
+  kmsKeyId: "arn:aws:kms:us-east-2:370926141865:key/mrk-1adab1adc8dd412493ded8f105a7e889"
 ---
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
