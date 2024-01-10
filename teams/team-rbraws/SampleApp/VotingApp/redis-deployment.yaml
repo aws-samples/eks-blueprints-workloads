@@ -25,4 +25,5 @@ spec:
           name: redis-data
       volumes:
       - name: redis-data
-        emptyDir: {} 
+        persistentVolumeClaim:
+          claimName: redis-pv-claim
