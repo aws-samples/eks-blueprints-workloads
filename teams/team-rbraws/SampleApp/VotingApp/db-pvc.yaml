@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: db-pv-claim
+  name: votingdb-pv-claim
   labels:
    app: db
 spec:
