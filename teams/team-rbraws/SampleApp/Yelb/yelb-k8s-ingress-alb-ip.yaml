@@ -161,8 +161,11 @@ spec:
         image:  mreferre/yelb-db:0.6
         ports:
         - containerPort: 5432
+        env:
+        - name: PGDATA
+          value: /var/lib/postgresql/data/pgdata
         volumeMounts:
-        - mountPath: /var/lib/postgresql
+        - mountPath: /var/lib/postgresql/data
           name: db-data
       volumes:
       - name: db-data
