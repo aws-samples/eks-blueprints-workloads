@@ -241,7 +241,7 @@ Kubernetes services are deployed and an Ingress is configured using an applicati
 
 ![DR Region Yelb App ](../images/Yelb/Yelb_DR_EKS_YelbApp.png)
 
-We tried accessing the result url directly here and we could see that the data in the postgres database is reflecting on the DR deployment. 
+We tried accessing the Ingress url directly here and we could see that the data in the postgres database is reflecting on the DR deployment. 
 
 
 
