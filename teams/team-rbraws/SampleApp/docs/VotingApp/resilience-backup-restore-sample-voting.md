@@ -48,27 +48,27 @@ If you haven't done it before, [bootstrap your cdk account and region](https://d
 
 Set the pattern's parameters in the CDK context by overriding the _cdk.json_ file (Update the values for variables based on your environment):
 
-![Primary Region cdk.json](../images/votingApp/Voting_pri_cdk.png)
+![Primary Region cdk.json](../images/VotingApp/Voting_pri_cdk.png)
 
 Now let's download the dependencies using command "make deps". 
 
-![Primary Region deps](../images/votingApp/Voting_pri_deps.png)
+![Primary Region deps](../images/VotingApp/Voting_pri_deps.png)
 
 let's build the pattern using command "make build"
 
-![Primary Region build](../images/votingApp/Vorting_pri_build.png)
+![Primary Region build](../images/VotingApp/Voting_pri_build.png)
 
 let's deploy the pattern using command make pattern resilience-br-backup-aws "deploy --all"
 
-![Primary Region deploy](../images/votingApp/Vorting_pri_eks_deploy.png)
+![Primary Region deploy](../images/VotingApp/Voting_pri_eks_deploy.png)
 
 let's confirm the deployment
 
-![Primary Region deploy1](../images/votingApp/Vorting_pri_eks_deploy1.png)
+![Primary Region deploy1](../images/VotingApp/Voting_pri_eks_deploy1.png)
 
 When deployment completes, the output will be similar to the following:
 
-![Primary Region deploy2](../images/votingApp/Vorting_pri_eks_deploy2.png)
+![Primary Region deploy2](../images/VotingApp/Voting_pri_eks_deploy2.png)
 
 
 To see the deployed resources within the cluster, please run:
@@ -81,24 +81,24 @@ The pattern has an argocd controller which configures the storage classes during
 
 A sample output is shown below:
 
-![Primary Region deploy2](../images/votingApp/Vorting_pri_eks_deploy2.png)
+![Primary Region deploy2](../images/VotingApp/Voting_pri_eks_deploy2.png)
 Ensure that the Storage classes aws-ebs-sc and efs-sc are configured during bootstrap by ArgoCD. 
 
 Now let's deploy voting application on the EKS cluster 
 
-![Primary Region voting deploy ](../images/votingApp/Vorting_pri_eks_voting.png)
+![Primary Region voting deploy ](../images/VotingApp/Voting_pri_eks_voting.png)
 
 Let's review the vote and the result services 
 
-![Primary Region voting svc ](../images/votingApp/Vorting_pri_eks_votingsvc.png)
+![Primary Region voting svc ](../images/VotingApp/Voting_pri_eks_votingsvc.png)
 
 vote and the result services are deployed using a network load balancer , Let's grab the url's for both vote and result services and access the same using our browser. 
 
-![Primary Region voting svc ](../images/votingApp/Vorting_pri_eks_vote.png)
+![Primary Region voting svc ](../images/VotingApp/Voting_pri_eks_vote.png)
 
 We have casted some votes against these options and now let's review the results
 
-![Primary Region voting result ](../images/votingApp/Vorting_pri_eks_result.png)
+![Primary Region voting result ](../images/VotingApp/Voting_pri_eks_result.png)
 
 
 
