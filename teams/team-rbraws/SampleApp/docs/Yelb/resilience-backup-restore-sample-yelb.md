@@ -15,7 +15,7 @@ And a non-critical application will have a higher RTO and RPO and will not need 
 
 The Objective of this pattern is to provide a reference design for a Disaster Recovery Architecture for a non-critical application with higher RTO and RPO using AWS native services. 
 
-This page has step by step instructions to deploy a voting application , mimic a DR scenario , Failover the application to DR Region
+This page has step by step instructions to deploy Yelb application , mimic a DR scenario , Failover the application to DR Region
 
 
 ## Prerequisites
@@ -48,27 +48,27 @@ If you haven't done it before, [bootstrap your cdk account and region](https://d
 
 Set the pattern's parameters in the CDK context by overriding the _cdk.json_ file (Update the values for variables based on your environment):
 
-![Primary Region cdk.json](../images/VotingApp/Voting_pri_cdk.png)
+![Primary Region cdk.json](../images/Yelb/Yelb_Primary_cdk.png)
 
 Now let's download the dependencies using command "make deps". 
 
-![Primary Region deps](../images/VotingApp/Voting_pri_deps.png)
+![Primary Region deps](../images/Yelb/Yelb_Primary_deps.png)
 
 let's build the pattern using command "make build"
 
-![Primary Region build](../images/VotingApp/Voting_pri_build.png)
+![Primary Region build](../images/Yelb/Yelb_Primary_Build.png)
 
 let's deploy the pattern using command make pattern resilience-br-backup-aws "deploy --all"
 
-![Primary Region deploy](../images/VotingApp/Voting_pri_eks_deploy.png)
+![Primary Region deploy](../images/Yelb/Yelb_Primary_EKS_deploy.png)
 
 let's confirm the deployment
 
-![Primary Region deploy1](../images/VotingApp/Voting_pri_eks_deploy1.png)
+![Primary Region deploy1](../images/Yelb/Yelb_Primary_EKS_deploy1.png)
 
 When deployment completes, the output will be similar to the following:
 
-![Primary Region deploy2](../images/VotingApp/Voting_pri_eks_deploy2.png)
+![Primary Region deploy2](../images/Yelb/Yelb_Primary_EKS_deploy2.png)
 
 
 To see the deployed resources within the cluster, please run:
@@ -81,36 +81,33 @@ The pattern has an argocd controller which configures the storage classes during
 
 A sample output is shown below:
 
-![Primary Region deploy2](../images/VotingApp/Voting_pri_eks_deploy2.png)
+![Primary Region argo](../images/Yelb/Yelb_Primary_EKS_argo.png)
+
 Ensure that the Storage classes aws-ebs-sc and efs-sc are configured during bootstrap by ArgoCD. 
 
-Now let's deploy voting application on the EKS cluster 
+Now let's deploy Yelb application on the EKS cluster 
 
 Clone the repository:
 
 ```sh
 git clone https://github.com/aws-samples/eks-blueprints-workloads.git
 
-cd eks-blueprints-workloads.git/teams/team-rbraws/SampleApp/VotingApp
+cd eks-blueprints-workloads.git/teams/team-rbraws/SampleApp/Yelb
 
 kubectl apply -f . -R
 ```
 
-![Primary Region voting deploy ](../images/VotingApp/Voting_pri_eks_voting.png)
+![Primary Region yelb deploy ](../images/Yelb/Yelb_Primary_EKS_Yelb.png)
 
-Let's review the vote and the result services 
+Let's review the service and Ingress
 
-![Primary Region voting svc ](../images/VotingApp/Voting_pri_eks_votingsvc.png)
+![Primary Region yelb svc ](../images/Yelb/Yelb_Primary_EKS_YelbSvc.png)
 
-vote and the result services are deployed using a network load balancer , Let's grab the url's for both vote and result services and access the same using our browser. 
+Yelb Services are deployed and an Ingress is configured . Let's access the application and voting for the favourite restaurant. 
 
-![Primary Region voting svc ](../images/VotingApp/Voting_pri_eks_vote.png)
+![Primary Region yelb App ](../images/Yelb/Yelb_Primary_EKS_YelbApp.png)
 
-We have casted some votes against these options and now let's review the results
-
-![Primary Region voting result ](../images/VotingApp/Voting_pri_eks_result.png)
-
-The Voting application has a postgres database which uses an EBS Volume to persist the data. The EBS volume was dynamically created using the storage class aws-ebs-sc and based on the storage class definition all dynamically provisioned EBS volumes are tagged for backup.
+The Yelb application has a postgres database which uses an EBS Volume to persist the data. The EBS volume was dynamically created using the storage class aws-ebs-sc and based on the storage class definition all dynamically provisioned EBS volumes are tagged for backup.
 
 The pattern has also setup a Backup vault and a Backup plan which backup all the EBS Volumes, EFS Filesystesm daily and copies the backups to the DR region. The backup vault is encrypted with a Multiregion KMS key 
 
@@ -142,27 +139,27 @@ If you haven't done it before, [bootstrap your cdk account and region](https://d
 
 Set the pattern's parameters in the CDK context by overriding the _cdk.json_ file (Update the values for variables based on your environment): 
 
-![DR Region cdk.json](../images/VotingApp/Voting_dr_cdk.png)
+![DR Region cdk.json](../images/Yelb/Yelb_DR_cdk.png)
 
 Now let's download the dependencies using command "make deps". 
 
-![DR Region deps](../images/VotingApp/Voting_dr_deps.png)
+![DR Region deps](../images/Yelb/Yelb_DR_deps.png)
 
 let's build the pattern using command "make build"
 
-![DR Region build](../images/VotingApp/Voting_dr_build.png)
+![DR Region build](../images/Yelb/Yelb_DR_build.png)
 
 let's deploy the pattern using command make pattern resilience-br-restore-aws "deploy --all"
 
-![DR Region deploy](../images/VotingApp/Voting_dr_eks_deploy.png)
+![DR Region deploy](../images/Yelb/Yelb_DR_EKS_deploy.png)
 
 let's confirm the deployment
 
-![DR Region deploy1](../images/VotingApp/Voting_dr_eks_deploy1.png)
+![DR Region deploy1](../images/Yelb/Yelb_DR_EKS_deploy1.png)
 
 When deployment completes, the output will be similar to the following:
 
-![DR Region deploy2](../images/VotingApp/Voting_dr_eks_deploy2.png)
+![DR Region deploy2](../images/Yelb/Yelb_DR_EKS_deploy2.png)
 
 
 To see the deployed resources within the cluster, please run:
@@ -175,7 +172,9 @@ The pattern has an argocd controller which configures the storage classes and Vo
 
 A sample output is shown below:
 
-![DR Region argo](../images/VotingApp/Voting_dr_eks_argo.png)
+![DR Region argo](../images/Yelb/Yelb_DR_EKS_argo.png)
+
+![DR Region argo1](../images/Yelb/Yelb_DR_EKS_argo1.png)
 
 
 Next, Ensure that the Storage classes aws-ebs-sc, efs-sc and Volumesnapshot class ebs-volume-snapclass are configured during bootstrap by ArgoCD. 
@@ -197,7 +196,7 @@ _Note:_ PersistentVolumeClaim Manifests are updated inline in the next steps; En
 
 Run the Script to create VolumeSnapshotContent ; VolumeSnapshot from the latest snapshot of the EBS Volume (Used by Application in Primary Region) and Modify PersistentVolumeClaim to reference the VolumeSnapshot.
 
-![DR Region updatepvc](../images/VotingApp/Voting_dr_eks_updatepvc.png)
+![DR Region updatepvc](../images/Yelb/Yelb_DR_EKS_updatepvc.png)
 
 
 #### If your application was using an EFS Volume as a persistent volume then follow the process outlined in the document below to restore the filesystem from the latest EFS snapshot
@@ -232,15 +231,15 @@ Deploy the Manifest files to the EKS Cluster in Disaster Recovery Region.
 
 Navigate to the Local folder where the updated Manifest files are stored 
 
-![DR Region voting](../images/VotingApp/Voting_dr_eks_voting.png)
+![DR Region Yelb](../images/Yelb/Yelb_DR_EKS_Yelb.png)
 
-Let's review the vote and the result services 
+Let's review the services and Ingress 
 
-![DR Region voting svc ](../images/VotingApp/Voting_dr_eks_votingsvc.png)
+![DR Region Yelb svc ](../images/Yelb/Yelb_DR_EKS_YelbSvc.png)
 
-vote and the result services are deployed using a network load balancer , Let's grab the url's of result services to validate that data is persisted and reflecting in the DR region. 
+Kubernetes services are deployed and an Ingress is configured using an application load balancer , Let's grab the url's of Ingress to validate that data is persisted and reflecting in the DR region. 
 
-![DR Region voting svc ](../images/VotingApp/Voting_dr_eks_votingresult.png)
+![DR Region Yelb App ](../images/Yelb/Yelb_DR_EKS_YelbApp.png)
 
 We tried accessing the result url directly here and we could see that the data in the postgres database is reflecting on the DR deployment. 
 
