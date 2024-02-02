@@ -1,0 +1,138 @@
+# RBAC file for the snapshot controller.
+#
+# The snapshot controller implements the control loop for CSI snapshot functionality.
+# It should be installed as part of the base Kubernetes distribution in an appropriate
+# namespace for components implementing base system functionality. For installing with
+# Vanilla Kubernetes, kube-system makes sense for the namespace.
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: snapshot-controller
+  namespace: kube-system
+
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: snapshot-controller-runner
+rules:
+  - apiGroups: [""]
+    resources: ["persistentvolumes"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: [""]
+    resources: ["persistentvolumeclaims"]
+    verbs: ["get", "list", "watch", "update"]
+  - apiGroups: [""]
+    resources: ["events"]
+    verbs: ["list", "watch", "create", "update", "patch"]
+  - apiGroups: ["snapshot.storage.k8s.io"]
+    resources: ["volumesnapshotclasses"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: ["snapshot.storage.k8s.io"]
+    resources: ["volumesnapshotcontents"]
+    verbs: ["create", "get", "list", "watch", "update", "delete", "patch"]
+  - apiGroups: ["snapshot.storage.k8s.io"]
+    resources: ["volumesnapshotcontents/status"]
+    verbs: ["patch"]
+  - apiGroups: ["snapshot.storage.k8s.io"]
+    resources: ["volumesnapshots"]
+    verbs: ["get", "list", "watch", "update", "patch"]
+  - apiGroups: ["snapshot.storage.k8s.io"]
+    resources: ["volumesnapshots/status"]
+    verbs: ["update", "patch"]
+  # Enable this RBAC rule only when using distributed snapshotting, i.e. when the enable-distributed-snapshotting flag is set to true
+  # - apiGroups: [""]
+  #   resources: ["nodes"]
+  #   verbs: ["get", "list", "watch"]
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: snapshot-controller-role
+subjects:
+  - kind: ServiceAccount
+    name: snapshot-controller
+    namespace: kube-system
+roleRef:
+  kind: ClusterRole
+  name: snapshot-controller-runner
+  apiGroup: rbac.authorization.k8s.io
+
+---
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: snapshot-controller-leaderelection
+  namespace: kube-system
+rules:
+- apiGroups: ["coordination.k8s.io"]
+  resources: ["leases"]
+  verbs: ["get", "watch", "list", "delete", "update", "create"]
+
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: snapshot-controller-leaderelection
+  namespace: kube-system
+subjects:
+  - kind: ServiceAccount
+    name: snapshot-controller
+roleRef:
+  kind: Role
+  name: snapshot-controller-leaderelection
+  apiGroup: rbac.authorization.k8s.io
+
+# This YAML file shows how to deploy the snapshot controller
+
+# The snapshot controller implements the control loop for CSI snapshot functionality.
+# It should be installed as part of the base Kubernetes distribution in an appropriate
+# namespace for components implementing base system functionality. For installing with
+# Vanilla Kubernetes, kube-system makes sense for the namespace.
+
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: snapshot-controller
+  namespace: kube-system
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: snapshot-controller
+  # the snapshot controller won't be marked as ready if the v1 CRDs are unavailable
+  # in #504 the snapshot-controller will exit after around 7.5 seconds if it
+  # can't find the v1 CRDs so this value should be greater than that
+  minReadySeconds: 15
+  strategy:
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: snapshot-controller
+    spec:
+      serviceAccountName: snapshot-controller
+      containers:
+        - name: snapshot-controller
+          image: registry.k8s.io/sig-storage/snapshot-controller:v6.3.1
+          args:
+            - "--v=5"
+            - "--leader-election=true"
+            # Add a marker to the snapshot-controller manifests. This is needed to enable feature gates in CSI prow jobs.
+            # For example, in https://github.com/kubernetes-csi/csi-release-tools/pull/209, the snapshot-controller YAML is updated to add --prevent-volume-mode-conversion=true so that the feature can be enabled for certain e2e tests.
+            # end snapshot controller args
+          imagePullPolicy: IfNotPresent
+
+---
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshotClass
+metadata:
+  name: ebs-volume-snapclass
+driver: ebs.csi.aws.com
+deletionPolicy: Delete
