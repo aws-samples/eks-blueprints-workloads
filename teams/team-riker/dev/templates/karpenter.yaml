@@ -1,0 +1,84 @@
+{{ if .Values.spec.karpenterInstanceProfile }}
+apiVersion: karpenter.k8s.aws/v1alpha1
+kind: AWSNodeTemplate
+metadata:
+  name: karpenter-default
+  labels:
+    {{- toYaml .Values.labels | nindent 4 }}  
+spec:
+  instanceProfile: '{{ .Values.spec.karpenterInstanceProfile }}'
+  subnetSelector:
+    kubernetes.io/cluster/{{ .Values.spec.clusterName }}: '*'
+    kubernetes.io/role/internal-elb: '1' # to select only private subnets
+  securityGroupSelector:
+    aws:eks:cluster-name: '{{ .Values.spec.clusterName }}' # Choose only security groups of nodes
+  tags:
+    karpenter.sh/cluster_name: {{.Values.spec.clusterName}}
+    karpenter.sh/provisioner: default
+  metadataOptions:
+    httpEndpoint: enabled
+    httpProtocolIPv6: disabled
+    httpPutResponseHopLimit: 2
+    httpTokens: required
+---
+apiVersion: karpenter.sh/v1alpha5
+kind: Provisioner
+metadata:
+  name: default
+  labels:
+    {{- toYaml .Values.labels | nindent 4 }}
+spec:
+  consolidation:
+    enabled: true
+  #ttlSecondsAfterEmpty: 60 # mutual exclusive with consolitation
+  requirements:
+    - key: "karpenter.k8s.aws/instance-category"
+      operator: In
+      values: ["c", "m"]
+    - key: karpenter.k8s.aws/instance-cpu
+      operator: Lt
+      values:
+        - '33'    
+    - key: 'kubernetes.io/arch'
+      operator: In
+      values: ['amd64']
+    - key: karpenter.sh/capacity-type
+      operator: In
+      values: ['on-demand']
+    - key: kubernetes.io/os
+      operator: In
+      values:
+        - linux
+  providerRef:
+    name: karpenter-default
+
+  ttlSecondsUntilExpired: 2592000 # 30 Days = 60 * 60 * 24 * 30 Seconds;
+  
+  # Priority given to the provisioner when the scheduler considers which provisioner
+  # to select. Higher weights indicate higher priority when comparing provisioners.
+  # Specifying no weight is equivalent to specifying a weight of 0.
+  weight: 1
+  limits:
+    resources:
+      cpu: '2k'
+  labels:
+    billing-team: default
+    team: default
+    type: karpenter
+    
+  # Do we want to apply some taints on the nodes ?  
+  # taints:
+  #   - key: karpenter
+  #     value: 'true'
+  #     effect: NoSchedule
+
+  # Karpenter provides the ability to specify a few additional Kubelet args.
+  # These are all optional and provide support for additional customization and use cases.
+  kubeletConfiguration:
+    containerRuntime: containerd
+    maxPods: 110     
+    systemReserved:
+      cpu: '1'
+      memory: 5Gi
+      ephemeral-storage: 2Gi
+{{ end }}
