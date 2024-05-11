@@ -1,0 +1,11 @@
+argoProject: ''
+
+labels:
+  env: dev
+  team: yoda
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/awslabs/kubeflow-manifests.git
+    targetRevision: main
