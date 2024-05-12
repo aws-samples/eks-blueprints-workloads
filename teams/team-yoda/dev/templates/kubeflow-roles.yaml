@@ -8,7 +8,6 @@ metadata:
 spec:
   project: {{ .Values.argoProject | default "default" }}
   destination:
-    namespace: kubeflow
     server: {{ .Values.spec.destination.server }}
   source:
     repoURL: {{ .Values.spec.source.repoURL }}
