@@ -16,6 +16,8 @@ spec:
     helm:
       values: |
         {{- toYaml .Values | nindent 8 }}
+    plugin:
+      name: kustomized-helm
   syncPolicy:
     automated:
       prune: true

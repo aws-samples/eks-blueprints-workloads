@@ -1,0 +1,3 @@
+resources:
+- kubeflow-namespace.yaml
+- kubeflow-roles.yaml
