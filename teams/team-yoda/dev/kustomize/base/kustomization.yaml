@@ -1,3 +1,4 @@
 resources:
+- ../../templates/dex.yaml
 - ../../templates/kubeflow-namespace.yaml
 - ../../templates/kubeflow-roles.yaml
