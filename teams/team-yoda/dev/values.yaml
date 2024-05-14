@@ -11,10 +11,10 @@ spec:
     repoURL: https://github.com/awslabs/kubeflow-manifests.git
     targetRevision: main
 
-kustomize:
-  enabled: true
-  path: kustomize/base
+# kustomize:
+#   enabled: true
+#   path: kustomize/base
 
-hooks:
-  pre-install:
-    - kustomize build {{ .Values.kustomize.path }}
+# hooks:
+#   pre-install:
+#     - kustomize build {{ .Values.kustomize.path }}
