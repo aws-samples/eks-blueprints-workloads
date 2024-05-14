@@ -9,6 +9,7 @@ spec:
   project: {{ .Values.argoProject | default "default" }}
   destination:
     server: {{ .Values.spec.destination.server }}
+    namespace: {{ .Values.spec.destination.namespace }}
   source:
     repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: {{ .Values.spec.source.targetRevision }}

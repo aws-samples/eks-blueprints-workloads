@@ -6,6 +6,7 @@ labels:
 spec:
   destination:
     server: https://kubernetes.default.svc
+    namespace: argocd
   source:
     repoURL: https://github.com/awslabs/kubeflow-manifests.git
     targetRevision: main
