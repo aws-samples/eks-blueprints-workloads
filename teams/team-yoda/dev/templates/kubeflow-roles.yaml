@@ -14,8 +14,7 @@ spec:
     targetRevision: {{ .Values.spec.source.targetRevision }}
     path: charts/common/kubeflow-roles
     helm:
-      values: |
-        {{- toYaml .Values | nindent 8 }}
+      version: v2
   syncPolicy:
     automated:
       prune: true
