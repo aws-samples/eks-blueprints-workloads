@@ -15,7 +15,6 @@ spec:
     targetRevision: {{ .Values.spec.source.targetRevision }}
     path: charts/common/dex
     helm:
-      version: v2
   syncPolicy:
     automated:
       prune: true
