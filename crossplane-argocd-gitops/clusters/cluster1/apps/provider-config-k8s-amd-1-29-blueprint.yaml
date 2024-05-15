@@ -1,0 +1,12 @@
+---
+apiVersion: kubernetes.crossplane.io/v1alpha1
+kind: ProviderConfig
+metadata:
+  name: provider-config-k8s-amd-1-29-blueprint
+spec:
+  credentials:
+    source: Secret
+    secretRef:
+      name: kubecontext-amd-1-29
+      namespace: upbound-system
+      key: kubeconfig

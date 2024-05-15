@@ -1,0 +1,12 @@
+---
+apiVersion: kubernetes.crossplane.io/v1alpha1
+kind: ProviderConfig
+metadata:
+  name: provider-config-k8s-arm-1-29-blueprint
+spec:
+  credentials:
+    source: Secret
+    secretRef:
+      name: kubecontext-arm-1-29
+      namespace: upbound-system
+      key: kubeconfig

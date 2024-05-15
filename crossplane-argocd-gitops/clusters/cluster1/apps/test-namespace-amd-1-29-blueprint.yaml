@@ -1,0 +1,14 @@
+apiVersion: kubernetes.crossplane.io/v1alpha2
+kind: Object
+metadata:
+  name: test-namespace-amd-1-29-blueprint
+spec:
+  forProvider:
+    manifest:
+      apiVersion: v1
+      kind: Namespace
+      metadata:
+        labels:
+          name: "test-namespace-amd-1-29-blueprint"
+  providerConfigRef:
+    name: provider-config-k8s-amd-1-29-blueprint

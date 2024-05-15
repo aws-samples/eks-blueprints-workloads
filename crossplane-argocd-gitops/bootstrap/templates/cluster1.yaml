@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cluster1
+  namespace: argocd
+  labels:
+    {{- toYaml .Values.cluster1.labels | nindent 4 }}  
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  destination:
+    namespace: argocd
+    server: {{ .Values.spec.destination.server }}
+  source:
+    repoURL: {{ .Values.cluster1.source.repoURL }}
+    targetRevision: {{ .Values.cluster1.source.targetRevision }}
+    path: {{ .Values.cluster1.source.path }}  
+    directory:
+      recurse: true
+      include: '*.yaml'
+  syncPolicy:
+    automated:
+      prune: true
+    syncOptions:
+    - CreateNamespace=true
