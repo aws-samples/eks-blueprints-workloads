@@ -2,16 +2,16 @@ cluster1:
   labels:
     cluster: amd-1-29-blueprint
   source:
-    repoURL: https://github.com/jalawala/aws-eks-addon-publication-main
+    repoURL: https://github.com/aws-samples/eks-blueprints-workloads
     targetRevision: main
-    path: ./clusters/cluster1
+    path: ./crossplane-argocd-gitops/clusters/cluster1
 cluster2:
   labels:
     cluster: arm-1-29-blueprint
   source:
-    repoURL: https://github.com/jalawala/aws-eks-addon-publication-main
+    repoURL: https://github.com/aws-samples/eks-blueprints-workloads
     targetRevision: main
-    path: ./clusters/cluster2    
+    path: ./crossplane-argocd-gitops/clusters/cluster2    
 spec:
   destination:
     server: https://kubernetes.default.svc
