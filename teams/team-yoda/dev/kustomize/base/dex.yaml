@@ -6,13 +6,13 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  project: {{ .Values.argoProject | default "default" }}
+  project: default
   destination:
-    namespace: {{ .Values.spec.destination.namespace }}
-    server: {{ .Values.spec.destination.server }}
+    namespace: argocd
+    server: https://kubernetes.default.svc
   source:
-    repoURL: {{ .Values.spec.source.repoURL }}
-    targetRevision: {{ .Values.spec.source.targetRevision }}
+    repoURL: https://github.com/awslabs/kubeflow-manifests.git
+    targetRevision: main
     path: charts/common/dex
     helm:
   syncPolicy:
