@@ -2,7 +2,6 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: kubeflow-roles
-  # namespace is specified as namespace destination in env/{dev,test,prod}/team-yoda.yaml
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
