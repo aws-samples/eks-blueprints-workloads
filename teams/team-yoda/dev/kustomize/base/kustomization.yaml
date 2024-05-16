@@ -1,4 +1,5 @@
 resources:
 - dex.yaml
+- oidc-authservice.yaml
 - kubeflow-namespace.yaml
 - kubeflow-roles.yaml

@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kubeflow-oidc-authservice
+  # namespace is specified as namespace destination in env/{dev,test,prod}/team-yoda.yaml
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/awslabs/kubeflow-manifests.git
+    targetRevision: main
+    path: charts/common/oidc-authservice
+    helm:
+  syncPolicy:
+    automated:
+      prune: true
