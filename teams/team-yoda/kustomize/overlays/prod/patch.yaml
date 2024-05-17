@@ -1,4 +1,7 @@
-spec:
-  source:
-    repoURL: https://github.com/kubeflow/manifests.git
-    targetRevision: tags/v1.7.0
+- op: replace
+  path: /spec/source/repoURL
+  value: https://github.com/kubeflow/manifests.git
+
+- op: replace
+  path: /spec/source/targetRevision
+  value: tags/v1.7.0

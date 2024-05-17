@@ -2,4 +2,8 @@ resources:
 - ../../base
 
 patches:
-- path: patch.yaml
+ - target:
+      group: argoproj.io/v1alpha1
+      version: v1
+      kind: Application
+   path: patch.yaml
