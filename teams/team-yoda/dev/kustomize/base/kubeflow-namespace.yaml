@@ -10,9 +10,9 @@ spec:
     namespace: argocd
     server: https://kubernetes.default.svc
   source:
-    repoURL: https://github.com/awslabs/kubeflow-manifests.git
-    targetRevision: main
-    path: charts/common/kubeflow-namespace
+    repoURL: https://github.com/kubeflow/manifests.git
+    targetRevision: master
+    path: common/kubeflow-namespace/base
     helm:
   syncPolicy:
     automated:

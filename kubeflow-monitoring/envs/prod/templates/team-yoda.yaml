@@ -13,7 +13,7 @@ spec:
   source:
     repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: {{ .Values.spec.source.targetRevision }}
-    path: teams/team-yoda/dev/kustomize/base
+    path: teams/team-yoda/dev/kustomize/overlays/prod
   syncPolicy:
     automated:
       prune: true
