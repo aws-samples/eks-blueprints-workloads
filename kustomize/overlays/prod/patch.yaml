@@ -1,4 +1,0 @@
-spec:
-  source:
-    repoURL: https://github.com/kubeflow/manifests.git
-    targetRevision: tags/v1.7.0
