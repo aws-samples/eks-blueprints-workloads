@@ -6,3 +6,4 @@ resources:
 - kubeflow-namespace.yaml
 - istio-resources.yaml
 - kubeflow-roles.yaml
+- kubeflow-issuer.yaml
