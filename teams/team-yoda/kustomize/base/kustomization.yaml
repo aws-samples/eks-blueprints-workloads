@@ -1,5 +1,8 @@
 resources:
+- istio.yaml
 - dex.yaml
 - oidc-authservice.yaml
+- cluster-local-gateway.yaml
 - kubeflow-namespace.yaml
+- kubeflow-istio-resources.yaml
 - kubeflow-roles.yaml
