@@ -4,5 +4,5 @@ resources:
 - oidc-authservice.yaml
 - cluster-local-gateway.yaml
 - kubeflow-namespace.yaml
-- kubeflow-istio-resources.yaml
+- istio-resources.yaml
 - kubeflow-roles.yaml
