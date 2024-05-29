@@ -11,3 +11,5 @@ resources:
 - knative-eventing.yaml
 - kserve.yaml
 - models-web-app.yaml
+- central-dashboard.yaml
+- central-dashboard-config.yaml
