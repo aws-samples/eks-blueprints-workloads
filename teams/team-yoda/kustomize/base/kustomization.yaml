@@ -14,3 +14,4 @@ resources:
 - central-dashboard.yaml
 - central-dashboard-config.yaml
 - pipeline.yaml
+- admission-webhook.yaml
