@@ -4,4 +4,9 @@ resources:
 patches:
  - target:
       kind: Application
+      annotationSelector: appSource=upstream
    path: ./patch.yaml
+ - target:
+      kind: Application
+      annotationSelector: appSource=aws
+   path: ./patch-aws.yaml

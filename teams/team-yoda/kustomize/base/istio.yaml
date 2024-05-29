@@ -4,6 +4,8 @@ metadata:
   name: kubeflow-istio-namespace
   finalizers:
     - resources-finalizer.argocd.argoproj.io
+  annotations:
+    appSource: upstream
 spec:
   project: default
   destination:
@@ -24,6 +26,8 @@ metadata:
   name: kubeflow-istio-crds
   finalizers:
     - resources-finalizer.argocd.argoproj.io
+  annotations:
+    appSource: upstream
 spec:
   project: default
   destination:
@@ -44,6 +48,8 @@ metadata:
   name: kubeflow-istio
   finalizers:
     - resources-finalizer.argocd.argoproj.io
+  annotations:
+    appSource: upstream
 spec:
   project: default
   destination:

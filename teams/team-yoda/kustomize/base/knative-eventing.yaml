@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kubeflow-istio-resources
+  name: kubeflow-knative-eventing
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
@@ -14,7 +14,7 @@ spec:
   source:
     repoURL: https://github.com/kubeflow/manifests.git
     targetRevision: master
-    path: common/istio-1-16/kubeflow-istio-resources/base
+    path: common/knative/knative-eventing/base
     helm:
   syncPolicy:
     automated:

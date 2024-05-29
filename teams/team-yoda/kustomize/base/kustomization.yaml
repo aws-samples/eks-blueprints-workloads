@@ -7,3 +7,6 @@ resources:
 - istio-resources.yaml
 - kubeflow-roles.yaml
 - kubeflow-issuer.yaml
+- knative-serving.yaml
+- knative-eventing.yaml
+- kserve.yaml

@@ -1,20 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kubeflow-istio-resources
+  name: kubeflow-kserve
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
-    appSource: upstream
+    appSource: aws
 spec:
   project: default
   destination:
     namespace: argocd
     server: https://kubernetes.default.svc
   source:
-    repoURL: https://github.com/kubeflow/manifests.git
-    targetRevision: master
-    path: common/istio-1-16/kubeflow-istio-resources/base
+    repoURL: https://github.com/awslabs/kubeflow-manifests.git
+    targetRevision: main
+    path: awsconfigs/apps/kserve
     helm:
   syncPolicy:
     automated:

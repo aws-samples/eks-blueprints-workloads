@@ -4,6 +4,8 @@ metadata:
   name: kubeflow-dex
   finalizers:
     - resources-finalizer.argocd.argoproj.io
+  annotations:
+    appSource: upstream
 spec:
   project: default
   destination:

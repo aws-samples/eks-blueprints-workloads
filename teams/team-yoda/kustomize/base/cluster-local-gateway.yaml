@@ -4,6 +4,8 @@ metadata:
   name: kubeflow-istio-cluster-local-gateway
   finalizers:
     - resources-finalizer.argocd.argoproj.io
+  annotations:
+    appSource: upstream
 spec:
   project: default
   destination:
