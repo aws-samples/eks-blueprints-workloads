@@ -4,4 +4,4 @@
 
 - op: replace
   path: /spec/source/targetRevision
-  value: v1.7-branch
+  value: v1.8.1
