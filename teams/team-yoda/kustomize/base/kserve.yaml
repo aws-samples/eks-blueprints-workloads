@@ -5,16 +5,16 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
-    appSource: aws
+    appSource: upstream
 spec:
   project: default
   destination:
     namespace: argocd
     server: https://kubernetes.default.svc
   source:
-    repoURL: https://github.com/awslabs/kubeflow-manifests.git
-    targetRevision: main
-    path: awsconfigs/apps/kserve
+    repoURL: https://github.com/kubeflow/manifests.git
+    targetRevision: master
+    path: contrib/kserve/kserve
     helm:
   syncPolicy:
     automated:
