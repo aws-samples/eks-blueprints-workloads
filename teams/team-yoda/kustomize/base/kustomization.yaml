@@ -10,3 +10,4 @@ resources:
 - knative-serving.yaml
 - knative-eventing.yaml
 - kserve.yaml
+- models-web-app.yaml
