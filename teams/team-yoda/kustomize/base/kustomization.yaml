@@ -13,3 +13,4 @@ resources:
 - models-web-app.yaml
 - central-dashboard.yaml
 - central-dashboard-config.yaml
+- pipeline.yaml
