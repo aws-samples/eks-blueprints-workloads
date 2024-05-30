@@ -20,3 +20,4 @@ resources:
 - training-operator.yaml
 - katib.yaml
 - tensorboards-web-app.yaml
+- tensorboard-controller.yaml
