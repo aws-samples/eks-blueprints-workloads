@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kubeflow-ack-sagemaker-controller
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    appSource: aws
+spec:
+  project: default
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/awslabs/kubeflow-manifests.git
+    targetRevision: main
+    path: awsconfigs/common/ack-sagemaker-controller
+  syncPolicy:
+    automated:
+      prune: true
