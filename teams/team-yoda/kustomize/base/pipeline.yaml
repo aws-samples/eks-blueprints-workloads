@@ -17,9 +17,7 @@ spec:
     path: apps/pipeline/upstream/env/cert-manager/platform-agnostic-multi-user
     kustomize:
       images:
-        - name: gcr.io/ml-pipeline/api-server
-          newName: public.ecr.aws/kubeflow-on-aws/ml-pipeline/api-server
-          newTag: 2.0.0-alpha.7
+      - gcr.io/ml-pipeline/api-server=public.ecr.aws/kubeflow-on-aws/ml-pipeline/api-server:2.0.0-alpha.7
   syncPolicy:
     automated:
       prune: true
