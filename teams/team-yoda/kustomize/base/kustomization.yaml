@@ -14,3 +14,4 @@ resources:
 - central-dashboard.yaml
 - pipeline.yaml
 - admission-webhook.yaml
+- jupyter-web-app.yaml
