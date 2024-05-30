@@ -16,3 +16,4 @@ resources:
 - admission-webhook.yaml
 - jupyter-web-app.yaml
 - notebook-controller.yaml
+- volumes-web-app.yaml
