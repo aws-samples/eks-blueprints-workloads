@@ -15,7 +15,6 @@ spec:
     repoURL: https://github.com/kubeflow/manifests.git
     targetRevision: master
     path: common/knative/knative-serving/overlays/gateways
-    helm:
   syncPolicy:
     automated:
       prune: true

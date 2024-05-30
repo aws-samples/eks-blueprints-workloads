@@ -12,6 +12,5 @@ resources:
 - kserve.yaml
 - models-web-app.yaml
 - central-dashboard.yaml
-- central-dashboard-config.yaml
 - pipeline.yaml
 - admission-webhook.yaml

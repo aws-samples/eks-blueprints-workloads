@@ -59,7 +59,6 @@ spec:
     repoURL: https://github.com/kubeflow/manifests.git
     targetRevision: master
     path: common/istio-1-16/istio-install/base
-    helm:
   syncPolicy:
     automated:
       prune: true

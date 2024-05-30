@@ -15,7 +15,6 @@ spec:
     repoURL: https://github.com/kubeflow/manifests.git
     targetRevision: master
     path: common/dex/overlays/istio
-    helm:
   syncPolicy:
     automated:
       prune: true

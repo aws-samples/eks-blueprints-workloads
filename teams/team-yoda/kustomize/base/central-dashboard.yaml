@@ -5,17 +5,16 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
-    appSource: upstream
+    appSource: inline
 spec:
   project: default
   destination:
     namespace: argocd
     server: https://kubernetes.default.svc
   source:
-    repoURL: https://github.com/kubeflow/manifests.git
-    targetRevision: master
-    path: apps/centraldashboard/upstream/overlays/istio
-    helm:
+    repoURL: https://github.com/arunvthangaraj/eks-blueprints-workloads.git
+    targetRevision: main
+    path: kubeflow-monitoring/central-dashboard
   syncPolicy:
     automated:
       prune: true
