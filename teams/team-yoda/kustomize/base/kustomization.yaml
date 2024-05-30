@@ -22,3 +22,4 @@ resources:
 - tensorboards-web-app.yaml
 - tensorboard-controller.yaml
 - profiles-and-kfam.yaml
+- user-namespace.yaml
