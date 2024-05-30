@@ -21,3 +21,4 @@ resources:
 - katib.yaml
 - tensorboards-web-app.yaml
 - tensorboard-controller.yaml
+- profiles-and-kfam.yaml
