@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kubeflow-notebook-controller
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    appSource: inline
+spec:
+  project: default
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/arunvthangaraj/eks-blueprints-workloads.git
+    targetRevision: main
+    path: kubeflow-monitoring/notebook-controller
+  syncPolicy:
+    automated:
+      prune: true

@@ -15,3 +15,4 @@ resources:
 - pipeline.yaml
 - admission-webhook.yaml
 - jupyter-web-app.yaml
+- notebook-controller.yaml
