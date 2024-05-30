@@ -17,3 +17,4 @@ resources:
 - jupyter-web-app.yaml
 - notebook-controller.yaml
 - volumes-web-app.yaml
+- training-operator.yaml

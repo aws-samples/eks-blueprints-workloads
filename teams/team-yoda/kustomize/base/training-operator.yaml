@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kubeflow-volumes-web-app
+  name: kubeflow-training-operator
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
@@ -14,7 +14,7 @@ spec:
   source:
     repoURL: https://github.com/kubeflow/manifests.git
     targetRevision: master
-    path: apps/volumes-web-app/upstream/overlays/istio
+    path: apps/training-operator/upstream/overlays/kubeflow
   syncPolicy:
     automated:
       prune: true
