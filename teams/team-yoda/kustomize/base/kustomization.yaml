@@ -19,3 +19,4 @@ resources:
 - volumes-web-app.yaml
 - training-operator.yaml
 - katib.yaml
+- tensorboards-web-app.yaml

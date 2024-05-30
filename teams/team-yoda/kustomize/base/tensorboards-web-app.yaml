@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kubeflow-tensorboards-web-app
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    appSource: upstream
+spec:
+  project: default
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/kubeflow/manifests.git
+    targetRevision: master
+    path: apps/tensorboard/tensorboards-web-app/upstream/overlays/istio
+  syncPolicy:
+    automated:
+      prune: true
