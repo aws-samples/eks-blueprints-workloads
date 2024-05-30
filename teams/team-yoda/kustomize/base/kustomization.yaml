@@ -24,3 +24,4 @@ resources:
 - profiles-and-kfam.yaml
 - user-namespace.yaml
 - ack-sagemaker-controller.yaml
+- notebook-token.yaml
