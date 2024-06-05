@@ -1,5 +1,0 @@
-resources:
-  - github.com/kubeflow/manifests/apps/centraldashboard/upstream/overlays/istio?ref=v1.8.1
-
-patches:
-  - path: patches/configMapPatch.yaml

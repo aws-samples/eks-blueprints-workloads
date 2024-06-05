@@ -12,9 +12,9 @@ spec:
     namespace: argocd
     server: https://kubernetes.default.svc
   source:
-    repoURL: https://github.com/arunvthangaraj/eks-blueprints-workloads.git
+    repoURL: https://github.com/arunvthangaraj/aws-observability-accelerator.git
     targetRevision: main
-    path: kubeflow-monitoring/notebook-token
+    path: artifacts/argocd-apps/teams/team-yoda/prod/notebook-token
   syncPolicy:
     automated:
       prune: true
