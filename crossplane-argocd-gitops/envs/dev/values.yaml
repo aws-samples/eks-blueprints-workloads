@@ -4,14 +4,14 @@ cluster1:
   source:
     repoURL: https://github.com/aws-samples/eks-blueprints-workloads
     targetRevision: main
-    path: ./crossplane-argocd-gitops/clusters/cluster1
+    path: ./teams/team-gitops/dev/cluster1
 cluster2:
   labels:
     cluster: arm-1-29-blueprint
   source:
     repoURL: https://github.com/aws-samples/eks-blueprints-workloads
     targetRevision: main
-    path: ./crossplane-argocd-gitops/clusters/cluster2    
+    path: ./teams/team-gitops/dev/cluster2 
 spec:
   destination:
     server: https://kubernetes.default.svc

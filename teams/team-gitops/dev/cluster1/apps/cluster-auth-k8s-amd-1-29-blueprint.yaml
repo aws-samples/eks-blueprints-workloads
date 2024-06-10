@@ -5,7 +5,7 @@ metadata:
   name: cluster-auth-k8s-amd-1-29-blueprint
 spec:
   forProvider:
-    region: us-east-1
+    region: us-west-2
     clusterName: amd-1-29-blueprint
   providerConfigRef:
     name: provider-config-aws-amd-1-29-blueprint
