@@ -6,6 +6,7 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
   annotations:
     appSource: aws
+    argocd.argoproj.io/sync-wave: "25"
 spec:
   project: default
   destination:

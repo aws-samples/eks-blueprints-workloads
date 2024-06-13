@@ -6,6 +6,7 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
   annotations:
     appSource: upstream
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   project: default
   destination:
@@ -28,6 +29,7 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
   annotations:
     appSource: upstream
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   project: default
   destination:
@@ -50,6 +52,7 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
   annotations:
     appSource: upstream
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   project: default
   destination:

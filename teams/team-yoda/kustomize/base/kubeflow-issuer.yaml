@@ -6,6 +6,7 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
   annotations:
     appSource: upstream
+    argocd.argoproj.io/sync-wave: "8"
 spec:
   project: default
   destination:
