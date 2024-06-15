@@ -1,5 +1,0 @@
-apiVersion: v1
-appVersion: "1.0"
-name: kubeflow-monitoring-argo-config
-description: Chart to update argo-cm config Map.
-version: 0.1.0
