@@ -1,0 +1,12 @@
+clusterA:
+  clusterName: 
+clusterB:
+  clusterName:   
+common:
+  provider-config-aws-name: 
+  eks-connector-role-name: 
+  account_id:
+  region:
+  crossplane_namespace: 
+
+  

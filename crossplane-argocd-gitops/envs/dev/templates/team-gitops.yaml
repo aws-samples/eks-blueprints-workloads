@@ -1,10 +1,10 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: team-gitops-cluster2
+  name: team-gitops-cluster1
   namespace: argocd
   labels:
-    {{- toYaml .Values.cluster2.labels | nindent 4 }}  
+    {{- toYaml .Values.cluster1.labels | nindent 4 }}  
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
@@ -13,12 +13,13 @@ spec:
     namespace: argocd
     server: {{ .Values.spec.destination.server }}
   source:
-    repoURL: {{ .Values.cluster2.source.repoURL }}
-    targetRevision: {{ .Values.cluster2.source.targetRevision }}
-    path: {{ .Values.cluster2.source.path }}  
-    directory:
-      recurse: true
-      include: '*.yaml'
+    repoURL: {{ .Values.spec.source.repoURL }}
+    targetRevision: {{ .Values.spec.source.targetRevision }}
+    path: teams/team-gitops/dev 
+    helm:
+      values: |
+        {{- toYaml .Values | nindent 8 }}
+
   syncPolicy:
     automated:
       prune: true
