@@ -9,4 +9,4 @@ spec:
     region: {{ .Values.common.region }}
     clusterName: {{ .Values.clusterA.clusterName }}
   providerConfigRef:
-    name: {{ .Values.common.provider-config-aws-name }}
+    name: {{ .Values.common.providerConfigAWSName }}

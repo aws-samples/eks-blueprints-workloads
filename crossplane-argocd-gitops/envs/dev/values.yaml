@@ -5,14 +5,13 @@ spec:
     repoURL: https://github.com/aws-samples/eks-blueprints-workloads
     targetRevision: main
 clusterA:
-  clusterName: amd-1-29-blueprint
+  clusterName: 
 clusterB:
-  clusterName: arm-1-29-blueprint  
+  clusterName: 
 common:
-  provider-config-aws-name: common-provider-config-aws
-  eks-connector-role-name: eks-connector-role
-  account_id: <enter_accont_id_here>
-  region: us-west-2
-  crossplane_namespace: upbound-system
+  providerConfigAWSName:  
+  eksConnectorRoleName:  
+  accountId:  
+  region: 
+  crossplaneNamespace: 
 
-  

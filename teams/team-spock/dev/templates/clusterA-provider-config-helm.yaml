@@ -8,5 +8,5 @@ spec:
     source: Secret
     secretRef:
       name: kubecontext-{{ .Values.clusterA.clusterName }}
-      namespace: {{ .Values.common.crossplane_namespace }}
+      namespace: {{ .Values.common.crossplaneNamespace }}
       key: kubeconfig

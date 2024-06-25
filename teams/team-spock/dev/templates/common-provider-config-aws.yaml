@@ -1,9 +1,9 @@
 apiVersion: aws.upbound.io/v1beta1
 kind: ProviderConfig
 metadata:
-  name: {{ .Values.common.provider-config-aws-name }}
+  name: {{ .Values.common.providerConfigAWSName }}
 spec:
   credentials:
     source: IRSA
   assumeRoleChain:
-    - roleARN: "arn:aws:iam::{{ .Values.common.account_id }}:role/{{ .Values.common.eks-connector-role-name }}"
+    - roleARN: "arn:aws:iam::{{ .Values.common.accountId }}:role/{{ .Values.common.eksConnectorRoleName }}"
