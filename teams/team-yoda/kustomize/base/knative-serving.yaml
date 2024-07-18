@@ -5,7 +5,7 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
-    appSource: upstream
+    appSource: upstream-custom #This annotation is added to prevent patch
     argocd.argoproj.io/sync-wave: "9"
 spec:
   project: default
@@ -14,7 +14,7 @@ spec:
     server: https://kubernetes.default.svc
   source:
     repoURL: https://github.com/kubeflow/manifests.git
-    targetRevision: master
+    targetRevision: v1.8.0
     path: common/knative/knative-serving/overlays/gateways
   syncPolicy:
     automated:
