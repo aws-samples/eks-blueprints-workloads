@@ -15,7 +15,7 @@ spec:
   source:
     repoURL: https://github.com/kubeflow/manifests.git
     targetRevision: master
-    path: common/oidc-authservice/base
+    path: common/oidc-client/oidc-authservice/base
   syncPolicy:
     automated:
       prune: true
