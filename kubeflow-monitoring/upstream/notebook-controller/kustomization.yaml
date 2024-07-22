@@ -1,0 +1,7 @@
+namespace: kubeflow
+resources:
+- github.com/kubeflow/manifests/apps/jupyter/notebook-controller/upstream/overlays/kubeflow?ref=v1.8.1
+configMapGenerator:
+- name: config
+  behavior: merge
+  env: params.env

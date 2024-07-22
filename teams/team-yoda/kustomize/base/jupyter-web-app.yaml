@@ -13,9 +13,9 @@ spec:
     namespace: argocd
     server: https://kubernetes.default.svc
   source:
-    repoURL: https://github.com/arunvthangaraj/aws-observability-accelerator.git
+    repoURL: https://github.com/arunvthangaraj/eks-blueprints-workloads.git
     targetRevision: main
-    path: artifacts/argocd-apps/teams/team-yoda/prod/jupyter-web-app
+    path: kubeflow-monitoring/upstream/jupyter-web-app
   syncPolicy:
     automated:
       prune: true
