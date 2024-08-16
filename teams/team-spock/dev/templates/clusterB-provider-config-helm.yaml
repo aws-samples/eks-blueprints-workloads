@@ -5,7 +5,7 @@ metadata:
   name: provider-config-helm-{{ .Values.clusterB.clusterName }}
 spec:
   credentials:
-    source: Secret`
+    source: Secret
     secretRef:
       name: kubecontext-{{ .Values.clusterB.clusterName }}
       namespace: {{ .Values.common.crossplaneNamespace }}
