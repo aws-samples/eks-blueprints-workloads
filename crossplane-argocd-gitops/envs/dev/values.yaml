@@ -2,7 +2,7 @@ spec:
   destination:
     server: https://kubernetes.default.svc
   source:
-    repoURL: https://github.com/aws-samples/eks-blueprints-workloads
+    repoURL: https://github.com/ajpaws/eks-blueprints-workloads
     targetRevision: main
 clusterA:
   clusterName: 

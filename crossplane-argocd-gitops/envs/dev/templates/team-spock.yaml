@@ -3,8 +3,6 @@ kind: Application
 metadata:
   name: team-spock
   namespace: argocd
-  labels:
-    {{- toYaml .Values.cluster1.labels | nindent 4 }}  
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
