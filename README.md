@@ -95,8 +95,7 @@ envs
 
 The configuration in the `teams` subdirectories represent the individual teams that are running workloads in our EKS clusters.
 
-Each `team` subdirectory in turn has environment subdirectories. The configuration in those directories are Kubernetes manifests that represent the individual workload that is running for each team and in each environment. The `team-spock` implements the CDK EKS Blueprints pattern [GitOps based Multi-cluster add-on and Apps Management using Crossplane and ArgoCD](https://github.com/aws-samples/cdk-eks-blueprints-patterns/blob/main/docs/patterns/crossplane-argocd-gitops.md) 
-
+Each `team` subdirectory in turn has environment subdirectories. The configuration in those directories are Kubernetes manifests that represent the individual workload that is running for each team and in each environment. 
 
 **NOTE** Some team environment directories may contain additional `yaml` files such as an `ingress.yaml`
 
@@ -133,6 +132,7 @@ teams
 
 ```
 
+The `team-spock` is a platform team which implements the CDK EKS Blueprints pattern [GitOps based Multi-cluster add-on and Apps Management using Crossplane and ArgoCD](https://github.com/aws-samples/cdk-eks-blueprints-patterns/blob/main/docs/patterns/crossplane-argocd-gitops.md)
 
 ## Security
 
