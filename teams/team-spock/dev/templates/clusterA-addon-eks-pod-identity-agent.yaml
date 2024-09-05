@@ -1,0 +1,12 @@
+---
+apiVersion: eks.aws.upbound.io/v1beta1
+kind: Addon
+metadata:
+  name: addon-eks-pod-identity-agent-{{ .Values.clusterA.clusterName }}
+spec:
+  forProvider:
+    addonName: eks-pod-identity-agent
+    region: {{ .Values.common.region }}
+    clusterName: {{ .Values.clusterA.clusterName }}
+  providerConfigRef:
+    name: {{ .Values.common.providerConfigAWSName }}

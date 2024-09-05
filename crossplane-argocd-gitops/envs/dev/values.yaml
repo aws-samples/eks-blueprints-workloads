@@ -1,0 +1,17 @@
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/ajpaws/eks-blueprints-workloads
+    targetRevision: main
+clusterA:
+  clusterName: 
+clusterB:
+  clusterName: 
+common:
+  providerConfigAWSName:  
+  eksConnectorRoleName:  
+  accountId:  
+  region: 
+  crossplaneNamespace: 
+

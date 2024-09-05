@@ -1,0 +1,14 @@
+---
+apiVersion: eks.aws.upbound.io/v1beta1
+kind: ClusterAuth
+metadata:
+  name: cluster-auth-{{ .Values.clusterA.clusterName }}
+spec:
+  forProvider:
+    region: {{ .Values.common.region }}
+    clusterName: {{ .Values.clusterA.clusterName }}
+  providerConfigRef:
+    name: {{ .Values.common.providerConfigAWSName }}
+  writeConnectionSecretToRef:
+    namespace: {{ .Values.common.crossplaneNamespace }}
+    name: kubecontext-{{ .Values.clusterA.clusterName }}

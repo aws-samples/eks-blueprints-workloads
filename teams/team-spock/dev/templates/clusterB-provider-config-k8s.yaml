@@ -1,0 +1,12 @@
+---
+apiVersion: kubernetes.crossplane.io/v1alpha1
+kind: ProviderConfig
+metadata:
+  name: provider-config-k8s-{{ .Values.clusterB.clusterName }}
+spec:
+  credentials:
+    source: Secret
+    secretRef:
+      name: kubecontext-{{ .Values.clusterB.clusterName }}
+      namespace: {{ .Values.common.crossplaneNamespace }}
+      key: kubeconfig

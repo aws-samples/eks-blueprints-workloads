@@ -1,0 +1,14 @@
+apiVersion: kubernetes.crossplane.io/v1alpha2
+kind: Object
+metadata:
+  name: test-namespace-{{ .Values.clusterA.clusterName }}
+spec:
+  forProvider:
+    manifest:
+      apiVersion: v1
+      kind: Namespace
+      metadata:
+        labels:
+          name: test-namespace-{{ .Values.clusterA.clusterName }}
+  providerConfigRef:
+    name: provider-config-k8s-{{ .Values.clusterA.clusterName }}

@@ -1,0 +1,12 @@
+---
+apiVersion: helm.crossplane.io/v1beta1
+kind: ProviderConfig
+metadata:
+  name: provider-config-helm-{{ .Values.clusterB.clusterName }}
+spec:
+  credentials:
+    source: Secret
+    secretRef:
+      name: kubecontext-{{ .Values.clusterB.clusterName }}
+      namespace: {{ .Values.common.crossplaneNamespace }}
+      key: kubeconfig

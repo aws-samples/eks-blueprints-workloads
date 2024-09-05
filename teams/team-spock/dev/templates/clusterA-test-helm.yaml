@@ -1,0 +1,13 @@
+apiVersion: helm.crossplane.io/v1beta1
+kind: Release
+metadata:
+  name: test-helm-{{ .Values.clusterA.clusterName }}
+spec:
+  forProvider:
+    chart:
+      name: nginx
+      repository: https://charts.bitnami.com/bitnami
+      version: 17.0.1
+    namespace: default
+  providerConfigRef:
+    name: provider-config-helm-{{ .Values.clusterA.clusterName }}

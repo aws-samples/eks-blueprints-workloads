@@ -1,0 +1,11 @@
+clusterA:
+  clusterName: 
+clusterB:
+  clusterName: 
+common:
+  providerConfigAWSName:  
+  eksConnectorRoleName:  
+  accountId:  
+  region: 
+  crossplaneNamespace: 
+   
