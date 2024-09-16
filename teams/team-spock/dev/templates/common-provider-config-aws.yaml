@@ -6,4 +6,4 @@ spec:
   credentials:
     source: IRSA
   assumeRoleChain:
-    - roleARN: "arn:aws:iam::{{ .Values.common.accountId }}:role/{{ .Values.common.eksConnectorRoleName }}"
+    - roleARN: "arn:aws:iam::{{ int .Values.common.accountId }}:role/{{ .Values.common.eksConnectorRoleName }}"
