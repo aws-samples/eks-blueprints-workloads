@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kubeflow-pipeline
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    appSource: upstream
+    argocd.argoproj.io/sync-wave: "14"
+spec:
+  project: default
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/kubeflow/manifests.git
+    targetRevision: master
+    path: apps/pipeline/upstream/env/cert-manager/platform-agnostic-multi-user
+    kustomize:
+      images:
+      - gcr.io/ml-pipeline/api-server=public.ecr.aws/kubeflow-on-aws/ml-pipeline/api-server:2.0.0-alpha.7
+  syncPolicy:
+    automated:
+      prune: true

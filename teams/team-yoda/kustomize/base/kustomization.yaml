@@ -1,0 +1,27 @@
+resources:
+- istio.yaml
+- dex.yaml
+- oidc-authservice.yaml
+- cluster-local-gateway.yaml
+- kubeflow-namespace.yaml
+- istio-resources.yaml
+- kubeflow-roles.yaml
+- kubeflow-issuer.yaml
+- knative-serving.yaml
+- knative-eventing.yaml
+- kserve.yaml
+- models-web-app.yaml
+- central-dashboard.yaml
+- pipeline.yaml
+- admission-webhook.yaml
+- jupyter-web-app.yaml
+- notebook-controller.yaml
+- volumes-web-app.yaml
+- training-operator.yaml
+- katib.yaml
+- tensorboards-web-app.yaml
+- tensorboard-controller.yaml
+- profiles-and-kfam.yaml
+- user-namespace.yaml
+- ack-sagemaker-controller.yaml
+- notebook-token.yaml

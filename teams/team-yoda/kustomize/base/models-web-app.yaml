@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kubeflow-models-web-app
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    appSource: upstream
+    argocd.argoproj.io/sync-wave: "12"
+spec:
+  project: default
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/kubeflow/manifests.git
+    targetRevision: master
+    path: contrib/kserve/models-web-app/overlays/kubeflow
+  syncPolicy:
+    automated:
+      prune: true

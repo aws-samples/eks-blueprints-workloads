@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kubeflow-knative-serving
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    appSource: upstream-custom #This annotation is added to prevent patch
+    argocd.argoproj.io/sync-wave: "9"
+spec:
+  project: default
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/kubeflow/manifests.git
+    targetRevision: v1.8.0
+    path: common/knative/knative-serving/overlays/gateways
+  syncPolicy:
+    automated:
+      prune: true

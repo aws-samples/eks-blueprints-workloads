@@ -1,0 +1,7 @@
+resources:
+- github.com/kubeflow/manifests/apps/jupyter/jupyter-web-app/upstream/overlays/istio?ref=v1.8.1
+configMapGenerator:
+- name: config
+  behavior: merge
+  files:
+  - configs/spawner_ui_config.yaml
