@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kubeflow-istio-cluster-local-gateway
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    appSource: upstream
+    argocd.argoproj.io/sync-wave: "4"
+spec:
+  project: default
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/kubeflow/manifests.git
+    targetRevision: master
+    path: common/istio-1-16/cluster-local-gateway/base
+  syncPolicy:
+    automated:
+      prune: true

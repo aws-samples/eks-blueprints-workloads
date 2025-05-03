@@ -1,0 +1,7 @@
+- op: replace
+  path: /spec/source/repoURL
+  value: https://github.com/awslabs/kubeflow-manifests.git
+
+- op: replace
+  path: /spec/source/targetRevision
+  value: v1.7.0-aws-b1.0.3
