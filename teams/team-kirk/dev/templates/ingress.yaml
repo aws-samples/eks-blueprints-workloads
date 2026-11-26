@@ -7,7 +7,6 @@ metadata:
     app: kubecost
     {{- toYaml .Values.labels | nindent 4 }}
   annotations:
-    kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/tags: Environment=dev,Project=cognito
     external-dns.alpha.kubernetes.io/hostname: {{ .Values.spec.ingress.host }} 
@@ -22,6 +21,7 @@ metadata:
     alb.ingress.kubernetes.io/certificate-arn: {{ .Values.spec.ingress.certificateArn }}
     alb.ingress.kubernetes.io/target-type: 'ip'
 spec:
+  ingressClassName: alb
   rules:
     {{ if .Values.spec.ingress.host }}
     - host: {{ .Values.spec.ingress.host }}
